@@ -958,11 +958,11 @@ Error: {err}\n\n"""
                                 sys.stdout.write(f'\r{loading}{BO} Check Vuln ["][-]: {W}{scan}')
                                 resp1 = requests.get(scan+'"')
                                 errcount = 1
-                                for err in sqlerror:
+                                for errr in sqlerror:
                                   sys.stdout.write(f"\r{whitespace}")
                                   sys.stdout.write(f'\r{loading}{BO} Check Vuln ["][{int(errcount)}]: {W}{scan}')
                                   errcount += 1
-                                  if re.search(err,resp1.text):
+                                  if re.search(errr,resp1.text):
                                     temp = open("./.temp/" + vulntemp, "a+")
                                     text = f"""[Checking With Double Quote (”)]
 Url: {scan}
@@ -970,7 +970,7 @@ Error: {err}\n\n"""
                                     temp.writelines(text)
                                     temp.close()
 
-                                    __vuln = err
+                                    __vuln = errr
 
                                     sys.stdout.write("\r"+whitespace)
                                     sys.stdout.write(f'\n{success}{BG} Vulnerability SQLi!')
