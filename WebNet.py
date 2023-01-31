@@ -105,6 +105,9 @@ if not os.path.exists("./output/subscan"):
 
 if not os.path.exists("./output/dorkscan"):
     os.makedirs("./output/dorkscan")
+    
+if not os.path.exists("./output/vulnsqli"):
+    os.makedirs("./output/vulnsqli")
 
 if not os.path.exists("./output/adminfind"):
     os.makedirs("./output/adminfind")
@@ -865,8 +868,8 @@ class dorkscan():
       os.system(clrcmd)
       print(banner)
       print(f"{W}[{BR}@{W}]{BG} Dork Scanner{W}")
-      dorks = str(input(f"{W} ├─[{O}Dork [eg:inurl:view.php?id= | Add -s = Scan Dork eg:dork -s]:{P} "))
-      proxy = str(input(f"{W} └─[{O}Proxy [eg:127.0.0.1:1337 | Leave Blank = No Use Proxy]:{P} "))
+      dorks = str(input(f"{W} ├─[{O}Dork [eg:inurl:view.php?id= | -s = Scan eg:dork -s]:{P} "))
+      proxy = str(input(f"{W} └─[{O}Proxy [eg:127.0.0.1:1337 | Blank = No Use Proxy]:{P} "))
       
       prx = BR+"Not Set"
       if "-s" in dorks or "--scan" in dorks:
@@ -921,12 +924,12 @@ class dorkscan():
                               with open("./src/error_sql.txt", 'r') as f:
                                 sqlerror = f.read().splitlines()
 
-                              sys.stdout.write(f"\n{loading}{BO} Checking Vuln ['][-]: {W}{scan}")
+                              sys.stdout.write(f"\n{loading}{BO} Check Vuln ['][-]: {W}{scan}")
                               resp = requests.get(scan+"'")
                               errcount = 1
                               for err in sqlerror:
                                 sys.stdout.write(f"\r{whitespace}")
-                                sys.stdout.write(f"\r{loading}{BO} Checking Vuln ['][{int(errcount)}]: {W}{scan}")
+                                sys.stdout.write(f"\r{loading}{BO} Check Vuln ['][{int(errcount)}]: {W}{scan}")
                                 errcount += 1
                                 if re.search(err,resp.text):
                                   temp = open("./.temp/" + vulntemp, "a+")
@@ -952,12 +955,12 @@ Error: {err}\n\n"""
 
                               if dq == 1:
                                 sys.stdout.write(f"\r{whitespace}")
-                                sys.stdout.write(f'\r{loading}{BO} Checking Vuln ["][-]: {W}{scan}')
+                                sys.stdout.write(f'\r{loading}{BO} Check Vuln ["][-]: {W}{scan}')
                                 resp1 = requests.get(scan+'"')
                                 errcount = 1
                                 for err in sqlerror:
                                   sys.stdout.write(f"\r{whitespace}")
-                                  sys.stdout.write(f'\r{loading}{BO} Checking Vuln ["][{int(errcount)}]: {W}{scan}')
+                                  sys.stdout.write(f'\r{loading}{BO} Check Vuln ["][{int(errcount)}]: {W}{scan}')
                                   errcount += 1
                                   if re.search(err,resp1.text):
                                     temp = open("./.temp/" + vulntemp, "a+")
@@ -982,6 +985,7 @@ Error: {err}\n\n"""
                                     temp = open("./.temp/" + filetemp, "a+")
                                     temp.writelines(text)
                                     temp.close()
+                                    break
                                     pass
                                   time.sleep(0.02)
 
