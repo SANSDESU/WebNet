@@ -77,7 +77,7 @@ if not os.path.exists("./src/subdomains.txt"):
     os.system("wget -O ./src/subdomains.txt https://raw.githubusercontent.com/SansXpl/src/main/subdomains.txt")
     
 if not os.path.exists("./src/error_sql.txt"):
-    os.system("wget -O ./src/subdomains.txt https://raw.githubusercontent.com/SansXpl/src/main/error_sql.txt")
+    os.system("wget -O ./src/error_sql.txt https://raw.githubusercontent.com/SansXpl/src/main/error_sql.txt")
 
 if not os.path.exists("./src/UserAgent.txt"):
     os.system("wget -O ./src/UserAgent.txt https://raw.githubusercontent.com/SansXpl/src/main/UserAgent.txt")
