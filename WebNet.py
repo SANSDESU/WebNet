@@ -323,7 +323,7 @@ banner = f"""\033[38;5;208m
      │                      \033[1;31mBy: {author} {version}
      {W}
 +──────────────────────────────────────────────+\033[38;5;51m
-  Tools For Exploit Website, DoS, Crawler, Etc 
+  Tools For Exploit Website, WPC, Crawler, Etc 
    \033[38;5;208mGithub: {git}{W}
 +──────────────────────────────────────────────+"""
 
