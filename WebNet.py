@@ -55,8 +55,11 @@ if sys.version[0] in '2':
      exit()
 
 print(f"{systm}{BG} Cleaning Temp Folder...\n")
-if os.path.exists("./install.sh"):
-  os.remove("./install.sh")
+try:
+  if os.path.exists("./install.sh"):
+    os.remove("./install.sh")
+except Exception:
+  pass
 
 if os.path.exists("./.temp"):
   for i in os.listdir("./.temp"):
@@ -367,7 +370,7 @@ def checkConnection(url,option):
       pass
 
 def removeDups(inputfile):
-    tmp = ".temp/"
+    tmp = "./.temp/"
     filename = inputfile
     os.rename(tmp + inputfile, tmp + inputfile + "_old")
     lines=open(tmp + inputfile + "_old", 'r').readlines()
@@ -694,12 +697,12 @@ Error: {err}\n\n"""
               pause = str(input(f"\n{systm}{BB} [S = Skip] [X = Stop] {BO}Default is Skip [S/X?]"))
 
               if pause == "X" or pause == "x":
-                if os.path.exists(".temp/" + vulntemp):
+                if os.path.exists("./.temp/" + vulntemp):
                   c = open("./.temp/" + vulntemp, "r")
                   name = "./output/vulnsqli/" + outputfile + ".txt"
                   content = c.read()
                   c.close()
-                  os.remove(".temp/" + vulntemp)
+                  os.remove("./.temp/" + vulntemp)
                   save_file(name, content, 1)
                   main()
                 else:
@@ -714,12 +717,12 @@ Error: {err}\n\n"""
             sys.stdout.write(f"\r{error}{BR} Not Vulnerability: {W}{scan}")
             pass
 
-        if os.path.exists(".temp/" + vulntemp):
+        if os.path.exists("./.temp/" + vulntemp):
           c = open("./.temp/" + vulntemp, "r")
           name = "./output/vulnsqli/" + outputfile + ".txt"
           content = c.read()
           c.close()
-          os.remove(".temp/" + vulntemp)
+          os.remove("./.temp/" + vulntemp)
           save_file(name, content, 1)
         else:
           input(f"\n{fail}{BO} Nothing is Saved!")
@@ -782,26 +785,26 @@ class SUB():
                   temp.close()
 
             except KeyboardInterrupt:
-              if os.path.exists(".temp/" + filetemp):
+              if os.path.exists("./.temp/" + filetemp):
                 removeDups(filetemp)
                 c = open("./.temp/" + filetemp, "r")
                 name = "./output/subscan/" + n_url + ".txt"
                 content = c.read()
                 c.close()
-                os.remove(".temp/" + filetemp)
+                os.remove("./.temp/" + filetemp)
                 save_file(name, content, 1)
               else:
                 input(f"\n{fail}{BO} Nothing is Saved!")
                 main()
               main()
 
-            if os.path.exists(".temp/" + filetemp):
+            if os.path.exists("./.temp/" + filetemp):
               removeDups(filetemp)
               c = open("./.temp/" + filetemp, "r")
               name = "./output/subscan/" + n_url + ".txt"
               content = c.read()
               c.close()
-              os.remove(".temp/" + filetemp)
+              os.remove("./.temp/" + filetemp)
               save_file(name, content, 2)
             else:
               input(f"\n{fail}{BO} Nothing is Saved!")
@@ -1106,56 +1109,56 @@ Error: {err}\n\n"""
                             pause = str(input(f"\n{systm}{BB} [S = Skip] [X = Stop] {BO}Default is Skip [S/X?]"))
 
                             if pause == "X" or pause == "x":
-                              if os.path.exists(".temp/" + vulntemp):
+                              if os.path.exists("./.temp/" + vulntemp):
                                 c = open("./.temp/" + vulntemp, "r")
                                 name = "./output/vulnsqli/" + nm + "vuln.txt"
                                 content = c.read()
                                 c.close()
-                                os.remove(".temp/" + vulntemp)
+                                os.remove("./.temp/" + vulntemp)
                                 save_file(name, content, 2)
 
-                                if os.path.exists(".temp/" + filetemp):
+                                if os.path.exists("./.temp/" + filetemp):
                                   sv = input(f"\n{error}{BO} Save Output? {BR}[Not Vuln]{P} y/N?: ")
                                   if sv.isspace() or "" in sv:
                                     sv = "n"
                                   if sv == "y" or sv == "Y":
-                                      if os.path.exists(".temp/" + filetemp):
+                                      if os.path.exists("./.temp/" + filetemp):
                                           removeDups(filetemp)
                                           c = open("./.temp/" + filetemp, "r")
                                           name = "./output/dorkscan/" + nm + ".txt"
                                           content = c.read()
                                           c.close()
-                                          os.remove(".temp/" + filetemp)
+                                          os.remove("./.temp/" + filetemp)
                                           save_file(name, content, 1)
                                       else:
                                           input(f"\n{fail}{BO} Nothing is Saved!")
 
                                   else:
-                                      os.remove(".temp/" + filetemp)
+                                      os.remove("./.temp/" + filetemp)
                                       input(f"\n{fail}{BO} Nothing is Saved!")
                                 else:
                                   input("")
                                 main()
 
                               else:
-                                if os.path.exists(".temp/" + filetemp):
+                                if os.path.exists("./.temp/" + filetemp):
                                   sv = input(f"\n{error}{BO} Save Output? {BR}[Not Vuln]{P} y/N?: ")
                                   if sv.isspace() or "" in sv:
                                     sv = "n"
                                   if sv == "y" or sv == "Y":
-                                      if os.path.exists(".temp/" + filetemp):
+                                      if os.path.exists("./.temp/" + filetemp):
                                           removeDups(filetemp)
                                           c = open("./.temp/" + filetemp, "r")
                                           name = "./output/dorkscan/" + nm + ".txt"
                                           content = c.read()
                                           c.close()
-                                          os.remove(".temp/" + filetemp)
+                                          os.remove("./.temp/" + filetemp)
                                           save_file(name, content, 1)
                                       else:
                                           input(f"\n{fail}{BO} Nothing is Saved!")
 
                                   else:
-                                      os.remove(".temp/" + filetemp)
+                                      os.remove("./.temp/" + filetemp)
                                       input(f"\n{fail}{BO} Nothing is Saved!")
                                 else:
                                   input(f"\n{fail}{BO} Nothing is Saved!")
@@ -1175,54 +1178,54 @@ Error: {err}\n\n"""
                         temp.close()
                         pass
 
-                if os.path.exists(".temp/" + vulntemp):
+                if os.path.exists("./.temp/" + vulntemp):
                   c = open("./.temp/" + vulntemp, "r")
                   name = "./output/vulnsqli/" + nm + "vuln.txt"
                   content = c.read()
                   c.close()
-                  os.remove(".temp/" + vulntemp)
+                  os.remove("./.temp/" + vulntemp)
                   save_file(name, content, 2)
-                  if os.path.exists(".temp/" + filetemp):
+                  if os.path.exists("./.temp/" + filetemp):
                     sv = input(f"\n{error}{BO} Save Output? {BR}[Not Vuln]{P} y/N?: ")
                     if sv.isspace() or "" in sv:
                       sv = "n"
                     if sv == "y" or sv == "Y":
-                        if os.path.exists(".temp/" + filetemp):
+                        if os.path.exists("./.temp/" + filetemp):
                             removeDups(filetemp)
                             c = open("./.temp/" + filetemp, "r")
                             name = "./output/dorkscan/" + nm + ".txt"
                             content = c.read()
                             c.close()
-                            os.remove(".temp/" + filetemp)
+                            os.remove("./.temp/" + filetemp)
                             save_file(name, content, 1)
                         else:
                             input(f"\n{fail}{BO} Nothing is Saved!")
 
                     else:
-                        os.remove(".temp/" + filetemp)
+                        os.remove("./.temp/" + filetemp)
                         input(f"\n{fail}{BO} Nothing is Saved!")
                   else:
                     input("")
 
                 else:
-                  if os.path.exists(".temp/" + filetemp):
+                  if os.path.exists("./.temp/" + filetemp):
                     sv = input(f"\n{error}{BO} Save Output? {BR}[Not Vuln]{P} y/N?: ")
                     if sv.isspace() or "" in sv:
                       sv = "n"
                     if sv == "y" or sv == "Y":
-                        if os.path.exists(".temp/" + filetemp):
+                        if os.path.exists("./.temp/" + filetemp):
                             removeDups(filetemp)
                             c = open("./.temp/" + filetemp, "r")
                             name = "./output/dorkscan/" + nm + ".txt"
                             content = c.read()
                             c.close()
-                            os.remove(".temp/" + filetemp)
+                            os.remove("./.temp/" + filetemp)
                             save_file(name, content, 1)
                         else:
                             input(f"\n{fail}{BO} Nothing is Saved!")
 
                     else:
-                        os.remove(".temp/" + filetemp)
+                        os.remove("./.temp/" + filetemp)
                         input(f"\n{fail}{BO} Nothing is Saved!")
                   else:
                     input("")
@@ -1239,71 +1242,75 @@ Error: {err}\n\n"""
             _.Bing()
             _.Google()
             sys.stdout.write(f"\r{success}{BG} Getting Url Success!\n\n")
+            with open("./src/adminpages.txt", 'r') as r:
+              admfound = r.read().splitlines()
             time.sleep(0.5)
             if urls != []:
                 for url in list(set(urls)):
                   try:
                     adm = 0
-                    if "admin" in url or "login" in url:
-                      print(f"{loginfound}{BG} {url}")
-                      text2 = "\nUrl: {}".format(link)
-                      temp2 = open("./.temp/" + filetemp2, "a+")
-                      temp2.writelines(text2)
-                      temp2.close()
-                      time.sleep(0.05)
-                      adm = 1
-                    else:
-                      print(printout+BO+' {}'.format(url))
-                      text = "{}\n".format(url)
-                      temp = open("./.temp/" + filetemp, "a+")
-                      temp.writelines(text)
-                      temp.close()
+                    for adm in admfound:
+                      if adm in url:
+                        print(f"{loginfound}{BG} {url}")
+                        text = "\nUrl: {}".format(url)
+                        temp = open("./.temp/" + filetemp2, "a+")
+                        temp.writelines(text)
+                        temp.close()
+                        adm = 1
+                        break
+                      else:
+                        print(printout+BO+' {}'.format(url))
+                        text = "{}\n".format(url)
+                        temp = open("./.temp/" + filetemp, "a+")
+                        temp.writelines(text)
+                        temp.close()
+                        break
 
                   except KeyboardInterrupt:
-                    if os.path.exists(".temp/" + filetemp):
+                    if os.path.exists("./.temp/" + filetemp):
                       removeDups(filetemp)
                       c = open("./.temp/" + filetemp, "r")
                       name = "./output/dorkscan/" + nm + ".txt"
                       content = c.read()
                       c.close()
-                      os.remove(".temp/" + filetemp)
+                      os.remove("./.temp/" + filetemp)
                       save_file(name, content, 1)
                     else:
                       input(f"\n{fail}{BO} Nothing is Saved!")
 
                     if (adm == 1):
-                      admnm = urlparse(url).hostname
-                      if os.path.exists(".temp/" + filetemp2):
+                      #admnm = urlparse(url).hostname
+                      if os.path.exists("./.temp/" + filetemp2):
                         removeDups(filetemp2)
                         c = open("./.temp/" + filetemp2, "r")
-                        name = "./output/adminfind/" + admnm + ".txt"
+                        name = "./output/adminfind/" + nm + ".txt"
                         content = c.read()
                         c.close()
-                        os.remove(".temp/" + filetemp)
+                        os.remove("./.temp/" + filetemp2)
                         save_file(name, content, 3)
                       else:
                         input(f"\n{fail}{BO} Nothing is Saved!")
 
-                if os.path.exists(".temp/" + filetemp):
+                if os.path.exists("./.temp/" + filetemp):
                   removeDups(filetemp)
                   c = open("./.temp/" + filetemp, "r")
                   name = "./output/dorkscan/" + nm + ".txt"
                   content = c.read()
                   c.close()
-                  os.remove(".temp/" + filetemp)
+                  os.remove("./.temp/" + filetemp)
                   save_file(name, content, 1)
                 else:
                   input(f"\n{fail}{BO} Nothing is Saved!")
 
                 if (adm == 1):
-                  admnm = urlparse(url).hostname
-                  if os.path.exists(".temp/" + filetemp2):
+                  #admnm = urlparse(url).hostname
+                  if os.path.exists("./.temp/" + filetemp2):
                     removeDups(filetemp2)
                     c = open("./.temp/" + filetemp2, "r")
-                    name = "./output/adminfind/" + admnm + ".txt"
+                    name = "./output/adminfind/" + nm + ".txt"
                     content = c.read()
                     c.close()
-                    os.remove(".temp/" + filetemp)
+                    os.remove("./.temp/" + filetemp2)
                     save_file(name, content, 3)
                   else:
                     input(f"\n{fail}{BO} Nothing is Saved!")
@@ -1385,26 +1392,26 @@ class crawler():
           elif continues == 0:
               main()
             
-          if os.path.exists(".temp/" + filetemp):
+          if os.path.exists("./.temp/" + filetemp):
             removeDups(filetemp)
             c = open("./.temp/" + filetemp, "r")
             name = "./output/crawler/" + n_url + ".txt"
             content = c.read()
             c.close()
-            os.remove(".temp/" + filetemp)
+            os.remove("./.temp/" + filetemp)
             save_file(name, content, 1)
           else:
             input(f"\n{fail}{BO} Nothing is Saved!")
           
 
           if (adm == 1):
-            if os.path.exists(".temp/" + filetemp):
+            if os.path.exists("./.temp/" + filetemp):
               removeDups(filetemp)
               c = open("./.temp/" + filetemp, "r")
               name = "./output/adminfind/" + n_url + ".txt"
               content = c.read()
               c.close()
-              os.remove(".temp/" + filetemp)
+              os.remove("./.temp/" + filetemp)
               save_file(name, content, 3)
             else:
               input(f"\n{fail}{BO} Nothing is Saved!")
@@ -1472,25 +1479,25 @@ class crawler():
             elif continues == 0:
               pass
 
-            if os.path.exists(".temp/" + filetemp):
+            if os.path.exists("./.temp/" + filetemp):
               removeDups(filetemp)
               c = open("./.temp/" + filetemp, "r")
               name = "./output/crawler/" + n_url + ".txt"
               content = c.read()
               c.close()
-              os.remove(".temp/" + filetemp)
+              os.remove("./.temp/" + filetemp)
               save_file(name, content, 2)
             else:
               print(f"\n{fail}{BO} Nothing is Saved!")
 
             if (adm == 1):
-              if os.path.exists(".temp/" + filetemp):
+              if os.path.exists("./.temp/" + filetemp):
                 removeDups(filetemp)
                 c = open("./.temp/" + filetemp, "r")
                 name = "./output/adminfind/" + n_url + ".txt"
                 content = c.read()
                 c.close()
-                os.remove(".temp/" + filetemp)
+                os.remove("./.temp/" + filetemp)
                 save_file(name, content, 4)
               else:
                 print(f"\n{fail}{BO} Nothing is Saved!")
@@ -1543,13 +1550,13 @@ class ADMF():
             except requests.exceptions.ConnectionError:
               print(f"\n{ercon}{R} {s_url}/{adminpage}\n")
           except KeyboardInterrupt:
-            if os.path.exists(".temp/" + filetemp):
+            if os.path.exists("./.temp/" + filetemp):
               removeDups(filetemp)
               c = open("./.temp/" + filetemp, "r")
               name = "./output/adminfind/" + n_url + ".txt"
               content = c.read()
               c.close()
-              os.remove(".temp/" + filetemp)
+              os.remove("./.temp/" + filetemp)
               save_file(name, content, 1)
             else:
               input(f"\n{fail}{BO} Nothing is Saved!")
@@ -1557,13 +1564,13 @@ class ADMF():
             main()
           time.sleep(0.05)
 
-        if os.path.exists(".temp/" + filetemp):
+        if os.path.exists("./.temp/" + filetemp):
           removeDups(filetemp)
           c = open("./.temp/" + filetemp, "r")
           name = "./output/adminfind/" + n_url + ".txt"
           content = c.read()
           c.close()
-          os.remove(".temp/" + filetemp)
+          os.remove("./.temp/" + filetemp)
           save_file(name, content, 1)
         else:
           input(f"\n{fail}{BO} Nothing is Saved!")
@@ -1610,13 +1617,13 @@ class LOG():
           temp.writelines(text)
           temp.close()
 
-          if os.path.exists(".temp/" + filetemp):
+          if os.path.exists("./.temp/" + filetemp):
             removeDups(filetemp)
             c = open("./.temp/" + filetemp, "r")
             name = "./output/logbrute/" + n_url + ".txt"
             content = c.read()
             c.close()
-            os.remove(".temp/" + filetemp)
+            os.remove("./.temp/" + filetemp)
             save_file(name, content, 1)
           else:
             input(f"\n{fail}{BO} Nothing is Saved!")
@@ -2042,13 +2049,13 @@ class nslookup():
           temp.writelines(text)
           temp.close()
 
-        if os.path.exists(".temp/" + filetemp):
+        if os.path.exists("./.temp/" + filetemp):
           removeDups(filetemp)
           c = open("./.temp/" + filetemp, "r")
           name = "./output/nslookup/" + n_url + ".txt"
           content = c.read()
           c.close()
-          os.remove(".temp/" + filetemp)
+          os.remove("./.temp/" + filetemp)
           save_file(name, content, 1)
         else:
           input(f"\n{fail}{BO} Nothing is Saved!")
@@ -2103,13 +2110,13 @@ class nslookup():
             temp.writelines(text)
             temp.close()
 
-          if os.path.exists(".temp/" + filetemp):
+          if os.path.exists("./.temp/" + filetemp):
             removeDups(filetemp)
             c = open("./.temp/" + filetemp, "r")
             name = "./output/nslookup/" + n_url + ".txt"
             content = c.read()
             c.close()
-            os.remove(".temp/" + filetemp)
+            os.remove("./.temp/" + filetemp)
             save_file(name, content, 2)
             time.sleep(3)
           else:
@@ -2233,13 +2240,13 @@ class REVIP():
                         temp.writelines(text)
                         temp.close()
 
-            if os.path.exists(".temp/" + filetemp):
+            if os.path.exists("./.temp/" + filetemp):
               removeDups(filetemp)
               c = open("./.temp/" + filetemp, "r")
               name = "./output/revIP/" + n_url + ".txt"
               content = c.read()
               c.close()
-              os.remove(".temp/" + filetemp)
+              os.remove("./.temp/" + filetemp)
               save_file(name, content, 1)
             else:
               input(f"\n{fail}{BO} Nothing is Saved!")
@@ -2249,13 +2256,13 @@ class REVIP():
         except requests.exceptions.RequestException as e:
             input(f"{error}{BR} Something going wrong with the connection.Please check the connectivity")
         except KeyboardInterrupt:
-            if os.path.exists(".temp/" + filetemp):
+            if os.path.exists("./.temp/" + filetemp):
               removeDups(filetemp)
               c = open("./.temp/" + filetemp, "r")
               name = "./output/revIP/" + n_url + ".txt"
               content = c.read()
               c.close()
-              os.remove(".temp/" + filetemp)
+              os.remove("./.temp/" + filetemp)
               save_file(name, content, 1)
             else:
               input(f"\n{fail}{BO} Nothing is Saved!")
