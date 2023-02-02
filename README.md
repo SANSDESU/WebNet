@@ -4,7 +4,6 @@ Tools For Scanning Website Vulnerability
 
 #### Usage & Installation
 ```
-- Installation
 apt-get install git
 git clone https://github.com/SansXpl/WebNet.git
 cd WebNet
