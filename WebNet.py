@@ -3,6 +3,7 @@ import sys, os, re, io
 
 # Color [ANSI] ===============
 W = "\033[38;5;245m"
+WH = "\033[38;5;15m"
 PINK = "\033[38;5;207m"
 P = "\033[38;5;105m"
 R = '\033[0;31m'
@@ -1240,7 +1241,7 @@ Error: {err}\n\n"""
                     adm = 0
                     for adm in admfound:
                       if adm in url:
-                        print(f"{loginfound}{BG} {url}")
+                        print(loginfound+P+' {}'.format(url))
                         text = "\nUrl: {}".format(url)
                         temp = open("./.temp/" + filetemp2, "a+")
                         temp.writelines(text)
@@ -1409,7 +1410,7 @@ class crawler():
         elif (mode == 2):
           filetemp = str(uuid.uuid4())
           filetemp2 = str(uuid.uuid4())
-          print(f" ├─[{PINK}Path e.g: lists.txt{W}]─[{PINK}Output e.g: vuln.txt{W}]")
+          print(f" ├─[{PINK}Path e.g: lists.txt{W}]")
           print(f"{W} │")
           path = str(input(f" └─[{BO}Path{W}]{P} "))
           if not os.path.exists(path):
@@ -1600,7 +1601,7 @@ class LOG():
         target = _input
         os.system(clrcmd)
         print(banner)
-        print(f"{W}[{BR}@{W}]{BG} Login Brute{W}")
+        print(f"{W}[{BR}@{W}]{BG} Login Brute [CSRF Token]{W}")
         print(f"{W} ├─[{BO}Target{W}] {P}{target}")
         user = str(input(f"{W} ├─[{BO}Username{W}]{PINK} "))
         passwd = str(input(f"{W} ├─[{BO}Wordlist [leave blank for default]{W}]{PINK} "))
@@ -1698,10 +1699,6 @@ class LOG():
 
           req = requests.post(url, data=payload, headers=header)
 
-          with open("./src/Login_Success.txt", 'r') as f:
-            success_text = f.read().splitlines()
-
-          
           if "Logout" in req.text or "logout" in req.text or "success" in req.text or "SUCCES" in req.text or "successfully" in req.text:
             with term.location(x=0, y=26):
                 print(whitespace)
@@ -1872,16 +1869,46 @@ class WP():
         b = files.read(size)
         if not b: break
         yield b
-
+      
   def main(self):
+    try:
+      opt = 0
+      os.system(clrcmd)
+      print(banner)
+      print(f"{W}[{BR}@{W}]{BG} WordPress Crack {W}")
+      print(f" ├─[{PINK}Target e.g: http://site.com/wp-login.php{W}]")
+      print(f" ├─[{PINK}Mode -1 = standard, -2 = xml-rpc | e.g: target -1]{W}]")
+      print(f"{W} │")
+      _input = input(f" └─[{BO}~>{W}]{P} ")
+      _input = _input.replace(" ", "" )
+
+      if "-1" in _input:
+        _input = _input.replace("-1", "" )
+        opt = 1
+        mode = "Standard"
+        url = _input
+        self.run(opt, mode, url)
+
+      elif "-2" in _input:
+        _input = _input.replace("-2", "" )
+        mode = "Xml-Rpc"
+        url = _input
+        self.run(opt, mode, url)
+
+      else:
+        input(invalid)
+        self.main()
+
+    except KeyboardInterrupt:
+      cancel()
+
+  def run(self, opt, mode, url):
     try:
       os.system(clrcmd)
       print(banner)
       print(f"{W}[{BR}@{W}]{BG} WordPress Crack {W}")
-      print(f" ├─[{PINK}Mode [1 standard, 2 xml-rpc]{W}]─[{PINK}Target e.g: http://site.com/wp-login.php{W}]")
-      print(f"{W} │")
-      opt = str(input(f"{W} ├─[{BO}Brute Mode{W}]{P} "))
-      url = str(input(f"{W} ├─[{BO}Target Url{W}]{P} "))
+      print(f"{W} ├─[{BO}Brute Mode{W}] {P}{mode}")
+      print(f"{W} ├─[{BO}Target Url{W}] {P}{url}")
       user = str(input(f"{W} ├─[{BO}Username{W}]{P} "))
       wlfile = str(input(f"{W} ├─[{BO}Wordlist [leave blank for default]{W}]{P} "))
       if wlfile == "" or wlfile == " ":
@@ -1895,7 +1922,7 @@ class WP():
 
       timeout = input(f"{W} └─[{BO}Response Timeout{W}]{P} ")
       timeout = int(timeout)
-      if opt == "1" or opt == "01":
+      if opt == 1:
         brtmd="std"
       else:
         brtmd="xml"
@@ -1915,11 +1942,8 @@ class WP():
       print(f"\n{success}{BB} Target.....: {url}")
       print(success+BB+' Wordlist...: '+str(totalwordlist)+" ["+wlfile+"]")
       print(f"\n{success}{BB} Username...: {user}")
-      if brtmd == "std":
-        print(f"\n{success}{BB} BruteMode..: Standard")
-      else:
-        print(f"\n{success}{BB} BruteMode..: Xml-Rpc")
-        print(f"\n{success}{BB} Connecting.......")
+      print(f"\n{success}{BB} BruteMode..: {mode}")
+      print(f"\n{success}{BB} Connecting.......")
 
       if self.connection(url,user,Ua,Ua,timeout,brtmd) == "OK":
         print(f"\n{success}{BB} Connection Established!")
@@ -2292,10 +2316,10 @@ def main():
  │├─[{BR}7{W}]{BO} WordPress Crack   {W}┘{W}
  │├─[{BR}8{W}]{BO} NSLookup          {W}┬[{BR}${W}]{PINK} Network Tools{W}
  │├─[{BR}9{W}]{BO} Reverse IP        {W}┘{W}
- │├─[{BR}i{W}]{BO} Credits           {W}┬[{BR}${W}]{PINK} About{W}
+ │├─[{BR}?{W}]{BO} Help              {W}┬[{BR}${W}]{PINK} Other{W}
  │└─[{BR}x{W}]{BO} Exit              {W}┘{W}
  │"""
-    #print(N+"N"+W+"W"+R+"R"+G+"G"+O+"O"+BL+"BL"+B+"B"+BR+"BR"+U+"U")
+ 
     print(banner)
     print(f"{systm}{BG} Welcome Inj3ct0r!{W}    [{BR}{str_date_time}{W}]")
     print(menu_banner)
@@ -2338,9 +2362,9 @@ def main():
         os.system(clrcmd)
         REVIP()
         break
-      elif (i == 'i'):
+      elif (i == '?'):
         os.system(clrcmd)
-        credits()
+        helps()
         break
       elif (i == '0' or i == '00' or i == 'x'):
         exit()
@@ -2351,60 +2375,125 @@ def main():
   except KeyboardInterrupt:
     exit()
 
-def credits():
+def helps():
     os.system(clrcmd)
     print(banner)
-    print(f"{W}[{BR}@{W}]{BG} Credits To: {W} \n")
+    help_text = f"""
+{success}{BG} Usage & How To Use:
 
-    print(f"{W}[{BR}+{W}]{P} SQLI Scanner")
-    print(f"{W} ├─[{BO}+{W}]{BG} Author: {BO}{author}")
-    print(f"{W} ├─[{PINK}+{W}]{BG} Recode: {PINK}{author}")
-    print(f"{W} └─[{BB}+{W}]{BG} Github: {BB}{git}")
-    print("\n")
+{systm}{W}─────────────{BG}[Scanner Tools]{W}──────────────{systm}
 
-    print(f"{W}[{BR}+{W}]{P} Web Crawler & Subdomain Scanner")
-    print(f"{W} ├─[{BO}+{W}]{BG} Author:{BO} codassassin")
-    print(f"{W} ├─[{PINK}+{W}]{BG} Recode: {PINK}{author}")
-    print(f"{W} └─[{BB}+{W}]{BG} Github:{BB} https://github.com/codassassin/web-crawler-v2.0")
-    print("\n")
+{success}{PINK} SQLI Scanner:
+    {W}Tools For Scanning SQL Vulnerability in website automaticly,
+    and support scan website in list file (txt or other)
 
-    print(f"{W}[{BR}+{W}]{P} Dork Scanner")
-    print(f"{W} ├─[{BO}+{W}]{BG} Author:{BO} jaxBCD")
-    print(f"{W} ├─[{PINK}+{W}]{BG} Recode: {PINK}{author}")
-    print(f"{W} └─[{BB}+{W}]{BG} Github:{BB} https://github.com/jaxBCD/Ultimate-Dork")
-    print("\n")
-    
-    print(f"{W}[{BR}+{W}]{P} Admin Finder")
-    print(f"{W} ├─[{BO}+{W}]{BG} Author: {BO}{author}")
-    print(f"{W} ├─[{PINK}+{W}]{BG} Recode: {PINK}{author}")
-    print(f"{W} └─[{BB}+{W}]{BG} Github: {BB}{git}")
-    print("\n")
-    
-    print(f"{W}[{BR}+{W}]{P} Login Brute")
-    print(f"{W} ├─[{BO}+{W}]{BG} Author:{BO} Sanix-darker")
-    print(f"{W} ├─[{PINK}+{W}]{BG} Recode: {PINK}{author}")
-    print(f"{W} └─[{BB}+{W}]{BG} Github:{BB} https://github.com/Sanix-Darker/Brute-Force-Login")
-    print("\n")
+  {printout}{BO} Usage:
+      {B}[Single Target] 
+      {WH}Example: 
+      url > http://vulnwebsite.net/pages.php?id=1
 
-    print(f"{W}[{BR}+{W}]{P} WordPress Crack")
-    print(f"{W} ├─[{BO}+{W}]{BG} Author:{BO} Claudio Viviani")
-    print(f"{W} ├─[{PINK}+{W}]{BG} Recode: {PINK}{author}")
-    print(f"{W} └─[{BB}+{W}]{BG} Github:{BB} https://github.com/claudioviviani/wordbrutepress")
-    print("\n")
-    
-    print(f"{W}[{BR}+{W}]{P} NSLookup")
-    print(f"{W} ├─[{BO}+{W}]{BG} Author:{BO} JamesJ0717")
-    print(f"{W} ├─[{PINK}+{W}]{BG} Recode: {PINK}{author}")
-    print(f"{W} └─[{BB}+{W}]{BG} Github:{BB} https://github.com/JamesJ0717/nslookup-python")
-    print("\n")
+      {G}[Multi Target] 
+      {W}Input your list text file that contains url for scanning,
+      and enter output file name
 
-    print(f"{W}[{BR}+{W}]{P} Reverse IP")
-    print(f"{W} ├─[{BO}+{W}]{BG} Author:{BO} 1uffyD9")
-    print(f"{W} ├─[{PINK}+{W}]{BG} Recode: {PINK}{author}")
-    print(f"{W} └─[{BB}+{W}]{BG} Github:{BB} https://github.com/1uffyD9/revIPLookup")
-    print("\n")
-    
-    input(O+"Press Anything To Back To Menu")
+      {WH}Example: 
+      path > path/to/file/list.txt or lists.txt
+      output > path/to/file/output.txt or output.txt
+
+{success}{PINK} Subdomain Scanner:
+    {W}Tools For Scanning Subdomain Website, that hidden
+    or cannot see in search view or not public by owner
+
+  {printout}{BO} Usage:
+      {WH}Example: 
+      url > http://www.website.net
+
+{success}{PINK} Dork Scanner:
+    {W}Tools For Scanning Dork like inurl, intext, intitle, and other,
+    this tool can also scan Dork that contain Sql Vulnerability,
+    and can detect url, that contain admin login, and you can
+    also set custom proxy for searching Dork
+
+  {printout}{BO} Usage:
+      {B}For scanning sql vulnerability
+      you can add {P}-s {B}in dork input
+
+      {WH}Example: (Sql vuln not scanned)
+      dork > inurl:view.php?id=
+
+      Example: (Sql vuln scanned)
+      dork > inurl:view.php?id= -s
+
+      Example: (Search admin login)
+      dork > inurl:adminlogin.php
+
+      Example: (Add custom proxy)
+      proxy > 127.0.0.1:1337
+
+{success}{PINK} Web Crawler:
+    {W}Tools For Scanning url in specific website, or 
+    crawling url in specific website, and also support
+    scan website in list file (txt or other), and can
+    detect url, that contain admin login
+
+  {printout}{BO} Usage:
+      {B}[Single Target] 
+      {WH}Example: 
+      url > http://webhost.com
+
+      {G}[Multi Target] 
+      {W}Input your list text file that contains url for scanning
+
+      {WH}Example: 
+      path > path/to/file/list.txt or lists.txt
+
+{success}{PINK} Admin Finder:
+    {W}This Tools like subdomain scanner, but this is for scanning
+    admin login page, that hidden or cannot see in search view,
+    or not public by website owner
+
+  {printout}{BO} Usage:
+      {WH}Example: 
+      url > http://sitehost.com
+
+
+{systm}{W}───────────{BG}[Brute Force Tools]{W}────────────{systm}
+
+{success}{PINK} Login Brute:
+    {W}This Tools For Brute Force login website, you can also
+    Brute Force login website that contain CSRF Token,
+    and you can also choose Password Wordlist, or you
+    can Leave Blank, if you want to use default
+    Password Wordlist [src/passwords.txt]
+
+  {error} This Tools Required Specific {P}<'action'> Attribute
+      like /check_login.php, <'name'> Attribute for username-field,
+      <'name'> Attribute for password-field, and <'name'>
+      Attribute for csrf token if you use csrf token,{W}
+      that contain in html form, you can view it
+      with Inspect Element
+
+  {printout}{BO} Usage:
+      {B}For enable CSRF mode you can add {P}-csrf {B}in input
+      
+      {WH}Example: (Without CSRF Token)
+      ~> http://site.com/login/
+      username > admin
+      wordlist > src/passwords.txt
+      user field > uname
+      pass field > upass
+
+      {WH}Example: (With CSRF Token)
+      ~> http://site.com/login/ -csrf
+      username > admin
+      wordlist > src/passwords.txt
+      user field > uname
+      pass field > upass
+      csrf token > csrf
+
+
+"""
+    input(help_text)
     main()
     
 
@@ -2428,66 +2517,3 @@ def exit():
 
 if __name__ == '__main__':                                          
   main()
-
-  '''
-   ├─[Target <'action'> attribute | e.g: http://site.com/login-form.php]
- ├─[User Field <'name'> attribute | e.g: username]
- ├─[Password Field <'name'> attribute | e.g: password]
- ├─[CSRF Token <'name'> attribute | leave blank if this not showed]
- │
-
-          elif "-a" in _input:
-          _input = _input.replace("-a", "" )
-
-          url = _input
-
-          if "http" in _input or "/" in _input or "." in _input:
-            r = requests.get(_input)
-
-          else:
-            input(invalid)
-            self.main()
-          
-          
-          self.extract_field_form(_input, r.text, csrf)
-
-
-          self, url, html_contain,
-
-          #=========================================================
-
-          print(f"{printout}{O} Starting extraction...")
-          tree = html.fromstring(html_contain)
-
-          print(f"{printout}{O} Fetching parameters..")
-          form_action_url = list(tree.xpath("//form/@action"))[0]
-          payload_fetched = list(set(tree.xpath("//form//input")))
-          if len(form_action_url) == 0:
-            form_action_url = url
-
-          if "http" not in form_action_url:
-            form_action_url = url +""+ form_action_url
-
-          print(success + B + " Action : ", form_action_url)
-          fields = []
-          for each_element in payload_fetched:
-            names = each_element.xpath("//@name")
-            types = each_element.xpath("//@type")
-
-            for i, name in enumerate(names):
-              if types[i] != "submit" and name != "submit":
-                print(success + B + " ~>", str(name),
-                      "{" + str(types[i]) + "}")
-
-              fields = names
-              break
-
-          if len(fields) == 2:
-            fields.append("empty-token-field")
-
-          
-
-          self.info(self, target, user, passwd, user_field, password_field, csrf_field, csrf)
-          
-          self.try_connection(url, fields[0], fields[1], fields[2], csrf)
-'''
