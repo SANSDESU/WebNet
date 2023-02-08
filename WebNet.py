@@ -70,73 +70,6 @@ if os.path.exists("./.temp"):
     if os.path.exists(os.path.join("./.temp", i)):
       os.remove(os.path.join("./.temp", i))
 
-#Setup Folder & Resource =====================================
-if not os.path.exists("./output"):
-  os.makedirs("./output")
-
-if not os.path.exists("./.temp"):
-  os.makedirs("./.temp")
-
-if not os.path.exists("./src"):
-  os.makedirs("./src")
-
-if not os.path.exists("./src/adminpages.txt"):
-  os.system(
-    "wget -O ./src/adminpages.txt https://raw.githubusercontent.com/SansXpl/src/main/adminpages.txt"
-  )
-
-if not os.path.exists("./src/subdomains.txt"):
-  os.system(
-    "wget -O ./src/subdomains.txt https://raw.githubusercontent.com/SansXpl/src/main/subdomains.txt"
-  )
-
-if not os.path.exists("./src/error_sql.txt"):
-  os.system(
-    "wget -O ./src/error_sql.txt https://raw.githubusercontent.com/SansXpl/src/main/error_sql.txt"
-  )
-
-if not os.path.exists("./src/UserAgent.txt"):
-  os.system(
-    "wget -O ./src/UserAgent.txt https://raw.githubusercontent.com/SansXpl/src/main/UserAgent.txt"
-  )
-
-if not os.path.exists("./src/users.txt"):
-  os.system(
-    "wget -O ./src/users.txt https://raw.githubusercontent.com/SansXpl/src/main/users.txt"
-  )
-
-if not os.path.exists("./src/passwords.txt"):
-  os.system(
-    "wget -O ./src/passwords.txt https://raw.githubusercontent.com/SansXpl/src/main/passwords.txt"
-  )
-
-if not os.path.exists("./output/crawler"):
-  os.makedirs("./output/crawler")
-
-if not os.path.exists("./output/subscan"):
-  os.makedirs("./output/subscan")
-
-if not os.path.exists("./output/dorkscan"):
-  os.makedirs("./output/dorkscan")
-
-if not os.path.exists("./output/vulnsqli"):
-  os.makedirs("./output/vulnsqli")
-
-if not os.path.exists("./output/adminfind"):
-  os.makedirs("./output/adminfind")
-
-if not os.path.exists("./output/logbrute"):
-  os.makedirs("./output/logbrute")
-
-if not os.path.exists("./output/wpbrute"):
-  os.makedirs("./output/wpbrute")
-
-if not os.path.exists("./output/nslookup"):
-  os.makedirs("./output/nslookup")
-
-if not os.path.exists("./output/revIP"):
-  os.makedirs("./output/revIP")
-
 # Checking PIP Packages ==========================================
 try:
   print(f"{loading}{BO} Checking Packages ...")
@@ -308,6 +241,73 @@ except ImportError as chk:
   from collections import namedtuple
   from datetime import datetime
   from blessed import Terminal
+
+#Setup Folder & Resource =====================================
+if not os.path.exists("./output"):
+  os.makedirs("./output")
+
+if not os.path.exists("./.temp"):
+  os.makedirs("./.temp")
+
+if not os.path.exists("./src"):
+  os.makedirs("./src")
+
+if not os.path.exists("./src/adminpages.txt"):
+  subprocess.Popen(
+    "wget -O ./src/adminpages.txt https://raw.githubusercontent.com/SansXpl/src/main/adminpages.txt"
+  )
+
+if not os.path.exists("./src/subdomains.txt"):
+  subprocess.Popen(
+    "wget -O ./src/subdomains.txt https://raw.githubusercontent.com/SansXpl/src/main/subdomains.txt"
+  )
+
+if not os.path.exists("./src/error_sql.txt"):
+  subprocess.Popen(
+    "wget -O ./src/error_sql.txt https://raw.githubusercontent.com/SansXpl/src/main/error_sql.txt"
+  )
+
+if not os.path.exists("./src/UserAgent.txt"):
+  subprocess.Popen(
+    "wget -O ./src/UserAgent.txt https://raw.githubusercontent.com/SansXpl/src/main/UserAgent.txt"
+  )
+
+if not os.path.exists("./src/users.txt"):
+  subprocess.Popen(
+    "wget -O ./src/users.txt https://raw.githubusercontent.com/SansXpl/src/main/users.txt"
+  )
+
+if not os.path.exists("./src/passwords.txt"):
+  subprocess.Popen(
+    "wget -O ./src/passwords.txt https://raw.githubusercontent.com/SansXpl/src/main/passwords.txt"
+  )
+
+if not os.path.exists("./output/crawler"):
+  os.makedirs("./output/crawler")
+
+if not os.path.exists("./output/subscan"):
+  os.makedirs("./output/subscan")
+
+if not os.path.exists("./output/dorkscan"):
+  os.makedirs("./output/dorkscan")
+
+if not os.path.exists("./output/vulnsqli"):
+  os.makedirs("./output/vulnsqli")
+
+if not os.path.exists("./output/adminfind"):
+  os.makedirs("./output/adminfind")
+
+if not os.path.exists("./output/logbrute"):
+  os.makedirs("./output/logbrute")
+
+if not os.path.exists("./output/wpbrute"):
+  os.makedirs("./output/wpbrute")
+
+if not os.path.exists("./output/nslookup"):
+  os.makedirs("./output/nslookup")
+
+if not os.path.exists("./output/revIP"):
+  os.makedirs("./output/revIP")
 
 # Check Device OS ==========================================
 osdevice = {'Win', 'Win98', 'WinNT3', 'WinNT4', 'Windows', 'WindowsCE'}
