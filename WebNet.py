@@ -86,34 +86,22 @@ if not os.path.exists("./src"):
   os.makedirs("./src")
 
 if not os.path.exists("./src/adminpages.txt"):
-  os.system(
-    "python -m wget https://raw.githubusercontent.com/SansXpl/src/main/adminpages.txt -o ./src/adminpages.txt"
-  )
+  wget.download("https://raw.githubusercontent.com/SansXpl/src/main/adminpages.txt","./src/")
 
 if not os.path.exists("./src/subdomains.txt"):
-  os.system(
-    "python -m wget https://raw.githubusercontent.com/SansXpl/src/main/subdomains.txt -o ./src/subdomains.txt"
-  )
+  wget.download("https://raw.githubusercontent.com/SansXpl/src/main/subdomains.txt","./src/")
 
 if not os.path.exists("./src/error_sql.txt"):
-  os.system(
-    "python -m wget https://raw.githubusercontent.com/SansXpl/src/main/error_sql.txt -o ./src/error_sql.txt"
-  )
+  wget.download("https://raw.githubusercontent.com/SansXpl/src/main/error_sql.txt","./src/")
 
 if not os.path.exists("./src/UserAgent.txt"):
-  os.system(
-    "python -m wget https://raw.githubusercontent.com/SansXpl/src/main/UserAgent.txt -o ./src/UserAgent.txt"
-  )
+  wget.download("https://raw.githubusercontent.com/SansXpl/src/main/UserAgent.txt","./src/")
 
 if not os.path.exists("./src/users.txt"):
-  os.system(
-    "python -m wget https://raw.githubusercontent.com/SansXpl/src/main/users.txt -o ./src/users.txt"
-  )
+  wget.download("https://raw.githubusercontent.com/SansXpl/src/main/users.txt","./src/")
 
 if not os.path.exists("./src/passwords.txt"):
-  os.system(
-    "python -m wget https://raw.githubusercontent.com/SansXpl/src/main/passwords.txt -o ./src/passwords.txt"
-  )
+  wget.download("https://raw.githubusercontent.com/SansXpl/src/main/passwords.txt","./src/")
 
 if not os.path.exists("./output/crawler"):
   os.makedirs("./output/crawler")
