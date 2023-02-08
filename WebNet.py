@@ -253,32 +253,32 @@ if not os.path.exists("./src"):
   os.makedirs("./src")
 
 if not os.path.exists("./src/adminpages.txt"):
-  subprocess.Popen(
+  subprocess.run(
     "wget -O ./src/adminpages.txt https://raw.githubusercontent.com/SansXpl/src/main/adminpages.txt"
   )
 
 if not os.path.exists("./src/subdomains.txt"):
-  subprocess.Popen(
+  subprocess.run(
     "wget -O ./src/subdomains.txt https://raw.githubusercontent.com/SansXpl/src/main/subdomains.txt"
   )
 
 if not os.path.exists("./src/error_sql.txt"):
-  subprocess.Popen(
+  subprocess.run(
     "wget -O ./src/error_sql.txt https://raw.githubusercontent.com/SansXpl/src/main/error_sql.txt"
   )
 
 if not os.path.exists("./src/UserAgent.txt"):
-  subprocess.Popen(
+  subprocess.run(
     "wget -O ./src/UserAgent.txt https://raw.githubusercontent.com/SansXpl/src/main/UserAgent.txt"
   )
 
 if not os.path.exists("./src/users.txt"):
-  subprocess.Popen(
+  subprocess.run(
     "wget -O ./src/users.txt https://raw.githubusercontent.com/SansXpl/src/main/users.txt"
   )
 
 if not os.path.exists("./src/passwords.txt"):
-  subprocess.Popen(
+  subprocess.run(
     "wget -O ./src/passwords.txt https://raw.githubusercontent.com/SansXpl/src/main/passwords.txt"
   )
 
