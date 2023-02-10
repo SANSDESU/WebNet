@@ -564,7 +564,7 @@ Error: {err}\n\n"""
                 break
               else:
                 dq = 1
-              time.sleep(0.02)
+              time.sleep(0.005)
 
             if dq == 1:
               sys.stdout.write(f"\r{whitespace}")
@@ -594,7 +594,7 @@ Error: {err}\n\n"""
                   sys.stdout.write(
                     f"\r{error}{BR} Not Vulnerability: {W}{scan}")
                   input("")
-                time.sleep(0.02)
+                time.sleep(0.005)
 
           except Exception as e:
             print(BR + e)
@@ -662,7 +662,7 @@ Error: {err}\n\n"""
                   pass
                 else:
                   dq = 1
-                time.sleep(0.02)
+                time.sleep(0.005)
 
               if dq == 1:
                 sys.stdout.write(f"\r{whitespace}")
@@ -696,7 +696,7 @@ Error: {err}\n\n"""
                       f"\r{error}{BR} Not Vulnerability: {W}{scan}")
                     break
                     pass
-                  time.sleep(0.02)
+                  time.sleep(0.005)
 
             except Exception as e:
               print(BR + e)
@@ -970,7 +970,7 @@ class dorkscan():
       checkConnection("http://www.google.com/search?q=" + _dork, 1)
       sys.stdout.write(f"\n{loading}{BO} Try Getting Url...")
 
-      nm = re.sub("[*:/<>?|=.]", "_", _dork)
+      nm = re.sub("[*:/<>?|=.~!@#$%^&(); ]", "_", _dork)
       mn = nm.replace("\ ", "")
       if _scan == "y":
         if _dork != None:
@@ -1031,7 +1031,7 @@ Error: {err}\n\n"""
                       pass
                     else:
                       dq = 1
-                    time.sleep(0.02)
+                    time.sleep(0.005)
 
                   if dq == 1:
                     sys.stdout.write(f"\r{whitespace}")
@@ -1072,7 +1072,7 @@ Error: {err}\n\n"""
                         temp.close()
                         break
                         pass
-                      time.sleep(0.02)
+                      time.sleep(0.005)
 
                 except Exception as e:
                   print(BR + e)
